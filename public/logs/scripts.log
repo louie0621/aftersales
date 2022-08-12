@@ -1,0 +1,81 @@
+[31-Aug-2020 06:20:43 America/Los_Angeles] PHP Warning:  include(header.php): failed to open stream: No such file or directory in /index.php on line 2
+[31-Aug-2020 06:20:43 America/Los_Angeles] PHP Warning:  include(): Failed opening 'header.php' for inclusion (include_path='.:/include:/usr/lib/php7:/usr/lib/php') in /index.php on line 2
+[31-Aug-2020 06:20:43 America/Los_Angeles] PHP Warning:  include(latest-project-hamburger.php): failed to open stream: No such file or directory in /index.php on line 27
+[31-Aug-2020 06:20:43 America/Los_Angeles] PHP Warning:  include(): Failed opening 'latest-project-hamburger.php' for inclusion (include_path='.:/include:/usr/lib/php7:/usr/lib/php') in /index.php on line 27
+[31-Aug-2020 06:20:43 America/Los_Angeles] PHP Warning:  include(newsletter.php): failed to open stream: No such file or directory in /index.php on line 569
+[31-Aug-2020 06:20:43 America/Los_Angeles] PHP Warning:  include(): Failed opening 'newsletter.php' for inclusion (include_path='.:/include:/usr/lib/php7:/usr/lib/php') in /index.php on line 569
+[31-Aug-2020 06:20:43 America/Los_Angeles] PHP Warning:  include(footer.php): failed to open stream: No such file or directory in /index.php on line 635
+[31-Aug-2020 06:20:43 America/Los_Angeles] PHP Warning:  include(): Failed opening 'footer.php' for inclusion (include_path='.:/include:/usr/lib/php7:/usr/lib/php') in /index.php on line 635
+[31-Aug-2020 06:20:55 America/Los_Angeles] PHP Warning:  include(latest-project-hamburger.php): failed to open stream: No such file or directory in /index.php on line 27
+[31-Aug-2020 06:20:55 America/Los_Angeles] PHP Warning:  include(): Failed opening 'latest-project-hamburger.php' for inclusion (include_path='.:/include:/usr/lib/php7:/usr/lib/php') in /index.php on line 27
+[31-Aug-2020 06:20:55 America/Los_Angeles] PHP Warning:  include(newsletter.php): failed to open stream: No such file or directory in /index.php on line 569
+[31-Aug-2020 06:20:55 America/Los_Angeles] PHP Warning:  include(): Failed opening 'newsletter.php' for inclusion (include_path='.:/include:/usr/lib/php7:/usr/lib/php') in /index.php on line 569
+[31-Aug-2020 06:20:55 America/Los_Angeles] PHP Warning:  include(footer.php): failed to open stream: No such file or directory in /index.php on line 635
+[31-Aug-2020 06:20:55 America/Los_Angeles] PHP Warning:  include(): Failed opening 'footer.php' for inclusion (include_path='.:/include:/usr/lib/php7:/usr/lib/php') in /index.php on line 635
+[17-Sep-2020 20:08:18 America/Los_Angeles] PHP Fatal error:  Uncaught Error: Call to a member function ErrorInfo() on string in /beta/sendEmail.php:38
+Stack trace:
+#0 {main}
+  thrown in /beta/sendEmail.php on line 38
+[17-Sep-2020 20:08:42 America/Los_Angeles] PHP Fatal error:  Uncaught Error: Call to a member function ErrorInfo() on string in /beta/sendEmail.php:38
+Stack trace:
+#0 {main}
+  thrown in /beta/sendEmail.php on line 38
+[17-Sep-2020 20:59:11 America/Los_Angeles] PHP Parse error:  syntax error, unexpected ''PHPMailer\PHPMailer\PHPMailer' (T_CONSTANT_ENCAPSED_STRING), expecting identifier (T_STRING) or function (T_FUNCTION) or const (T_CONST) or \\ (T_NS_SEPARATOR) in /beta/sendEmail.php on line 2
+[17-Sep-2020 20:59:24 America/Los_Angeles] PHP Parse error:  syntax error, unexpected ''PHPMailer\PHPMailer\PHPMailer' (T_CONSTANT_ENCAPSED_STRING), expecting identifier (T_STRING) or function (T_FUNCTION) or const (T_CONST) or \\ (T_NS_SEPARATOR) in /beta/sendEmail.php on line 2
+[17-Sep-2020 21:05:21 America/Los_Angeles] PHP Parse error:  syntax error, unexpected ''PHPMailer\PHPMailer'' (T_CONSTANT_ENCAPSED_STRING), expecting identifier (T_STRING) or function (T_FUNCTION) or const (T_CONST) or \\ (T_NS_SEPARATOR) in /beta/sendEmail.php on line 2
+[17-Sep-2020 21:39:48 America/Los_Angeles] PHP Warning:  require_once(PHPMailer/PHPMailer.php): failed to open stream: No such file or directory in /beta/bat/sendEmail.php on line 10
+[17-Sep-2020 21:39:48 America/Los_Angeles] PHP Fatal error:  require_once(): Failed opening required 'PHPMailer/PHPMailer.php' (include_path='.:/include:/usr/lib/php7:/usr/lib/php') in /beta/bat/sendEmail.php on line 10
+[17-Sep-2020 21:40:11 America/Los_Angeles] PHP Warning:  require_once(PHPMailer/PHPMailer.php): failed to open stream: No such file or directory in /beta/bat/sendEmail.php on line 10
+[17-Sep-2020 21:40:11 America/Los_Angeles] PHP Fatal error:  require_once(): Failed opening required 'PHPMailer/PHPMailer.php' (include_path='.:/include:/usr/lib/php7:/usr/lib/php') in /beta/bat/sendEmail.php on line 10
+[17-Sep-2020 21:41:32 America/Los_Angeles] PHP Warning:  include(header.php): failed to open stream: No such file or directory in /beta/bat/contacts.php on line 2
+[17-Sep-2020 21:41:32 America/Los_Angeles] PHP Warning:  include(): Failed opening 'header.php' for inclusion (include_path='.:/include:/usr/lib/php7:/usr/lib/php') in /beta/bat/contacts.php on line 2
+[17-Sep-2020 21:41:32 America/Los_Angeles] PHP Warning:  include(footer.php): failed to open stream: No such file or directory in /beta/bat/contacts.php on line 164
+[17-Sep-2020 21:41:32 America/Los_Angeles] PHP Warning:  include(): Failed opening 'footer.php' for inclusion (include_path='.:/include:/usr/lib/php7:/usr/lib/php') in /beta/bat/contacts.php on line 164
+[17-Sep-2020 21:43:06 America/Los_Angeles] PHP Warning:  require_once(PHPMailer/PHPMailer.php): failed to open stream: No such file or directory in /beta/bat/sendEmail.php on line 10
+[17-Sep-2020 21:43:06 America/Los_Angeles] PHP Fatal error:  require_once(): Failed opening required 'PHPMailer/PHPMailer.php' (include_path='.:/include:/usr/lib/php7:/usr/lib/php') in /beta/bat/sendEmail.php on line 10
+[17-Sep-2020 21:45:06 America/Los_Angeles] PHP Warning:  require_once(PHPMailer/PHPMailer.php): failed to open stream: No such file or directory in /beta/bat/sendEmail.php on line 10
+[17-Sep-2020 21:45:06 America/Los_Angeles] PHP Fatal error:  require_once(): Failed opening required 'PHPMailer/PHPMailer.php' (include_path='.:/include:/usr/lib/php7:/usr/lib/php') in /beta/bat/sendEmail.php on line 10
+[17-Sep-2020 21:46:34 America/Los_Angeles] PHP Warning:  require_once(PHPMailer/PHPMailer.php): failed to open stream: No such file or directory in /beta/bat/sendEmail.php on line 10
+[17-Sep-2020 21:46:34 America/Los_Angeles] PHP Fatal error:  require_once(): Failed opening required 'PHPMailer/PHPMailer.php' (include_path='.:/include:/usr/lib/php7:/usr/lib/php') in /beta/bat/sendEmail.php on line 10
+[17-Sep-2020 21:47:25 America/Los_Angeles] PHP Warning:  require_once(phpmailer/PHPMailer.php): failed to open stream: No such file or directory in /beta/bat/sendEmail.php on line 10
+[17-Sep-2020 21:47:25 America/Los_Angeles] PHP Fatal error:  require_once(): Failed opening required 'phpmailer/PHPMailer.php' (include_path='.:/include:/usr/lib/php7:/usr/lib/php') in /beta/bat/sendEmail.php on line 10
+[17-Sep-2020 21:50:13 America/Los_Angeles] PHP Warning:  require_once(PHPMailer/PHPMailer.php): failed to open stream: No such file or directory in /beta/bat/sendEmail.php on line 10
+[17-Sep-2020 21:50:13 America/Los_Angeles] PHP Fatal error:  require_once(): Failed opening required 'PHPMailer/PHPMailer.php' (include_path='.:/include:/usr/lib/php7:/usr/lib/php') in /beta/bat/sendEmail.php on line 10
+[17-Sep-2020 21:51:03 America/Los_Angeles] PHP Warning:  require_once(PHPMailer/PHPMailer.php): failed to open stream: No such file or directory in /beta/bat/sendEmail.php on line 10
+[17-Sep-2020 21:51:03 America/Los_Angeles] PHP Fatal error:  require_once(): Failed opening required 'PHPMailer/PHPMailer.php' (include_path='.:/include:/usr/lib/php7:/usr/lib/php') in /beta/bat/sendEmail.php on line 10
+[17-Sep-2020 21:59:34 America/Los_Angeles] PHP Warning:  require_once(PHPMailer/PHPMailer.php): failed to open stream: No such file or directory in /beta/bat/sendEmail.php on line 10
+[17-Sep-2020 21:59:34 America/Los_Angeles] PHP Fatal error:  require_once(): Failed opening required 'PHPMailer/PHPMailer.php' (include_path='.:/include:/usr/lib/php7:/usr/lib/php') in /beta/bat/sendEmail.php on line 10
+[17-Sep-2020 22:17:30 America/Los_Angeles] PHP Fatal error:  Uncaught PHPMailer\PHPMailer\Exception: Message body empty in /www/beta/bat/PHPMailer/PHPMailer.php:1528
+Stack trace:
+#0 /www/beta/bat/PHPMailer/PHPMailer.php(1433): PHPMailer\PHPMailer\PHPMailer->preSend()
+#1 /beta/bat/sendEmail.php(32): PHPMailer\PHPMailer\PHPMailer->send()
+#2 {main}
+  thrown in /www/beta/bat/PHPMailer/PHPMailer.php on line 1528
+[17-Sep-2020 22:18:57 America/Los_Angeles] PHP Fatal error:  Uncaught PHPMailer\PHPMailer\Exception: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting in /www/beta/bat/PHPMailer/PHPMailer.php:1859
+Stack trace:
+#0 /www/beta/bat/PHPMailer/PHPMailer.php(1601): PHPMailer\PHPMailer\PHPMailer->smtpSend('Date: Thu, 17 S...', 'Testing Mail MF...')
+#1 /www/beta/bat/PHPMailer/PHPMailer.php(1437): PHPMailer\PHPMailer\PHPMailer->postSend()
+#2 /beta/bat/sendEmail.php(32): PHPMailer\PHPMailer\PHPMailer->send()
+#3 {main}
+  thrown in /www/beta/bat/PHPMailer/PHPMailer.php on line 1859
+[17-Sep-2020 22:20:32 America/Los_Angeles] PHP Warning:  require_once(phpmailer/PHPMailer.php): failed to open stream: No such file or directory in /beta/sendEmail.php on line 10
+[17-Sep-2020 22:20:32 America/Los_Angeles] PHP Fatal error:  require_once(): Failed opening required 'phpmailer/PHPMailer.php' (include_path='.:/include:/usr/lib/php7:/usr/lib/php') in /beta/sendEmail.php on line 10
+[17-Sep-2020 22:36:11 America/Los_Angeles] PHP Warning:  require_once(phpmailer/PHPMailer.php): failed to open stream: No such file or directory in /beta/sendEmail.php on line 10
+[17-Sep-2020 22:36:11 America/Los_Angeles] PHP Fatal error:  require_once(): Failed opening required 'phpmailer/PHPMailer.php' (include_path='.:/include:/usr/lib/php7:/usr/lib/php') in /beta/sendEmail.php on line 10
+[17-Sep-2020 22:38:47 America/Los_Angeles] PHP Warning:  require_once(PHPMailer/PHPMailer.php): failed to open stream: No such file or directory in /beta/bat/sendEmail.php on line 10
+[17-Sep-2020 22:38:47 America/Los_Angeles] PHP Fatal error:  require_once(): Failed opening required 'PHPMailer/PHPMailer.php' (include_path='.:/include:/usr/lib/php7:/usr/lib/php') in /beta/bat/sendEmail.php on line 10
+[17-Sep-2020 23:03:48 America/Los_Angeles] PHP Warning:  require_once(PHPMailer/PHPMailer.php): failed to open stream: No such file or directory in /beta/bat/sendEmail.php on line 10
+[17-Sep-2020 23:03:48 America/Los_Angeles] PHP Fatal error:  require_once(): Failed opening required 'PHPMailer/PHPMailer.php' (include_path='.:/include:/usr/lib/php7:/usr/lib/php') in /beta/bat/sendEmail.php on line 10
+[17-Sep-2020 23:05:02 America/Los_Angeles] PHP Warning:  require_once(PHPMailer/PHPMailer.php): failed to open stream: No such file or directory in /beta/bat/sendEmail.php on line 10
+[17-Sep-2020 23:05:02 America/Los_Angeles] PHP Fatal error:  require_once(): Failed opening required 'PHPMailer/PHPMailer.php' (include_path='.:/include:/usr/lib/php7:/usr/lib/php') in /beta/bat/sendEmail.php on line 10
+[17-Sep-2020 23:12:01 America/Los_Angeles] PHP Warning:  require_once(PHPMailer/PHPMailer.php): failed to open stream: No such file or directory in /beta/bat/sendEmail.php on line 9
+[17-Sep-2020 23:12:01 America/Los_Angeles] PHP Fatal error:  require_once(): Failed opening required 'PHPMailer/PHPMailer.php' (include_path='.:/include:/usr/lib/php7:/usr/lib/php') in /beta/bat/sendEmail.php on line 9
+[17-Sep-2020 23:12:15 America/Los_Angeles] PHP Warning:  require_once(PHPMailer/PHPMailer.php): failed to open stream: No such file or directory in /beta/bat/sendEmail.php on line 9
+[17-Sep-2020 23:12:15 America/Los_Angeles] PHP Fatal error:  require_once(): Failed opening required 'PHPMailer/PHPMailer.php' (include_path='.:/include:/usr/lib/php7:/usr/lib/php') in /beta/bat/sendEmail.php on line 9
+[17-Sep-2020 23:15:44 America/Los_Angeles] PHP Warning:  require_once(PHPMailer/PHPMailer.php): failed to open stream: No such file or directory in /beta/bat/sendEmail.php on line 11
+[17-Sep-2020 23:15:44 America/Los_Angeles] PHP Fatal error:  require_once(): Failed opening required 'PHPMailer/PHPMailer.php' (include_path='.:/include:/usr/lib/php7:/usr/lib/php') in /beta/bat/sendEmail.php on line 11
+[17-Sep-2020 23:29:59 America/Los_Angeles] PHP Warning:  require_once(phpmailer/PHPMailer.php): failed to open stream: No such file or directory in /beta/sendEmail.php on line 10
+[17-Sep-2020 23:29:59 America/Los_Angeles] PHP Fatal error:  require_once(): Failed opening required 'phpmailer/PHPMailer.php' (include_path='.:/include:/usr/lib/php7:/usr/lib/php') in /beta/sendEmail.php on line 10
+[18-Sep-2020 00:42:09 America/Los_Angeles] PHP Parse error:  syntax error, unexpected '$subject' (T_VARIABLE), expecting identifier (T_STRING) in /beta/sendEmail.php on line 8
+[18-Sep-2020 00:43:20 America/Los_Angeles] PHP Parse error:  syntax error, unexpected '$subject' (T_VARIABLE), expecting identifier (T_STRING) in /beta/sendEmail.php on line 8
+[27-Sep-2020 16:54:24 America/Los_Angeles] PHP Notice:  Undefined index: message in /newsLetter.php on line 9

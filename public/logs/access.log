@@ -1,0 +1,3 @@
+173.252.127.119 - - [05/Oct/2020:17:09:49 -0700] "GET /images/ie8-panel/warning_bar_0000_us.jpg HTTP/1.1" 404 88 "-" "facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)" "www.filholland.com"
+52.21.142.28 - - [05/Oct/2020:17:35:05 -0700] "GET / HTTP/1.1" 200 40278 "-" "-" "filholland.com"
+173.252.127.113 - - [05/Oct/2020:17:53:52 -0700] "GET /images/ie8-panel/warning_bar_0000_us.jpg HTTP/1.1" 404 88 "-" "facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)" "www.filholland.com"
