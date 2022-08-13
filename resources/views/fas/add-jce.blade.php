@@ -32,7 +32,12 @@
                             </div>
                             <div class="col-md-8">
                                 <label for="validationCustom01" class="form-label">JCE Number</label>
-                                <input type="text" class="form-control form-control-sm" id="validationCustom01">
+                                @forelse($jceno as $data)
+                                <input type="text" class="form-control form-control-sm" id="jceno" value="{{ $data->jce_number }}" disabled>
+                                @empty
+                                <input type="text" class="form-control form-control-sm" id="jceno" disabled>
+                                @endforelse
+
                             </div>
                             <div class="col-md-4">
                                 <label for="validationCustom02" class="form-label">Labor Amount</label>
@@ -61,7 +66,7 @@
                             </div>
                             <div class="col-md-8">
                                 <label for="validationCustom05" class="form-label">TelNo.</label>
-                                <input type="text" class="form-control form-control-sm" id="validationCustom05">
+                                <input type="text" class="form-control form-control-sm" id="telno">
                             </div>
                             <div class="col-md-4">
                                 <label for="validationCustom05" class="form-label">Job Type</label>
@@ -410,16 +415,33 @@
                 dataType: "json",
                 success: function(response) {
                     $("#contactperson").val(response.showcustomer.contact);
+                    $("#telno").val(response.showcustomer.phone);
                 }
             })
 
         });
 
         fetchincidentdate();
-        function fetchincidentdate(){
+
+        function fetchincidentdate() {
             var today = new Date();
             var datetime = today.toLocaleString();
             $("#incidentdate").val(datetime);
+        }
+
+        fetchjceno();
+
+        function fetchjceno() {
+            $.ajax({
+                type: "GET",
+                url: "{{ url('/FAS/jceno') }}",
+                dataType: "json",
+                success: function(response) {
+                    $("#contactperson").val(response.showcustomer.contact);
+                    $("#jceno").val(datetime);
+                }
+            })
+
         }
 
     });

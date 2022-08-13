@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('serialnumber')->unique();
             $table->string('vehiclemodel')->nullable();
+            $table->string('engineno')->nullable();
+            $table->string('brand')->nullable();
             $table->string('description')->nullable();
             $table->string('branch')->nullable();
             $table->date('warrantystart')->nullable();

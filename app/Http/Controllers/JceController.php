@@ -55,7 +55,8 @@ class JceController extends Controller
         $typeofissue = Typeofissue::all();
         $customer = Customer::all();
         $techname = Technician::all();
-        return view('fas.add-jce', ['jobtype' => $jobtype, 'dealer' => $dealer, 'components' => $components, 'typeofissue' => $typeofissue, 'customer' => $customer, 'techname' => $techname]);
+        $jceno = Jce::all();
+        return view('fas.add-jce', ['jobtype' => $jobtype, 'dealer' => $dealer, 'components' => $components, 'typeofissue' => $typeofissue, 'customer' => $customer, 'techname' => $techname, 'jceno' => $jceno]);
     }
 
     /**

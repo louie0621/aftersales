@@ -27,6 +27,8 @@ class Equipmentrequest extends FormRequest
             //
             'serialnumber' => ['required', 'string', 'max:255', 'unique:equipment'],
             'vehiclemodel' => ['required', 'string', 'max:255'],
+            'engineno' => ['required', 'string', 'max:255'],
+            'brand' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:255'],
             'branch' => ['required', 'string', 'max:255'],
             'warrantystart' => ['required', 'date'],
@@ -47,6 +49,8 @@ class Equipmentrequest extends FormRequest
         $this->merge([
             'serialnumber' => strip_tags($this->serialnumber),
             'vehiclemodel' => strip_tags($this->vehiclemodel),
+            'engineno' => strip_tags($this->engineno),
+            'brand' => strip_tags($this->brand),
             'description' => strip_tags($this->description),
             'branch' => strip_tags($this->branch),
             'warrantystart' => strip_tags($this->warrantystart),

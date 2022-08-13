@@ -42,6 +42,24 @@
 								@enderror
 							</div>
 							<div class="col-mb-3">
+								<label for="validationCustomUsername" class="form-label">Engine Number</label>
+								<input type="text" class="form-control form-control-sm @error('engineno') is-invalid @enderror" value="{{ old('engineno') }}" name="engineno" id="engineno">
+								@error('engineno')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
+							<div class="col-mb-3">
+								<label for="validationCustomUsername" class="form-label">Brand Model</label>
+								<input type="text" class="form-control form-control-sm @error('brand') is-invalid @enderror" value="{{ old('brand') }}" name="brand" id="brand">
+								@error('brand')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
+							<div class="col-mb-3">
 								<label for="validationCustom02" class="form-label">Description</label>
 								<input type="text" class="form-control form-control-sm @error('description') is-invalid @enderror" value="{{ old('description') }}" name="description" id="description">
 								@error('description')
@@ -51,7 +69,7 @@
 								@enderror
 							</div>
 							<div class="col-mb-3">
-								<label for="validationCustomUsername" class="form-label">Branch</label>
+								<label for="validationCustomUsername" class="form-label">Branch Located</label>
 								<input type="text" class="form-control form-control-sm @error('branch') is-invalid @enderror" value="{{ old('branch') }}" name="branch" id="branch">
 								@error('branch')
 								<span class="invalid-feedback" role="alert">

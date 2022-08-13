@@ -231,9 +231,6 @@
                     <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="PMS Schedule">
                         <button class="nav-link" data-bs-toggle="pill" data-bs-target="#pills-pms" type="button"><i class="bi bi-list-task"></i></button>
                     </li>
-                    <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Technician">
-                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#pills-tech" type="button"><i class="bi bi-tools"></i></button>
-                    </li>
                     <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="System Config">
                         <button class="nav-link" data-bs-toggle="pill" data-bs-target="#pills-sysconfig" type="button"><i class="bi bi-gear-fill"></i></button>
                     </li>
@@ -322,17 +319,6 @@
                             <a href="{{ url('/FAS/set-schedule')}}" class="list-group-item"><i class="bi bi-plus"></i>Set Schedule</a>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="pills-tech">
-                        <div class="list-group list-group-flush">
-                            <div class="list-group-item">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-0">Technician</h5>
-                                </div>
-                                <small class="mb-0">Filholland Aftersales System</small>
-                            </div>
-                            <a href="{{ url('/FAS/technician')}}" class="list-group-item"><i class="bi bi-wrench"></i>Technicians</a>
-                        </div>
-                    </div>
                     <div class="tab-pane fade" id="pills-sysconfig">
                         <div class="list-group list-group-flush">
                             <div class="list-group-item">
@@ -346,6 +332,7 @@
                             <a href="{{ url('/FAS/dealer')}}" class="list-group-item"><i class="bi bi-wrench"></i>Dealer</a>
                             <a href="{{ url('/FAS/component')}}" class="list-group-item"><i class="bi bi-wrench"></i>Component</a>
                             <a href="{{ url('/FAS/type-of-issue')}}" class="list-group-item"><i class="bi bi-wrench"></i>Type of Issue</a>
+                            <a href="{{ url('/FAS/technician')}}" class="list-group-item"><i class="bi bi-wrench"></i>Technician</a>
                             <label class="list-group-item" for=""><Strong>Work Order</Strong></label>
                         </div>
                     </div>

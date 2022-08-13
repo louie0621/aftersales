@@ -14,6 +14,8 @@ class Equipment extends Model
     protected $fillable = [
         'serialnumber',
         'vehiclemodel',
+        'engineno',
+        'brand',
         'description',
         'branch',
         'warrantystart',

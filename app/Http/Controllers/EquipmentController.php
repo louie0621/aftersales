@@ -64,6 +64,8 @@ class EquipmentController extends Controller
         Equipment::create([
             'serialnumber' => $data['serialnumber'],
             'vehiclemodel' => $data['vehiclemodel'],
+            'engineno' => $data['engineno'],
+            'brand' => $data['brand'],
             'description' => $data['description'],
             'branch' => $data['branch'],
             'warrantystart' => $data['warrantystart'],
