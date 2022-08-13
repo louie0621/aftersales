@@ -25,16 +25,14 @@ class Technicianrequest extends FormRequest
     {
         return [
             //
-            'name' => ['required', 'string', 'max:255'],
-            'position' => ['string', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255']
             
         ];
     }
     protected function prepareForValidation()
     {
         $this->merge([
-            'name' => strip_tags($this->name),
-            'position' => strip_tags($this->position)
+            'name' => strip_tags($this->name)
         ]);
     }
 }

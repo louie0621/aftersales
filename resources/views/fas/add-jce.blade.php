@@ -24,7 +24,7 @@
                         <form class="row g-3 needs-validation">
                             <div class="col-md-6">
                                 <label for="validationCustom01" class="form-label">Incident Date/Time</label>
-                                <input type="datetime-local" class="form-control form-control-sm" id="validationCustom01">
+                                <input type="text" class="form-control form-control-sm" id="incidentdate" value="" disabled>
                             </div>
                             <div class="col-md-6">
                                 <label for="validationCustom01" class="form-label">Dispatch Date</label>
@@ -52,7 +52,7 @@
                                 <input type="text" class="form-control form-control-sm" id="validationCustom03">
                             </div>
                             <div class="col-md-8">
-                                <label class="form-label">Contact Person</label>
+                                <label class="form-label">Contact Person </label>
                                 <input type="text" class="form-control form-control-sm" id="contactperson" disabled>
                             </div>
                             <div class="col-md-4">
@@ -255,7 +255,7 @@
                                                 <input type="text" class="form-control form-control-sm">
                                             </td>
                                             <td class="col-md-7">89 Chicago UK</td>
-                                            <td><input type="text" class="form-control form-control-sm" ></td>
+                                            <td><input type="text" class="form-control form-control-sm"></td>
                                         </tr>
 
                                     </tbody>
@@ -376,7 +376,6 @@
 <!-- JS Files -->
 <script>
     $(document).ready(function() {
-
         // fetchequipment();
 
         // function fetchequipment() {
@@ -415,6 +414,13 @@
             })
 
         });
+
+        fetchincidentdate();
+        function fetchincidentdate(){
+            var today = new Date();
+            var datetime = today.toLocaleString();
+            $("#incidentdate").val(datetime);
+        }
 
     });
 </script>

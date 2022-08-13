@@ -12,7 +12,6 @@ class Technician extends Model
     protected $table = 'technician';
     
     protected $fillable = [
-        'name',
-        'position',
+        'name'
     ];
 }

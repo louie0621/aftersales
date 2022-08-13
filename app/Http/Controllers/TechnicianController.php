@@ -52,8 +52,7 @@ class TechnicianController extends Controller
         $data = $request->validated();
 
         Technician::create([
-            'name' => $data['name'],
-            'position' => $data['position']
+            'name' => $data['name']
         ]);
         
         Alert::toast('You\'ve Successfully Added', 'success');
@@ -95,7 +94,6 @@ class TechnicianController extends Controller
         //
         $edit = Technician::find($id);
         $edit->name = $request->name;
-        $edit->position = $request->position;
         
         $edit->save();
         return response()->json();

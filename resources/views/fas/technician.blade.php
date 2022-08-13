@@ -34,15 +34,6 @@
                                     @enderror
                                 </div>
                                 <div class="col-12">
-                                    <label class="form-label">Position</label>
-                                    <input type="text" class="form-control @error('position') is-invalid @enderror" name="position" value="{{ old('position') }}" placeholder="Position">
-                                    @error('position')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                                <div class="col-12">
                                     <div class="d-grid">
                                         <button class="btn btn-primary" type="submit">Save</button>
                                     </div>
@@ -60,7 +51,6 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>Name</th>
-                                            <th>Position</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -69,7 +59,6 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $data->name }}</td>
-                                            <td>{{ $data->position}}</td>
                                             <td>
                                                 <div class="d-flex align-items-center gap-3 fs-6">
                                                     <a href="javascript:;" class="text-primary" id="view" data-toggle="modal" data-name="{{ $data->name }}" data-position="{{ $data->position }}" data-target="#viewModal" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="View detail" aria-label="Views"><i class="bi bi-eye-fill"></i></a>
@@ -104,11 +93,7 @@
                                     <label class="form-label">Name</label>
                                     <label class="form-control" id="nm"></label>
                                 </div>
-                                <br>
-                                <div class="col-12">
-                                    <label class="form-label">Position</label>
-                                    <label class="form-control" id="pos"></label>
-                                </div>
+                                
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">Close</button>
@@ -132,11 +117,6 @@
                                     <div class="col-12">
                                         <label class="form-label">Name</label>
                                         <input type="text" class="form-control" id="enm">
-                                    </div>
-                                    <br>
-                                    <div class="col-12">
-                                        <label class="form-label">Position</label>
-                                        <input type="text" class="form-control" id="position">
                                     </div>
                                     <br>
                                 </div>
