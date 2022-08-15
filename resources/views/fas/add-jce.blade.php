@@ -77,9 +77,14 @@
                                     @endforeach
                                 </select>
                             </div>
+
                             <div class="col-md-8">
-                                <label for="validationCustom05" class="form-label">Type</label>
-                                <input type="text" class="form-control form-control-sm" id="validationCustom05">
+                                <label for="validationCustom05" class="form-label">Vehicle Type</label>
+                                <select class="form-select form-select-sm" id="vehicletypeid" aria-label=".form-select-sm example">
+                                    <option selected></option>
+                                    <option value="Agriculture Equipment">Agriculture Equipment</option>
+                                    <option value="Construction Equipment">Construction Equipment</option>
+                                </select>
                             </div>
                             <div class="col-md-4">
                                 <label for="validationCustom05" class="form-label">Dealer</label>
@@ -92,7 +97,9 @@
                             </div>
                             <div class="col-md-8">
                                 <label for="validationCustom05" class="form-label">Model</label>
-                                <input type="text" class="form-control form-control-sm" id="validationCustom05">
+                                <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="model" disabled>
+                                    <option selected></option>
+                                </select>
                             </div>
                             <div class="col-md-4">
                                 <label for="validationCustom05" class="form-label">Job Site</label>
@@ -100,7 +107,9 @@
                             </div>
                             <div class="col-md-8">
                                 <label for="validationCustom05" class="form-label">Serial Number</label>
-                                <input type="text" class="form-control form-control-sm" id="validationCustom05">
+                                <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="serialno" disabled>
+                                    <option selected></option>
+                                </select>
                             </div>
                             <div class="col-md-4">
                                 <label for="validationCustom05" class="form-label">Unit Status</label>
@@ -108,7 +117,8 @@
                             </div>
                             <div class="col-md-8">
                                 <label for="validationCustom05" class="form-label">Engine Number</label>
-                                <input type="text" class="form-control form-control-sm" id="validationCustom05">
+                                <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="engineno" disabled>
+                                </select>
                             </div>
                             <div class="col-md-4">
                                 <label for="validationCustom05" class="form-label">SalesType</label>
@@ -416,6 +426,80 @@
                 success: function(response) {
                     $("#contactperson").val(response.showcustomer.contact);
                     $("#telno").val(response.showcustomer.phone);
+                }
+            })
+
+        });
+        $("#vehicletypeid").change(function() {
+            var url = "{{ url('/FAS/show-vehicletype') }}" + "/" + $(this).children("option:selected").val();
+
+            $.ajax({
+                type: "GET",
+                url: url,
+                dataType: "json",
+                success: function(response) {
+                    $("#model").prop("disabled", false);
+                    $('#model').empty();
+                    $("#serialno").prop("disabled", true);
+                    $('#serialno').empty();
+                    $('#model').append(`<option value="">
+                                  </option>`);
+                    $("#engineno").prop("disabled", true);
+                    $('#engineno').empty();
+                    $('#engineno').append(`<option value="">
+                                  </option>`);
+                    $.each(response.showmodel, function(key, item) {
+                        $('#model').append(`<option value="${item.vehiclemodel}">
+                                       ${item.vehiclemodel}
+                                  </option>`);
+                    })
+                }
+            })
+
+        });
+        $("#model").change(function() {
+            var url = "{{ url('/FAS/show-serialno') }}" + "/" + $(this).children("option:selected").val();
+
+            $.ajax({
+                type: "GET",
+                url: url,
+                dataType: "json",
+                success: function(response) {
+                    $("#serialno").prop("disabled", false);
+                    $('#serialno').empty();
+                    $('#serialno').append(`<option value="">
+                                  </option>`);
+                    $("#engineno").prop("disabled", true);
+                    $('#engineno').empty();
+                    $('#engineno').append(`<option value="">
+                                  </option>`);
+                    $.each(response.showserial, function(key, item) {
+                        $('#serialno').append(`<option value="${item.serialnumber}">
+                                       ${item.serialnumber}
+                                  </option>`);
+                    })
+                }
+            })
+
+        });
+
+        $("#serialno").change(function() {
+            var url = "{{ url('/FAS/show-engineno') }}" + "/" + $(this).children("option:selected").val();
+
+            $.ajax({
+                type: "GET",
+                url: url,
+                dataType: "json",
+                success: function(response) {
+                    $("#engineno").prop("disabled", false);
+                    $('#engineno').empty();
+                    $('#engineno').append(`<option value="">
+                                  </option>`);
+                    $.each(response.showengineno, function(key, item) {
+                        $('#engineno').append(`<option value="${item.engineno}">
+                                       ${item.engineno}
+                                  </option>`);
+                    })
                 }
             })
 

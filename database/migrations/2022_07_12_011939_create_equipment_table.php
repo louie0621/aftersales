@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('engineno')->nullable();
             $table->string('brand')->nullable();
             $table->string('description')->nullable();
+            $table->string('type')->nullable();
             $table->string('branch')->nullable();
             $table->date('warrantystart')->nullable();
             $table->date('warrantyend')->nullable();

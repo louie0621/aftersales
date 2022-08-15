@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Component;
 use App\Models\Customer;
 use App\Models\Dealer;
+use App\Models\Equipment;
 use App\Models\Jce;
 use App\Models\Sysconfig;
 use App\Models\Technician;
@@ -38,6 +39,30 @@ class JceController extends Controller
         $showcustomer = Customer::find($id);
         
         return response()->json(['showcustomer' => $showcustomer]);
+    }
+    public function vehicletype($type)
+    {
+        //
+        $showmodel = Equipment::where('type', 'LIKE', '%'.$type.'%')
+        ->get();
+        
+        return response()->json(['showmodel' => $showmodel]);
+    }
+    public function serialno($serial)
+    {
+        //
+        $showserial = Equipment::where('vehiclemodel', 'LIKE', '%'.$serial.'%')
+        ->get();
+        
+        return response()->json(['showserial' => $showserial]);
+    }
+    public function engineno($engine)
+    {
+        //
+        $showengine = Equipment::where('serialnumber', 'LIKE', '%'.$engine.'%')
+        ->get();
+        
+        return response()->json(['showengineno' => $showengine]);
     }
 
     /**

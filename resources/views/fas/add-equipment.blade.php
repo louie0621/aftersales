@@ -69,6 +69,13 @@
 								@enderror
 							</div>
 							<div class="col-mb-3">
+								<label for="validationCustom02" class="form-label">Vehicle Type</label>
+								<select class="form-select form-select-sm" aria-label=".form-select-sm example" name="type">
+                                    <option value="Agriculture Equipment">Agriculture Equipment</option>
+									<option value="Construction Equipment">Construction Equipment</option>
+                                </select>
+							</div>
+							<div class="col-mb-3">
 								<label for="validationCustomUsername" class="form-label">Branch Located</label>
 								<input type="text" class="form-control form-control-sm @error('branch') is-invalid @enderror" value="{{ old('branch') }}" name="branch" id="branch">
 								@error('branch')

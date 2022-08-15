@@ -31,7 +31,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($equipment as $data)
+                        @foreach($equipment as $data)
                         <tr>
                             <td class="viewtable" style="cursor: context-menu;" data-viewid="{{ $data->id }}">{{ $loop->iteration }}</td>
                             <td class="viewtable" style="cursor: context-menu;" data-viewid="{{ $data->id }}">{{ $data->serialnumber }}</td>
@@ -40,7 +40,7 @@
                             <td class="viewtable" style="cursor: context-menu;" data-viewid="{{ $data->id }}">{{ $data->branch }}</td>
                             <td>
                                 <div class="table-actions d-flex align-items-center gap-3 fs-6">
-                                    <a href="javascript:;" id="edit" data-toggle="modal"  data-editid="{{ $data->id }}" class="text-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit"><i class="bi bi-pencil-fill"></i></a>
+                                    <a href="javascript:;" id="edit" data-toggle="modal" data-editid="{{ $data->id }}" class="text-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit"><i class="bi bi-pencil-fill"></i></a>
                                     <a href="javascript:;" id="delete" data-deleteid="{{ $data->id }}" class="text-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete"><i class="bi bi-trash-fill"></i></a>
                                 </div>
                             </td>
@@ -63,72 +63,83 @@
                                             <div class="col-mb-3">
                                                 <label for="validationCustom01" class="form-label">Serial Number</label>
                                                 <input type="text" class="form-control form-control-sm @error('serialnumber') is-invalid @enderror" value="{{ old('serialnumber') }}" name="serialnumber" id="viewserialnumber" disabled>
-                                               
+
                                             </div>
                                             <div class="col-mb-3">
                                                 <label for="validationCustom01" class="form-label">Vehicle Model</label>
                                                 <input type="text" class="form-control form-control-sm @error('vehiclemodel') is-invalid @enderror" value="{{ old('vehiclemodel') }}" name="vehiclemodel" id="viewvehiclemodel" disabled>
-                                                
+
+                                            </div>
+                                            <div class="col-mb-3">
+                                                <label for="validationCustomUsername" class="form-label">Engine Number</label>
+                                                <input type="text" class="form-control form-control-sm @error('engineno') is-invalid @enderror" value="{{ old('engineno') }}" name="engineno" id="viewengineno" disabled>
+                                            </div>
+                                            <div class="col-mb-3">
+                                                <label for="validationCustomUsername" class="form-label">Brand Model</label>
+                                                <input type="text" class="form-control form-control-sm @error('brand') is-invalid @enderror" value="{{ old('brand') }}" name="brand" id="viewbrand" disabled>
                                             </div>
                                             <div class="col-mb-3">
                                                 <label for="validationCustom02" class="form-label">Description</label>
                                                 <input type="text" class="form-control form-control-sm @error('description') is-invalid @enderror" value="{{ old('description') }}" name="description" id="viewdescription" disabled>
-                                                
+                                            </div>
+                                            <div class="col-mb-3">
+                                                <label for="validationCustomUsername" class="form-label">Vehicle Type</label>
+                                                <input type="text" class="form-control form-control-sm @error('type') is-invalid @enderror" value="{{ old('type') }}" name="type" id="viewtype" disabled>
                                             </div>
                                             <div class="col-mb-3">
                                                 <label for="validationCustomUsername" class="form-label">Branch</label>
                                                 <input type="text" class="form-control form-control-sm @error('branch') is-invalid @enderror" value="{{ old('branch') }}" name="editbranch" id="viewbranch" disabled>
-                                                
+
                                             </div>
                                             <div class="col-mb-3">
                                                 <label for="validationCustom03" class="form-label">Warranty Start</label>
                                                 <input type="date" class="form-control form-control-sm @error('warrantystart') is-invalid @enderror" value="{{ old('warrantystart') }}" name="warrantystart" id="viewwarrantystart" disabled>
-                                                
+
                                             </div>
                                             <div class="col-mb-3">
                                                 <label for="validationCustom03" class="form-label">Warranty End</label>
                                                 <input type="date" class="form-control form-control-sm @error('warrantyend') is-invalid @enderror" value="{{ old('warrantyend') }}" name="warrantyend" id="viewwarrantyend" disabled>
-                                                
+
                                             </div>
                                             <div class="col-mb-3">
                                                 <label for="validationCustom05" class="form-label">End Customer</label>
                                                 <input type="text" class="form-control form-control-sm @error('endcustomer') is-invalid @enderror" value="{{ old('endcustomer') }}" name="endcustomer" id="viewendcustomer" disabled>
-                                                
+
                                             </div>
                                             <div class="col-mb-3">
                                                 <label for="validationCustom05" class="form-label">Registration Number</label>
                                                 <input type="text" class="form-control form-control-sm @error('registrationnumber') is-invalid @enderror" value="{{ old('registrationnumber') }}" name="registrationnumber" id="viewregistrationnumber" disabled>
-                                                
+
                                             </div>
                                             <div class="col-mb-3">
                                                 <label for="validationCustom05" class="form-label">End Customer/Company Name</label>
                                                 <input type="text" class="form-control form-control-sm @error('endcustomername') is-invalid @enderror" value="{{ old('endcustomername') }}" name="endcustomername" id="viewendcustomername" disabled>
-                                                
+
                                             </div>
                                             <div class="col-mb-3">
                                                 <label for="validationCustom05" class="form-label">End Customer Address</label>
                                                 <input type="text" class="form-control form-control-sm @error('endcustomeraddress') is-invalid @enderror" value="{{ old('endcustomeraddress') }}" name="endcustomeraddress" id="viewendcustomeraddress" disabled>
-                                                
+
                                             </div>
                                             <div class="col-mb-3">
                                                 <label for="validationCustom05" class="form-label">End Customer City</label>
                                                 <input type="text" class="form-control form-control-sm @error('endcustomercity') is-invalid @enderror" value="{{ old('endcustomercity') }}" name="endcustomercity" id="viewendcustomercity" disabled>
-                                                
+
                                             </div>
                                             <div class="col-mb-3">
                                                 <label for="validationCustom05" class="form-label">End Customer State/Province</label>
                                                 <input type="text" class="form-control form-control-sm @error('endcustomerstate') is-invalid @enderror" value="{{ old('endcustomerstate') }}" name="endcustomerstate" id="viewendcustomerstate" disabled>
-                                                
+
                                             </div>
                                             <div class="col-mb-3">
                                                 <label for="validationCustom05" class="form-label">End Customer Country</label>
                                                 <input type="text" class="form-control form-control-sm @error('endcustomercountry') is-invalid @enderror" value="{{ old('endcustomercountry') }}" name="endcustomercountry" id="viewendcustomercountry" disabled>
-                                                
+
                                             </div>
                                             <div class="col-mb-3">
                                                 <label for="validationCustom05" class="form-label">Nav Customer Code</label>
                                                 <input type="text" class="form-control form-control-sm @error('navcustomercode') is-invalid @enderror" value="{{ old('navcustomercode') }}" name="navcustomercode" id="viewnavcustomercode" disabled>
-                                                
+
                                             </div>
                                         </form>
                                     </div>
@@ -172,6 +183,24 @@
                                                 @enderror
                                             </div>
                                             <div class="col-mb-3">
+                                                <label for="validationCustomUsername" class="form-label">Engine Number</label>
+                                                <input type="text" class="form-control form-control-sm @error('engineno') is-invalid @enderror" value="{{ old('engineno') }}" name="engineno" id="editengineno">
+                                                @error('engineno')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
+                                            </div>
+                                            <div class="col-mb-3">
+                                                <label for="validationCustomUsername" class="form-label">Brand Model</label>
+                                                <input type="text" class="form-control form-control-sm @error('brand') is-invalid @enderror" value="{{ old('brand') }}" name="brand" id="editbrand">
+                                                @error('brand')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
+                                            </div>
+                                            <div class="col-mb-3">
                                                 <label for="validationCustom02" class="form-label">Description</label>
                                                 <input type="text" class="form-control form-control-sm @error('description') is-invalid @enderror" value="{{ old('description') }}" name="description" id="editdescription">
                                                 @error('description')
@@ -179,6 +208,13 @@
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                                 @enderror
+                                            </div>
+                                            <div class="col-mb-3">
+                                                <label for="validationCustom02" class="form-label">Vehicle Type</label>
+                                                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="type" id="edittype">
+                                                    <option value="Agriculture Equipment">Agriculture Equipment</option>
+                                                    <option value="Construction Equipment">Construction Equipment</option>
+                                                </select>
                                             </div>
                                             <div class="col-mb-3">
                                                 <label for="validationCustomUsername" class="form-label">Branch</label>
@@ -349,7 +385,10 @@
                     //console.log(response.viewequipment);
                     $('#viewserialnumber').val(response.viewequipment.serialnumber);
                     $('#viewvehiclemodel').val(response.viewequipment.vehiclemodel);
+                    $('#viewbrand').val(response.viewequipment.brand);
+                    $('#viewengineno').val(response.viewequipment.engineno);
                     $('#viewdescription').val(response.viewequipment.description);
+                    $('#viewtype').val(response.viewequipment.type);
                     $('#viewbranch').val(response.viewequipment.branch);
                     $('#viewwarrantystart').val(response.viewequipment.warrantystart);
                     $('#viewwarrantyend').val(response.viewequipment.warrantyend);
@@ -376,7 +415,7 @@
             $("#viewModal").modal('hide');
             $("#editModal").modal('hide');
         })
-        
+
 
         //edit
         $(document).on("click", "#edit", function(e) {
@@ -391,7 +430,10 @@
                     $('#editid').val(response.editequipment.id);
                     $('#editserialnumber').val(response.editequipment.serialnumber);
                     $('#editvehiclemodel').val(response.editequipment.vehiclemodel);
+                    $('#editbrand').val(response.editequipment.brand);
+                    $('#editengineno').val(response.editequipment.engineno);
                     $('#editdescription').val(response.editequipment.description);
+                    $('#edittype').val(response.editequipment.type);
                     $('#editbranch').val(response.editequipment.branch);
                     $('#editwarrantystart').val(response.editequipment.warrantystart);
                     $('#editwarrantyend').val(response.editequipment.warrantyend);
@@ -427,7 +469,10 @@
                 data: {
                     serialnumber: $('#editserialnumber').val(),
                     vehiclemodel: $('#editvehiclemodel').val(),
+                    brand: $('#editbrand').val(),
+                    engineno: $('#editengineno').val(),
                     description: $('#editdescription').val(),
+                    type: $('#edittype').val(),
                     branch: $('#editbranch').val(),
                     warrantystart: $('#editwarrantystart').val(),
                     warrantyend: $('#editwarrantyend').val(),
@@ -446,7 +491,7 @@
                     // fetchequipment();
                     window.location.reload();
                     $("#editModal").modal('hide');
-                    
+
 
                 },
                 error: function(data, textStatus, errorThrown) {

@@ -70,6 +70,9 @@ Route::controller(App\Http\Controllers\JceController::class)->group(function () 
     Route::get('/FAS/jce', 'index');
     Route::get('/FAS/add-jce', 'create');
     Route::get('/FAS/show-contactperson/{id}', 'contactperson');
+    Route::get('/FAS/show-vehicletype/{type}', 'vehicletype');
+    Route::get('/FAS/show-serialno/{serial}', 'serialno');
+    Route::get('/FAS/show-engineno/{engine}', 'engineno');
     
 });
 

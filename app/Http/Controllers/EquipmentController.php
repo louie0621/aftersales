@@ -67,6 +67,7 @@ class EquipmentController extends Controller
             'engineno' => $data['engineno'],
             'brand' => $data['brand'],
             'description' => $data['description'],
+            'type' => $data['type'],
             'branch' => $data['branch'],
             'warrantystart' => $data['warrantystart'],
             'warrantyend' => $data['warrantyend'],
@@ -125,7 +126,10 @@ class EquipmentController extends Controller
         $edit = Equipment::find($id);
         $edit->serialnumber = $request->serialnumber;
         $edit->vehiclemodel = $request->vehiclemodel;
+        $edit->brand = $request->brand;
+        $edit->engineno = $request->engineno;
         $edit->description = $request->description;
+        $edit->type = $request->type;
         $edit->branch = $request->branch;
         $edit->warrantystart = $request->warrantystart;
         $edit->warrantyend = $request->warrantyend;

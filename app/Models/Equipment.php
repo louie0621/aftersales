@@ -17,6 +17,7 @@ class Equipment extends Model
         'engineno',
         'brand',
         'description',
+        'type',
         'branch',
         'warrantystart',
         'warrantyend',
