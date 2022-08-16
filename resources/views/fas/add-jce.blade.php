@@ -3,6 +3,7 @@
 @section('content')
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
 <!--start content-->
+
 <main class="page-content">
     <!--breadcrumb-->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -23,15 +24,15 @@
                     <div class="p-4 border rounded">
                         <form class="row g-3 needs-validation">
                             <div class="col-md-6">
-                                <label for="validationCustom01" class="form-label">Incident Date/Time</label>
+                                <label  class="form-label">Incident Date/Time</label>
                                 <input type="text" class="form-control form-control-sm" id="incidentdate" value="" disabled>
                             </div>
                             <div class="col-md-6">
-                                <label for="validationCustom01" class="form-label">Dispatch Date</label>
+                                <label  class="form-label">Dispatch Date</label>
                                 <input type="date" class="form-control form-control-sm" id="validationCustom01">
                             </div>
                             <div class="col-md-8">
-                                <label for="validationCustom01" class="form-label">JCE Number</label>
+                                <label  class="form-label">JCE Number</label>
                                 @forelse($jceno as $data)
                                 <input type="text" class="form-control form-control-sm" id="jceno" value="{{ $data->jce_number }}" disabled>
                                 @empty
@@ -40,11 +41,11 @@
 
                             </div>
                             <div class="col-md-4">
-                                <label for="validationCustom02" class="form-label">Labor Amount</label>
+                                <label validationCustom02" class="form-label">Labor Amount</label>
                                 <input type="text" class="form-control form-control-sm" id="validationCustom02">
                             </div>
                             <div class="col-md-8">
-                                <label for="validationCustomUsername" class="form-label">Customer Name</label>
+                                <label  class="form-label">Customer Name</label>
                                 <select class="form-select form-select-sm" id="customernameid" aria-label=".form-select-sm example">
                                     <option selected></option>
                                     @foreach($customer as $data)
@@ -53,7 +54,7 @@
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <label for="validationCustom03" class="form-label">SRT</label>
+                                <label  class="form-label">SRT</label>
                                 <input type="text" class="form-control form-control-sm" id="validationCustom03">
                             </div>
                             <div class="col-md-8">
@@ -61,15 +62,15 @@
                                 <input type="text" class="form-control form-control-sm" id="contactperson" disabled>
                             </div>
                             <div class="col-md-4">
-                                <label for="validationCustom04" class="form-label">Parts Amount</label>
+                                <label class="form-label">Parts Amount</label>
                                 <input type="text" class="form-control form-control-sm" id="validationCustom03">
                             </div>
                             <div class="col-md-8">
-                                <label for="validationCustom05" class="form-label">TelNo.</label>
+                                <label class="form-label">TelNo.</label>
                                 <input type="text" class="form-control form-control-sm" id="telno">
                             </div>
                             <div class="col-md-4">
-                                <label for="validationCustom05" class="form-label">Job Type</label>
+                                <label class="form-label">Job Type</label>
                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example">
                                     <option selected></option>
                                     @foreach($jobtype as $data)
@@ -79,7 +80,7 @@
                             </div>
 
                             <div class="col-md-8">
-                                <label for="validationCustom05" class="form-label">Vehicle Type</label>
+                                <label class="form-label">Vehicle Type</label>
                                 <select class="form-select form-select-sm" id="vehicletypeid" aria-label=".form-select-sm example">
                                     <option selected></option>
                                     <option value="Agriculture Equipment">Agriculture Equipment</option>
@@ -87,7 +88,7 @@
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <label for="validationCustom05" class="form-label">Dealer</label>
+                                <label  class="form-label">Dealer</label>
                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example">
                                     <option selected></option>
                                     @foreach($dealer as $data)
@@ -96,40 +97,40 @@
                                 </select>
                             </div>
                             <div class="col-md-8">
-                                <label for="validationCustom05" class="form-label">Model</label>
+                                <label class="form-label">Model</label>
                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="model" disabled>
                                     <option selected></option>
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <label for="validationCustom05" class="form-label">Job Site</label>
+                                <label class="form-label">Job Site</label>
                                 <input type="text" class="form-control form-control-sm" id="validationCustom05">
                             </div>
                             <div class="col-md-8">
-                                <label for="validationCustom05" class="form-label">Serial Number</label>
+                                <label class="form-label">Serial Number</label>
                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="serialno" disabled>
                                     <option selected></option>
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <label for="validationCustom05" class="form-label">Unit Status</label>
+                                <label class="form-label">Unit Status</label>
                                 <input type="text" class="form-control form-control-sm" id="validationCustom05" required>
                             </div>
                             <div class="col-md-8">
-                                <label for="validationCustom05" class="form-label">Engine Number</label>
+                                <label class="form-label">Engine Number</label>
                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="engineno" disabled>
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <label for="validationCustom05" class="form-label">SalesType</label>
+                                <label class="form-label">SalesType</label>
                                 <input type="text" class="form-control form-control-sm" id="validationCustom05">
                             </div>
                             <div class="col-md-12">
-                                <label for="validationCustom05" class="form-label">Complaint/Request</label>
+                                <label class="form-label">Complaint/Request</label>
                                 <input type="text" class="form-control form-control-sm" id="validationCustom05">
                             </div>
                             <div class="col-md-12">
-                                <label for="validationCustom05" class="form-label">Component</label>
+                                <label class="form-label">Component</label>
                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example">
                                     <option selected></option>
                                     @foreach($components as $data)
@@ -138,7 +139,7 @@
                                 </select>
                             </div>
                             <div class="col-md-12">
-                                <label for="validationCustom05" class="form-label">Type of Issue</label>
+                                <label class="form-label">Type of Issue</label>
                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example">
                                     <option selected></option>
                                     @foreach($typeofissue as $data)
@@ -147,11 +148,11 @@
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <label for="validationCustom05" class="form-label">Promised Date/Time</label>
+                                <label class="form-label">Promised Date/Time</label>
                                 <input type="datetime-local" class="form-control form-control-sm" id="validationCustom05">
                             </div>
                             <div class="col-md-4">
-                                <label for="validationCustom05" class="form-label">Resolved</label>
+                                <label class="form-label">Resolved</label>
                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example">
                                     <option selected></option>
                                     <option value="Via CSR Call">Via CSR Call</option>
@@ -161,11 +162,11 @@
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <label for="validationCustom05" class="form-label">Payment Terms</label>
+                                <label class="form-label">Payment Terms</label>
                                 <input type="text" class="form-control form-control-sm" id="validationCustom05">
                             </div>
                             <div class="col-md-3">
-                                <label for="validationCustom05" class="form-label">Mode of Payment</label>
+                                <label class="form-label">Mode of Payment</label>
                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example">
                                     <option selected></option>
                                     <option value="Cash">Cash</option>
@@ -175,15 +176,15 @@
                                 </select>
                             </div>
                             <div class="col-md-3">
-                                <label for="validationCustom05" class="form-label">PO Number</label>
+                                <label  class="form-label">PO Number</label>
                                 <input type="text" class="form-control form-control-sm" id="validationCustom05">
                             </div>
                             <div class="col-md-3">
-                                <label for="validationCustom05" class="form-label">Engine Hours</label>
+                                <label class="form-label">Engine Hours</label>
                                 <input type="text" class="form-control form-control-sm" id="validationCustom05">
                             </div>
                             <div class="col-md-3">
-                                <label for="validationCustom05" class="form-label">Travel Days</label>
+                                <label class="form-label">Travel Days</label>
                                 <input type="text" class="form-control form-control-sm" id="validationCustom05">
                             </div>
                             <div class="col-md-12">
@@ -195,13 +196,13 @@
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label for="validationCustom05" class="form-label"><strong>Labor:</strong></label>
+                                <label class="form-label"><strong>Labor:</strong></label>
                             </div>
                             <div class="col-md-6">
-                                <label for="validationCustom05" class="form-label"><strong>Parts:</strong></label>
+                                <label class="form-label"><strong>Parts:</strong></label>
                             </div>
                             <div class="col-md-6">
-                                <label for="validationCustom05" class="form-label">JCE Type</label>
+                                <label class="form-label">JCE Type</label>
                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example">
                                     <option selected></option>
                                     <option value="Revenue">Revenue</option>
@@ -209,7 +210,7 @@
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label for="validationCustom05" class="form-label">JCE Type Parts</label>
+                                <label class="form-label">JCE Type Parts</label>
                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example">
                                     <option selected></option>
                                     <option value="Revenue">Revenue</option>
@@ -217,7 +218,7 @@
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label for="validationCustom05" class="form-label">Charge To</label>
+                                <label  class="form-label">Charge To</label>
                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example">
                                     <option selected></option>
                                     <option value="">Customer</option>
@@ -235,7 +236,7 @@
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label for="validationCustom05" class="form-label">Charge To Parts</label>
+                                <label  class="form-label">Charge To Parts</label>
                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example">
                                     <option selected></option>
                                     <option value="">Customer</option>
@@ -253,7 +254,7 @@
                                 </select>
                             </div>
                             <div class="col-md-12">
-                                <label for="validationCustom05" class="form-label "><strong>SRT Code</strong></label>
+                                <label  class="form-label "><strong>SRT Code</strong></label>
                             </div>
                             <div class="table-responsive mt-3 ">
                                 <table class="table align-middle table-sm">
@@ -262,25 +263,27 @@
                                             <th>SRT</th>
                                             <th>Description</th>
                                             <th>Work Unit</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td class="col-md-4">
-                                                <input type="text" class="form-control form-control-sm">
+                                                <input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; border:0px;">
                                             </td>
-                                            <td class="col-md-7">89 Chicago UK</td>
-                                            <td><input type="text" class="form-control form-control-sm"></td>
+                                            <td class="col-md-7"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; border:0px;"></td>
+                                            <td><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; border:0px;"></td>
+                                            <td><button ></button></td>
                                         </tr>
-
                                     </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td><label class="form-label"><strong>Labor Cost</strong></label></td>
+                                            <td></td>
+                                            <td><label class="form-label"><strong>SRT (Total Hours)</strong></label></td>
+                                        </tr>
+                                    </tfoot>
                                 </table>
-                            </div>
-                            <div class="col-md-9">
-                                <label for="validationCustom05" class="form-label"><strong>Labor Cost</strong></label>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="validationCustom05" class="form-label"><strong>SRT (Total Hours)</strong></label>
                             </div>
                             <div class="table-responsive mt-3">
                                 <table class="table align-middle table-sm">
@@ -310,10 +313,10 @@
                                 </table>
                             </div>
                             <div class="col-md-9">
-                                <label for="validationCustom05" class="form-label"><strong>Parts</strong></label>
+                                <label class="form-label"><strong>Parts</strong></label>
                             </div>
                             <div class="col-md-3">
-                                <label for="validationCustom05" class="form-label"><strong>JCE Amount</strong></label>
+                                <label class="form-label"><strong>JCE Amount</strong></label>
                             </div>
                             <div class="table-responsive mt-3">
                                 <table class="table align-middle table-sm">
@@ -351,25 +354,25 @@
                                 </table>
                             </div>
                             <div class="col-md-8">
-                                <label for="validationCustom05" class="form-label">Remarks</label>
+                                <label class="form-label">Remarks</label>
                                 <input type="text" class="form-control form-control-sm" id="validationCustom05">
                             </div>
                             <div class="col-md-3">
-                                <label for="validationCustom05" class="form-label">Total Parts Amount</label>
+                                <label class="form-label">Total Parts Amount</label>
                                 <input type="text" class="form-control form-control-sm" id="validationCustom05">
                             </div>
                             <div class="col-md-8">
                             </div>
                             <div class="col-md-3">
-                                <label for="validationCustom05" class="form-label">Freight Cost</label>
+                                <label class="form-label">Freight Cost</label>
                                 <input type="text" class="form-control form-control-sm" id="validationCustom05">
                             </div>
                             <div class="col-md-8">
-                                <label for="validationCustom05" class="form-label">Validity Date</label>
+                                <label class="form-label">Validity Date</label>
                                 <input type="date" class="form-control form-control-sm" id="validationCustom05">
                             </div>
                             <div class="col-md-3">
-                                <label for="validationCustom05" class="form-label">Amount Due</label>
+                                <label class="form-label">Amount Due</label>
                                 <input type="text" class="form-control form-control-sm" id="validationCustom05">
                             </div>
                             <div class="col-12">
