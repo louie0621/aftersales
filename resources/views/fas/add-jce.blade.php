@@ -24,15 +24,15 @@
                     <div class="p-4 border rounded">
                         <form class="row g-3 needs-validation">
                             <div class="col-md-6">
-                                <label  class="form-label">Incident Date/Time</label>
+                                <label class="form-label">Incident Date/Time</label>
                                 <input type="text" class="form-control form-control-sm" id="incidentdate" value="" disabled>
                             </div>
                             <div class="col-md-6">
-                                <label  class="form-label">Dispatch Date</label>
+                                <label class="form-label">Dispatch Date</label>
                                 <input type="date" class="form-control form-control-sm" id="validationCustom01">
                             </div>
                             <div class="col-md-8">
-                                <label  class="form-label">JCE Number</label>
+                                <label class="form-label">JCE Number</label>
                                 @forelse($jceno as $data)
                                 <input type="text" class="form-control form-control-sm" id="jceno" value="{{ $data->jce_number }}" disabled>
                                 @empty
@@ -45,7 +45,7 @@
                                 <input type="text" class="form-control form-control-sm" id="validationCustom02">
                             </div>
                             <div class="col-md-8">
-                                <label  class="form-label">Customer Name</label>
+                                <label class="form-label">Customer Name</label>
                                 <select class="form-select form-select-sm" id="customernameid" aria-label=".form-select-sm example">
                                     <option selected></option>
                                     @foreach($customer as $data)
@@ -54,7 +54,7 @@
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <label  class="form-label">SRT</label>
+                                <label class="form-label">SRT</label>
                                 <input type="text" class="form-control form-control-sm" id="validationCustom03">
                             </div>
                             <div class="col-md-8">
@@ -88,7 +88,7 @@
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <label  class="form-label">Dealer</label>
+                                <label class="form-label">Dealer</label>
                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example">
                                     <option selected></option>
                                     @foreach($dealer as $data)
@@ -176,7 +176,7 @@
                                 </select>
                             </div>
                             <div class="col-md-3">
-                                <label  class="form-label">PO Number</label>
+                                <label class="form-label">PO Number</label>
                                 <input type="text" class="form-control form-control-sm" id="validationCustom05">
                             </div>
                             <div class="col-md-3">
@@ -218,7 +218,7 @@
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label  class="form-label">Charge To</label>
+                                <label class="form-label">Charge To</label>
                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example">
                                     <option selected></option>
                                     <option value="">Customer</option>
@@ -236,7 +236,7 @@
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label  class="form-label">Charge To Parts</label>
+                                <label class="form-label">Charge To Parts</label>
                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example">
                                     <option selected></option>
                                     <option value="">Customer</option>
@@ -254,7 +254,7 @@
                                 </select>
                             </div>
                             <div class="col-md-12">
-                                <label  class="form-label "><strong>SRT Code</strong></label>
+                                <label class="form-label "><strong>SRT Code</strong></label>
                             </div>
                             <div class="table-responsive mt-3 ">
                                 <table class="table align-middle table-sm">
@@ -266,24 +266,28 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="srtcodetbody">
                                         <tr>
-                                            <td class="col-md-4">
-                                                <input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; border:0px;">
+                                            <td class="col-md-3">
+                                                <input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id="srtcodeentry">
                                             </td>
-                                            <td class="col-md-7"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; border:0px;"></td>
-                                            <td><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; border:0px;"></td>
-                                            <td><button ></button></td>
+                                            <td class="col-md-6 align-center"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id="srtdesentry"></td>
+                                            <td><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id="srtworkunitentry"></td>
+                                            <td><strong><a href="javascript:;" id="addsrtcode" class="text-success" style="font-size: 20px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add"><i class="bi bi-plus-square-fill"></i></a></strong></td>
                                         </tr>
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td><label class="form-label"><strong>Labor Cost</strong></label></td>
                                             <td></td>
-                                            <td><label class="form-label"><strong>SRT (Total Hours)</strong></label></td>
+                                            <td style="text-align: right;"><strong>SRT (Total Hours)</strong></td>
+                                            <td><strong><span id=""></span> <input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="totalsrtcode" disabled></strong></td>
+                                            <td></td>
                                         </tr>
                                     </tfoot>
                                 </table>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label "><strong>Labor Cost</strong></label>
                             </div>
                             <div class="table-responsive mt-3">
                                 <table class="table align-middle table-sm">
@@ -386,6 +390,7 @@
         </div>
     </div>
     <!--end row-->
+
 </main>
 <!--end page main-->
 @endsection
@@ -417,6 +422,56 @@
         //         }
         //     })
         // }
+        $("#addsrtcode").click(function() {
+            var srtcode = $("#srtcodeentry").val();
+            var des = $("#srtdesentry").val();
+            var workunit = $("#srtworkunitentry").val();
+
+            if ($("#srtcodeentry").val().length > 0) {
+                $("#srtcodeentry").removeClass("is-invalid");
+            } else {
+                $("#srtcodeentry").addClass("is-invalid");
+            }
+
+            if ($("#srtdesentry").val().length > 0) {
+                $("#srtdesentry").removeClass("is-invalid");
+            } else {
+                $("#srtdesentry").addClass("is-invalid");
+            }
+            if ($("#srtworkunitentry").val().length > 0) {
+                $("#srtworkunitentry").removeClass("is-invalid");
+            } else {
+                $("#srtworkunitentry").addClass("is-invalid");
+            }
+
+            if ($("#srtcodeentry").val().length > 0 && $("#srtdesentry").val().length > 0 && $("#srtworkunitentry").val().length > 0) {
+                var row = "<tr class='srtcodetr'><td>" + srtcode + "</td><td class='clss'>" + des + "</td><td class='clss'>" + workunit + "</td> <td><a href='javascript:;' onclick='srttblDelete(this);' class='text-danger' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Delete'><i class='bi bi-trash-fill'></i></a></td></tr>";
+
+                $("#srtcodetbody").append(row);
+
+                var arr = [];
+                $(".srtcodetr").each(function() {
+                    arr.push($(this).find("td:nth-child(3)").text()); //put elements into array
+                });
+
+                var sum = arr.reduce(function(a, b) {
+                    return parseFloat(a) + parseFloat(b);
+                }, 0);
+
+                total = sum / 10;
+
+                $("#totalsrtcode").val(total);
+                $("#srtcodeentry").val('');
+                $("#srtdesentry").val('');
+                $("#srtworkunitentry").val('');                
+            } else {
+                
+            }
+
+        });
+
+
+
         $('#techname').select2();
 
         $("#customernameid").change(function() {
@@ -532,6 +587,23 @@
         }
 
     });
+
+    function srttblDelete(ctl) {
+        $(ctl).parents("tr").remove();
+
+        var arr = [];
+        $(".srtcodetr").each(function() {
+            arr.push($(this).find("td:nth-child(3)").text()); //put elements into array
+        });
+
+        var sum = arr.reduce(function(a, b) {
+            return parseFloat(a) + parseFloat(b);
+        }, 0);
+
+        total = sum / 10;
+
+        $("#totalsrtcode").val(total);
+    }
 </script>
 
 @endsection
