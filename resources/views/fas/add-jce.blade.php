@@ -278,8 +278,7 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td></td>
-                                            <td style="text-align: right;"><strong>SRT (Total Hours)</strong></td>
+                                            <td colspan="2" style="text-align: right;"><strong>SRT (Total Hours)</strong></td>
                                             <td><strong><span id=""></span> <input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="totalsrtcode" disabled></strong></td>
                                             <td></td>
                                         </tr>
@@ -297,30 +296,29 @@
                                             <th>Rate</th>
                                             <th>Quantity</th>
                                             <th>Amount</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center gap-3 cursor-pointer">
-                                                    <div class="">
-                                                        <p class="mb-0">Thomas Hardy</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>89 Chicago UK</td>
-                                            <td>Chicago</td>
-                                            <td>Chicagosss</td>
+                                            <td class=""><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
+                                            <td class="align-center"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
+                                            <td><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
+                                            <td><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
+                                            <td><strong><a href="javascript:;" id="" class="text-success" style="font-size: 20px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add"><i class="bi bi-plus-square-fill"></i></a></strong></td>
                                         </tr>
-
                                     </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="3" style="text-align: right;"><strong>JCE Amount</strong></td>
+                                            <td><strong><span id=""></span> <input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="totalsrtcode" disabled></strong></td>
+                                            <td></td>
+                                        </tr>
+                                    </tfoot>
                                 </table>
                             </div>
                             <div class="col-md-9">
                                 <label class="form-label"><strong>Parts</strong></label>
-                            </div>
-                            <div class="col-md-3">
-                                <label class="form-label"><strong>JCE Amount</strong></label>
                             </div>
                             <div class="table-responsive mt-3">
                                 <table class="table align-middle table-sm">
@@ -334,26 +332,21 @@
                                             <th>Disc %</th>
                                             <th>Disc Amount</th>
                                             <th>Total</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center gap-3 cursor-pointer">
-                                                    <div class="">
-                                                        <p class="mb-0">Thomas Hardy</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>89 Chicago UK</td>
-                                            <td>Chicago</td>
-                                            <td>Chicagosss</td>
-                                            <td>Chicago</td>
-                                            <td>Chicagosss</td>
-                                            <td>Chicago</td>
-                                            <td>Chicagosss</td>
+                                            <td class=""><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
+                                            <td class="align-center"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
+                                            <td><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
+                                            <td><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
+                                            <td><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
+                                            <td><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
+                                            <td><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
+                                            <td><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
+                                            <td><strong><a href="javascript:;" id="" class="text-success" style="font-size: 20px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add"><i class="bi bi-plus-square-fill"></i></a></strong></td>
                                         </tr>
-
                                     </tbody>
                                 </table>
                             </div>
@@ -422,6 +415,13 @@
         //         }
         //     })
         // }
+
+        $("#srtworkunitentry").keypress(function(e) {
+            //if the letter is not digit then display error and don't type anything
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                return false;
+            }
+        });
         $("#addsrtcode").click(function() {
             var srtcode = $("#srtcodeentry").val();
             var des = $("#srtdesentry").val();
@@ -463,9 +463,9 @@
                 $("#totalsrtcode").val(total);
                 $("#srtcodeentry").val('');
                 $("#srtdesentry").val('');
-                $("#srtworkunitentry").val('');                
+                $("#srtworkunitentry").val('');
             } else {
-                
+
             }
 
         });
@@ -560,7 +560,6 @@
                     })
                 }
             })
-
         });
 
         fetchincidentdate();
