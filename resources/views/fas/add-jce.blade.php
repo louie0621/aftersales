@@ -196,12 +196,6 @@
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label"><strong>Labor:</strong></label>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label"><strong>Parts:</strong></label>
-                            </div>
-                            <div class="col-md-6">
                                 <label class="form-label">JCE Type</label>
                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example">
                                     <option selected></option>

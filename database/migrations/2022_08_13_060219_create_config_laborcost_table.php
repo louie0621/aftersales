@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('description')->nullable();
             $table->string('rate')->nullable();
-            $table->string('amount')->nullable();
             $table->timestamps();
         });
     }

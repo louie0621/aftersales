@@ -9,8 +9,10 @@ use App\Models\Dealer;
 use App\Http\Requests\Dealerrequest;
 use App\Models\Component;
 use App\Http\Requests\Componentrequest;
+use App\Http\Requests\Laborcostrequest;
 use App\Models\Typeofissue;
 use App\Http\Requests\Typeofissuerequest;
+use App\Models\Laborcost;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class SysconfigController extends Controller
@@ -190,6 +192,50 @@ class SysconfigController extends Controller
     {
         //
         Typeofissue::find($id)->delete();
+
+        Alert::toast('You\'ve Successfully delete', 'info');
+        
+        return response()->json();
+    }
+
+    //Labor Cost
+
+    public function indexlaborcost()
+    {
+        //
+        $laborcost= Laborcost::all();
+        return view('fas.configlaborcost', ['laborcost' => $laborcost]);
+    }
+
+    public function storelaborcost(Laborcostrequest $request)
+    {
+        //
+        $data = $request->validated();
+
+        Laborcost::create([
+            'description' => $data['description'],
+            'rate' => $data['rate']
+        ]);
+        
+        Alert::toast('You\'ve Successfully Added', 'success');
+
+        return redirect('FAS/labor-cost');
+    }
+
+    public function updatelaborcost(Laborcostrequest $request,$id)
+    {
+        //
+        $edit = Laborcost::find($id);
+        $edit->description = $request->description;
+        $edit->rate = $request->rate;
+        $edit->save();
+        return response()->json();
+    }
+
+    public function destroylaborcost($id)
+    {
+        //
+        Laborcost::find($id)->delete();
 
         Alert::toast('You\'ve Successfully delete', 'info');
         

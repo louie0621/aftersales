@@ -143,6 +143,11 @@ Route::controller(App\Http\Controllers\SysconfigController::class)->group(functi
     Route::post('/FAS/add-typeofissue', 'storetypeofissue');
     Route::put('/FAS/typeofissue/{id}', 'updatetypeofissue');
     Route::delete('/FAS/deletetypeofissue/{id}', 'destroytypeofissue');
+
+    Route::get('/FAS/labor-cost', 'indexlaborcost');
+    Route::post('/FAS/add-laborcost', 'storelaborcost');
+    Route::put('/FAS/laborcost/{id}', 'updatelaborcost');
+    Route::delete('/FAS/deletelaborcost/{id}', 'destroylaborcost');
     
 });
 

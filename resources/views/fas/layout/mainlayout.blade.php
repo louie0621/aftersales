@@ -333,6 +333,7 @@
                             <a href="{{ url('/FAS/component')}}" class="list-group-item"><i class="bi bi-wrench"></i>Component</a>
                             <a href="{{ url('/FAS/type-of-issue')}}" class="list-group-item"><i class="bi bi-wrench"></i>Type of Issue</a>
                             <a href="{{ url('/FAS/technician')}}" class="list-group-item"><i class="bi bi-wrench"></i>Technician</a>
+                            <a href="{{ url('/FAS/labor-cost')}}" class="list-group-item"><i class="bi bi-wrench"></i>Labor Cost</a>
                             <label class="list-group-item" for=""><Strong>Work Order</Strong></label>
                         </div>
                     </div>
