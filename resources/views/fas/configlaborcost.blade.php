@@ -72,7 +72,7 @@
                                             <td>{{ $data->rate }}</td>
                                             <td>
                                                 <div class="d-flex align-items-center gap-3 fs-6">
-                                                    <a href="javascript:;" id="edit" data-editid="{{ $data->id }}" data-editjt="{{ $data->jobtype }}" class="text-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Edit info" aria-label="Edit"><i class="bi bi-pencil-fill"></i></a>
+                                                    <a href="javascript:;" id="edit" data-editid="{{ $data->id }}" data-editdes="{{ $data->description }}" data-editrate="{{ $data->rate }}" class="text-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Edit info" aria-label="Edit"><i class="bi bi-pencil-fill"></i></a>
                                                     <a href="javascript:;" id="delete" data-deleteid="{{ $data->id }}" class="text-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete"><i class="bi bi-trash-fill"></i></a>
                                                 </div>
                                             </td>
@@ -89,19 +89,19 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title"> Update Job Type</h5>
+                                <h5 class="modal-title"> Update Labor Cost</h5>
                                 <button type="button" class="btn-close closemodal" data-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <form id="myForm">
                                 <div class="modal-body">
                                     <input type="text" id="eid" hidden>
                                     <div class="col-12">
-                                        <label class="form-label">De</label>
-                                        <input type="text" class="form-control" id="des">
+                                        <label class="form-label">Description</label>
+                                        <input type="text" class="form-control" id="edes">
                                     </div>
                                     <div class="col-12">
                                         <label class="form-label">Rate</label>
-                                        <input type="text" class="form-control" id="rate">
+                                        <input type="text" class="form-control" id="erate">
                                     </div>
                                     <br>
                                 </div>
@@ -134,9 +134,11 @@
         $(document).on("click", "#edit", function(e) {
 
             var getidFromRow = $(e.currentTarget).data("editid");
-            var getjtFromRow = $(e.currentTarget).data("editjt");
+            var getdesFromRow = $(e.currentTarget).data("editdes");
+            var getrateFromRow = $(e.currentTarget).data("editrate");
             $('#eid').val(getidFromRow);
-            $('#enm').val(getjtFromRow);
+            $('#edes').val(getdesFromRow);
+            $('#erate').val(getrateFromRow);
             $("#editModal").modal('show');
         })
 
@@ -147,9 +149,11 @@
 
         $('#editsave').click(function(e) {
             e.preventDefault();
-            var url = "{{ url('FAS/job-type') }}" + "/" + $('#eid').val();
-            if (!$('#enm').val()) {
-                $('#enm').addClass("is-invalid")
+            var url = "{{ url('FAS/laborcost') }}" + "/" + $('#eid').val();
+            if (!$('#edes').val()) {
+                $('#edes').addClass("is-invalid")
+            }else if(!$('#erate').val()){
+                $('#erate').addClass("is-invalid")
             } else {
                 $.ajaxSetup({
                     headers: {
@@ -161,7 +165,8 @@
                     url: url,
                     method: 'put',
                     data: {
-                        jobtype: $('#enm').val(),
+                        description: $('#edes').val(),
+                        rate: $('#erate').val(),
                         _token: '{!! csrf_token() !!}'
                     },
                     success: function(result) {
@@ -178,7 +183,7 @@
 
         //delete
         $(document).on("click", "#delete", function(e) {
-            var url = "{{ url('/FAS/deletejob-type') }}" + "/" + $(e.currentTarget).data("deleteid");
+            var url = "{{ url('/FAS/deletelaborcost') }}" + "/" + $(e.currentTarget).data("deleteid");
             
             $.ajaxSetup({
                 headers: {

@@ -10,6 +10,7 @@ use App\Models\Jce;
 use App\Models\Sysconfig;
 use App\Models\Technician;
 use App\Models\Typeofissue;
+use App\Models\Laborcost;
 use Illuminate\Http\Request;
 
 class JceController extends Controller
@@ -64,7 +65,13 @@ class JceController extends Controller
         
         return response()->json(['showengineno' => $showengine]);
     }
-
+    public function selectlaborcost($id)
+    {
+        //
+        $showdescription = Laborcost::find($id);
+        
+        return response()->json(['showdescription' => $showdescription]);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -81,7 +88,8 @@ class JceController extends Controller
         $customer = Customer::all();
         $techname = Technician::all();
         $jceno = Jce::all();
-        return view('fas.add-jce', ['jobtype' => $jobtype, 'dealer' => $dealer, 'components' => $components, 'typeofissue' => $typeofissue, 'customer' => $customer, 'techname' => $techname, 'jceno' => $jceno]);
+        $laborcost = Laborcost::all();
+        return view('fas.add-jce', ['jobtype' => $jobtype, 'dealer' => $dealer, 'components' => $components, 'typeofissue' => $typeofissue, 'customer' => $customer, 'techname' => $techname, 'jceno' => $jceno, 'laborcost' => $laborcost]);
     }
 
     /**

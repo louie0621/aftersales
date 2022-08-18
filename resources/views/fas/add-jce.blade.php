@@ -293,19 +293,26 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="laborcostbody">
                                         <tr>
-                                            <td class=""><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
-                                            <td class="align-center"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
-                                            <td><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
-                                            <td><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
-                                            <td><strong><a href="javascript:;" id="" class="text-success" style="font-size: 20px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add"><i class="bi bi-plus-square-fill"></i></a></strong></td>
+                                            <td class="col-md-6">
+                                                <select class="form-select form-select-sm" id="labordescription" style="min-height: 0rem; padding:0rem; padding-left:.5rem;" aria-label=".form-select-sm example">
+                                                    <option selected></option>
+                                                    @foreach($laborcost as $data)
+                                                    <option value="{{ $data->id }}">{{ $data->description }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </td>
+                                            <td class="col-md-2"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="laborcostrate" disabled></td>
+                                            <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="laborcostqty"></td>
+                                            <td><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id="laborcostamt" disabled></td>
+                                            <td><strong><a href="javascript:;" id="addlaborcost" class="text-success" style="font-size: 20px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add"><i class="bi bi-plus-square-fill"></i></a></strong></td>
                                         </tr>
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <td colspan="3" style="text-align: right;"><strong>JCE Amount</strong></td>
-                                            <td><strong><span id=""></span> <input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="totalsrtcode" disabled></strong></td>
+                                            <td><strong><span id=""></span> <input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="totallaborcostamt" disabled></strong></td>
                                             <td></td>
                                         </tr>
                                     </tfoot>
@@ -331,14 +338,14 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class=""><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
-                                            <td class="align-center"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
-                                            <td><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
-                                            <td><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
-                                            <td><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
-                                            <td><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
-                                            <td><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
-                                            <td><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
+                                            <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
+                                            <td class="col-md-3"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
+                                            <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
+                                            <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
+                                            <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
+                                            <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
+                                            <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
+                                            <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id=""></td>
                                             <td><strong><a href="javascript:;" id="" class="text-success" style="font-size: 20px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add"><i class="bi bi-plus-square-fill"></i></a></strong></td>
                                         </tr>
                                     </tbody>
@@ -409,13 +416,67 @@
         //         }
         //     })
         // }
+        //Add Labor Cost
+        $("#addlaborcost").click(function() {
+            var des = $( "#labordescription option:selected" ).text();
+            var rate = $("#laborcostrate").val();
+            var qty = $("#laborcostqty").val();
+            var amt = $("#laborcostamt").val();
+            
+            var row = "<tr class='laborcosttr'><td>" + des + "</td><td class='clss'>" + rate + "</td><td class='clss'>" + qty + "</td><td class='clss'>" + amt + "</td><td><a href='javascript:;' onclick='srttblDelete(this);' class='text-danger' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Delete'><i class='bi bi-trash-fill'></i></a></td></tr>";
 
+            $("#laborcostbody").append(row);
+
+            var arr = [];
+            $(".laborcosttr").each(function() {
+                arr.push($(this).find("td:nth-child(4)").text()); //put elements into array
+            });
+
+            var sum = arr.reduce(function(a, b) {
+                return parseFloat(a) + parseFloat(b);
+            }, 0);
+
+            $("#totallaborcostamt").val(sum);
+
+        });
+
+        //Labor Cost Quantity
+        $("#laborcostqty").keyup(function(e) {
+            var rate = $("#laborcostrate").val();
+            var qty = $("#laborcostqty").val();
+            var total = parseFloat(rate) * parseFloat(qty);
+            if ($("#laborcostqty").val().length) {
+                $("#laborcostamt").val(total);
+            } else {
+                $("#laborcostamt").val('');
+            }
+
+        });
+
+        // Labor Cost Description
+        $("#labordescription").change(function() {
+            var url = "{{ url('/FAS/selectlaborcost') }}" + "/" + $(this).children("option:selected").val();
+
+            $.ajax({
+                type: "GET",
+                url: url,
+                dataType: "json",
+                success: function(response) {
+                    $("#laborcostrate").val(response.showdescription.rate);
+                }
+            })
+
+        });
+
+        //Work unit number only
         $("#srtworkunitentry").keypress(function(e) {
             //if the letter is not digit then display error and don't type anything
             if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
                 return false;
             }
         });
+
+        //Add srtcode 
         $("#addsrtcode").click(function() {
             var srtcode = $("#srtcodeentry").val();
             var des = $("#srtdesentry").val();
@@ -468,6 +529,7 @@
 
         $('#techname').select2();
 
+        //Contact person
         $("#customernameid").change(function() {
             var url = "{{ url('/FAS/show-contactperson') }}" + "/" + $(this).children("option:selected").val();
 
@@ -482,6 +544,8 @@
             })
 
         });
+        // 
+        //Vehicletype
         $("#vehicletypeid").change(function() {
             var url = "{{ url('/FAS/show-vehicletype') }}" + "/" + $(this).children("option:selected").val();
 
