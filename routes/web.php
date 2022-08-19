@@ -74,7 +74,7 @@ Route::controller(App\Http\Controllers\JceController::class)->group(function () 
     Route::get('/FAS/show-serialno/{serial}', 'serialno');
     Route::get('/FAS/show-engineno/{engine}', 'engineno');
     Route::get('/FAS/selectlaborcost/{id}', 'selectlaborcost');
-    
+    Route::get('/FAS/selectpartno/{id}', 'selectpartno');
 });
 
 Route::controller(App\Http\Controllers\WorkorderController::class)->group(function () {
@@ -150,6 +150,10 @@ Route::controller(App\Http\Controllers\SysconfigController::class)->group(functi
     Route::put('/FAS/laborcost/{id}', 'updatelaborcost');
     Route::delete('/FAS/deletelaborcost/{id}', 'destroylaborcost');
     
+    Route::get('/FAS/parts', 'indexparts');
+    Route::post('/FAS/add-parts', 'storeparts');
+    Route::put('/FAS/parts/{id}', 'updateparts');
+    Route::delete('/FAS/deleteparts/{id}', 'destroyparts');
 });
 
 Route::controller(App\Http\Controllers\userController::class)->group(function () {

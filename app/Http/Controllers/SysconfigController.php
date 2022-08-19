@@ -10,9 +10,11 @@ use App\Http\Requests\Dealerrequest;
 use App\Models\Component;
 use App\Http\Requests\Componentrequest;
 use App\Http\Requests\Laborcostrequest;
+use App\Http\Requests\Partsrequest;
 use App\Models\Typeofissue;
 use App\Http\Requests\Typeofissuerequest;
 use App\Models\Laborcost;
+use App\Models\Parts;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class SysconfigController extends Controller
@@ -236,6 +238,54 @@ class SysconfigController extends Controller
     {
         //
         Laborcost::find($id)->delete();
+
+        Alert::toast('You\'ve Successfully delete', 'info');
+        
+        return response()->json();
+    }
+
+    //Parts
+
+    public function indexparts()
+    {
+        //
+        $parts= Parts::all();
+        return view('fas.configparts', ['parts' => $parts]);
+    }
+
+    public function storeparts(Partsrequest $request)
+    {
+        //
+        $data = $request->validated();
+
+        Parts::create([
+            'part_number' => $data['part_number'],
+            'description' => $data['description'],
+            'stocks' => $data['stocks'],
+            'price' => $data['price']
+        ]);
+        
+        Alert::toast('You\'ve Successfully Added', 'success');
+
+        return redirect('FAS/parts');
+    }
+
+    public function updateparts(Partsrequest $request,$id)
+    {
+        //
+        $edit = Parts::find($id);
+        $edit->part_number = $request->part_number;
+        $edit->description = $request->description;
+        $edit->stocks = $request->stocks;
+        $edit->price = $request->price;
+        $edit->save();
+        return response()->json();
+    }
+
+    public function destroyparts($id)
+    {
+        //
+        Parts::find($id)->delete();
 
         Alert::toast('You\'ve Successfully delete', 'info');
         

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Laborcostrequest extends FormRequest
+class Partsrequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,16 +25,20 @@ class Laborcostrequest extends FormRequest
     {
         return [
             //
-            'description' => ['required', 'string', 'max:255', 'unique:config_laborcost'],
-            'rate' => ['required', 'string', 'max:255']
-            
+            'part_number' => ['required', 'string', 'max:255', 'unique:config_parts'],
+            'description' => ['required', 'string', 'max:255'],
+            'stocks' => ['required', 'string', 'max:255'],
+            'price' => ['required', 'string', 'max:255']
+
         ];
     }
     protected function prepareForValidation()
     {
         $this->merge([
+            'part_number' => strip_tags($this->part_number),
             'description' => strip_tags($this->description),
-            'rate' => strip_tags($this->rate)
+            'stocks' => strip_tags($this->stocks),
+            'price' => strip_tags($this->price)
         ]);
     }
 }
