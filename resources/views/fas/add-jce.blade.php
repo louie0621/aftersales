@@ -362,7 +362,7 @@
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label">Total Parts Amount</label>
-                                <input type="text" class="form-control form-control-sm" id="validationCustom05">
+                                <input type="text" class="form-control form-control-sm" style="text-align: rigth;" id="totalpartsamt" disabled>
                             </div>
                             <div class="col-md-8">
                             </div>
@@ -410,21 +410,21 @@
             var partdiscamt = $("#partdiscamt").val();
             var parttotal = $("#parttotal").val();
 
-            var row = "<tr class='parttr'><td class='clss text-center'>" + partno + 
-                            "</td><td class='clss'>" + partdes + 
-                            "</td><td class='clss text-center'>" + partavail + 
-                            "</td><td class='clss text-center'>" + partqty + 
-                            "</td><td class='clss' style='text-align: right;'>" + partprice + 
-                            "</td><td class='clss text-center'>" + partdiscpercent + 
-                            "</td><td class='clss' style='text-align: right;'>" + partdiscamt + 
-                            "</td><td class='clss' style='text-align: right;'>" + parttotal +
-                            "</td><td><a href='javascript:;' onclick='srttblDelete(this);' class='text-danger' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Delete'><i class='bi bi-trash-fill'></i></a></td></tr>";
+            var row = "<tr class='parttr'><td class='clss text-center'>" + partno +
+                "</td><td class='clss'>" + partdes +
+                "</td><td class='clss text-center'>" + partavail +
+                "</td><td class='clss text-center'>" + partqty +
+                "</td><td class='clss' style='text-align: right;'>" + partprice +
+                "</td><td class='clss text-center'>" + partdiscpercent +
+                "</td><td class='clss' style='text-align: right;'>" + partdiscamt +
+                "</td><td class='clss' style='text-align: right;'>" + parttotal +
+                "</td><td><a href='javascript:;' onclick='partstblDelete(this);' class='text-danger' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Delete'><i class='bi bi-trash-fill'></i></a></td></tr>";
 
             $("#partbody").append(row);
 
             var arr = [];
             $(".parttr").each(function() {
-                arr.push($(this).find("td:nth-child(4)").text()); //put elements into array
+                arr.push($(this).find("td:nth-child(8)").text()); //put elements into array
             });
 
             var sum = arr.reduce(function(a, b) {
@@ -439,6 +439,7 @@
             $("#partdiscpercent").val('');
             $("#partdiscamt").val('');
             $("#parttotal").val('');
+            $("#totalpartsamt").val(sum);
         });
 
         //part discount amount
@@ -521,6 +522,7 @@
                         var total = parseFloat(price) * parseFloat(qty);
                         $("#partdiscpercent").val('');
                         $("#partdiscamt").val('');
+
                         if ($("#partqty").val().length) {
                             $("#parttotal").val(total);
                         } else {
@@ -529,10 +531,15 @@
                     }
                 })
             } else {
+                $("#partdiscpercent").prop("disabled", true);
+                $("#partdiscamt").prop("disabled", true);
+                $("#partdiscpercent").val('');
+                $("#partdiscamt").val('');
                 $("#partdes").val('');
                 $("#partavail").val('');
                 $("#partprice").val('');
                 $("#partqty").val('');
+                $("#parttotal").val('');
             }
 
         });
@@ -544,7 +551,11 @@
             var qty = $("#laborcostqty").val();
             var amt = $("#laborcostamt").val();
 
-            var row = "<tr class='laborcosttr'><td>" + des + "</td><td class='clss text-center'>" + rate + "</td><td class='clss text-center'>" + qty + "</td><td class='clss' style='text-align:right;'>" + amt + "</td><td><a href='javascript:;' onclick='srttblDelete(this);' class='text-danger' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Delete'><i class='bi bi-trash-fill'></i></a></td></tr>";
+            var row = "<tr class='laborcosttr'><td>" + des +
+                "</td><td class='clss text-center'>" + rate +
+                "</td><td class='clss text-center'>" + qty +
+                "</td><td class='clss' style='text-align:right;'>" + amt +
+                "</td><td><a href='javascript:;' onclick='lcosttblDelete(this);' class='text-danger' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Delete'><i class='bi bi-trash-fill'></i></a></td></tr>";
 
             $("#laborcostbody").append(row);
 
@@ -784,6 +795,7 @@
 
     });
 
+    //delete SRT Table Code
     function srttblDelete(ctl) {
         $(ctl).parents("tr").remove();
 
@@ -799,6 +811,39 @@
         total = sum / 10;
 
         $("#totalsrtcode").val(total);
+    }
+
+    //delete Parts Table Code
+    function partstblDelete(ctl) {
+        $(ctl).parents("tr").remove();
+
+        var arr = [];
+        $(".parttr").each(function() {
+            arr.push($(this).find("td:nth-child(8)").text()); //put elements into array
+        });
+
+        var sum = arr.reduce(function(a, b) {
+            return parseFloat(a) + parseFloat(b);
+        }, 0);
+
+
+        $("#totalpartsamt").val(sum);
+    }
+
+    //delete Labor Cost Table Code
+    function lcosttblDelete(ctl) {
+        $(ctl).parents("tr").remove();
+
+        var arr = [];
+        $(".laborcosttr").each(function() {
+            arr.push($(this).find("td:nth-child(4)").text()); //put elements into array
+        });
+
+        var sum = arr.reduce(function(a, b) {
+            return parseFloat(a) + parseFloat(b);
+        }, 0);
+
+        $("#totallaborcostamt").val(sum);
     }
 </script>
 
