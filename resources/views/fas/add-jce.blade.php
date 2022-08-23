@@ -334,7 +334,7 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="partbody">
                                         <tr>
                                             <td class="col-md-2">
                                                 <select class="form-select form-select-sm selectpart" id="partsno" style="min-height: 0rem; padding:0rem; padding-left:.5rem;" aria-label=".form-select-sm example">
@@ -348,8 +348,8 @@
                                             <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="partavail" disabled></td>
                                             <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="partqty"></td>
                                             <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:right;" id="partprice" disabled></td>
-                                            <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id=""></td>
-                                            <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:right;" id=""></td>
+                                            <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="partdiscpercent" disabled></td>
+                                            <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:right;" id="partdiscamt" disabled></td>
                                             <td class="col-md-2"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:right;" id="parttotal" disabled></td>
                                             <td><strong><a href="javascript:;" id="addparts" class="text-success" style="font-size: 20px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add"><i class="bi bi-plus-square-fill"></i></a></strong></td>
                                         </tr>
@@ -398,42 +398,110 @@
 <!-- JS Files -->
 <script>
     $(document).ready(function() {
-        // fetchequipment();
 
-        // function fetchequipment() {
-        //     $.ajax({
-        //         type: "GET",
-        //         url: "/FAS/show-techname",
-        //         dataType: "json",
-        //         success: function(response) {
-        //             var dataItems = [];
-        //             var num = 0;
-        //             $.each(response.show, function(key, item) {
-        //                 dataItems[num++] = item.name;
-        //             })
-        //             $('#techname').tokenfield({
-        //                 autocomplete: {
-        //                     source: dataItems,
-        //                     delay: 100
-        //                 },
-        //                 showAutocompleteOnFocus: true
-        //             });
-        //         }
-        //     })
-        // }
+        //Add Part 
+        $("#addparts").click(function() {
+            var partno = $("#partsno option:selected").text();
+            var partdes = $("#partdes").val();
+            var partavail = $("#partavail").val();
+            var partqty = $("#partqty").val();
+            var partprice = $("#partprice").val();
+            var partdiscpercent = $("#partdiscpercent").val();
+            var partdiscamt = $("#partdiscamt").val();
+            var parttotal = $("#parttotal").val();
 
-        //
+            var row = "<tr class='parttr'><td class='clss text-center'>" + partno + 
+                            "</td><td class='clss'>" + partdes + 
+                            "</td><td class='clss text-center'>" + partavail + 
+                            "</td><td class='clss text-center'>" + partqty + 
+                            "</td><td class='clss' style='text-align: right;'>" + partprice + 
+                            "</td><td class='clss text-center'>" + partdiscpercent + 
+                            "</td><td class='clss' style='text-align: right;'>" + partdiscamt + 
+                            "</td><td class='clss' style='text-align: right;'>" + parttotal +
+                            "</td><td><a href='javascript:;' onclick='srttblDelete(this);' class='text-danger' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Delete'><i class='bi bi-trash-fill'></i></a></td></tr>";
+
+            $("#partbody").append(row);
+
+            var arr = [];
+            $(".parttr").each(function() {
+                arr.push($(this).find("td:nth-child(4)").text()); //put elements into array
+            });
+
+            var sum = arr.reduce(function(a, b) {
+                return parseFloat(a) + parseFloat(b);
+            }, 0);
+
+            $("#partsno").find('option:eq(0)').prop('selected', true);
+            $("#partdes").val('');
+            $("#partavail").val('');
+            $("#partqty").val('');
+            $("#partprice").val('');
+            $("#partdiscpercent").val('');
+            $("#partdiscamt").val('');
+            $("#parttotal").val('');
+        });
+
+        //part discount amount
+        $("#partdiscamt").keyup(function(e) {
+            var price = $("#partprice").val();
+            var qty = $("#partqty").val();
+            var totalqty = parseFloat(price) * parseFloat(qty);
+            var percent = parseFloat($("#partdiscpercent").val()) / 100;
+            var subtotal = parseFloat(percent) * parseFloat(totalqty);
+            var totalpercent = parseFloat(totalqty) - parseFloat(subtotal);
+            var totaldics = parseFloat(totalpercent) - parseFloat($("#partdiscamt").val());
+            var totalamt = parseFloat(totalqty) - parseFloat($("#partdiscamt").val());
+
+            if ($("#partdiscamt").val().length && $("#partdiscpercent").val().length) {
+                $("#parttotal").val(totaldics);
+            } else if ($("#partdiscpercent").val().length) {
+                $("#parttotal").val(totalpercent);
+            } else if ($("#partdiscamt").val().length) {
+                $("#parttotal").val(totalamt);
+            } else {
+                $("#parttotal").val(totalqty);
+            }
+
+        });
+
+        //part discount percent
+        $("#partdiscpercent").keyup(function(e) {
+            var price = $("#partprice").val();
+            var qty = $("#partqty").val();
+            var totalqty = parseFloat(price) * parseFloat(qty);
+            var percent = parseFloat($("#partdiscpercent").val()) / 100;
+            var subtotal = parseFloat(percent) * parseFloat(totalqty);
+            var totalpercent = parseFloat(totalqty) - parseFloat(subtotal);
+            var totaldics = parseFloat(totalpercent) - parseFloat($("#partdiscamt").val());
+            var totalamt = parseFloat(totalqty) - parseFloat($("#partdiscamt").val());
+
+            if ($("#partdiscamt").val().length && $("#partdiscpercent").val().length) {
+                $("#parttotal").val(totaldics);
+            } else if ($("#partdiscpercent").val().length) {
+                $("#parttotal").val(totalpercent);
+            } else if ($("#partdiscamt").val().length) {
+                $("#parttotal").val(totalamt);
+            } else {
+                $("#parttotal").val(totalqty);
+            }
+        });
+
+        //part quantity
         $("#partqty").keyup(function(e) {
             var price = $("#partprice").val();
             var qty = $("#partqty").val();
             var total = parseFloat(price) * parseFloat(qty);
             if ($("#partqty").val().length) {
                 $("#parttotal").val(total);
+                $("#partdiscpercent").prop("disabled", false);
+                $("#partdiscamt").prop("disabled", false);
             } else {
                 $("#parttotal").val('');
+                $("#partdiscpercent").prop("disabled", true);
+                $("#partdiscamt").prop("disabled", true);
             }
-
         });
+
         //Part Number
         $("#partsno").change(function() {
             var url = "{{ url('/FAS/selectpartno') }}" + "/" + $(this).children("option:selected").val();
@@ -448,20 +516,23 @@
                         $("#partdes").val(response.showpartsdescription.description);
                         $("#partavail").val(response.showpartsdescription.stocks);
                         $("#partprice").val(response.showpartsdescription.price);
-                        var rate = $("#laborcostrate").val();
-                        var qty = $("#laborcostqty").val();
-                        var total = parseFloat(rate) * parseFloat(qty);
-                        if ($("#laborcostqty").val().length) {
-                            $("#laborcostamt").val(total);
+                        var price = $("#partprice").val();
+                        var qty = $("#partqty").val();
+                        var total = parseFloat(price) * parseFloat(qty);
+                        $("#partdiscpercent").val('');
+                        $("#partdiscamt").val('');
+                        if ($("#partqty").val().length) {
+                            $("#parttotal").val(total);
                         } else {
-                            $("#laborcostamt").val('');
+                            $("#parttotal").val('');
                         }
                     }
                 })
             } else {
-                var rate = $("#partdes").val('');
-                var qty = $("#partavail").val('');
+                $("#partdes").val('');
+                $("#partavail").val('');
                 $("#partprice").val('');
+                $("#partqty").val('');
             }
 
         });
