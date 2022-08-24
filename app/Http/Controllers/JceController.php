@@ -110,6 +110,13 @@ class JceController extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request->validated();
+
+        Jce::create([
+            'incidentdatetime' => $request->incidentdatetime,
+        ]);
+
+        return response()->json();
     }
 
     /**
