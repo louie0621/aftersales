@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Jcerequest;
 use App\Models\Component;
 use App\Models\Customer;
 use App\Models\Dealer;
@@ -39,45 +40,45 @@ class JceController extends Controller
     {
         //
         $showcustomer = Customer::find($id);
-        
+
         return response()->json(['showcustomer' => $showcustomer]);
     }
     public function vehicletype($type)
     {
         //
-        $showmodel = Equipment::where('type', 'LIKE', '%'.$type.'%')
-        ->get();
-        
+        $showmodel = Equipment::where('type', 'LIKE', '%' . $type . '%')
+            ->get();
+
         return response()->json(['showmodel' => $showmodel]);
     }
     public function serialno($serial)
     {
         //
-        $showserial = Equipment::where('vehiclemodel', 'LIKE', '%'.$serial.'%')
-        ->get();
-        
+        $showserial = Equipment::where('vehiclemodel', 'LIKE', '%' . $serial . '%')
+            ->get();
+
         return response()->json(['showserial' => $showserial]);
     }
     public function engineno($engine)
     {
         //
-        $showengine = Equipment::where('serialnumber', 'LIKE', '%'.$engine.'%')
-        ->get();
-        
+        $showengine = Equipment::where('serialnumber', 'LIKE', '%' . $engine . '%')
+            ->get();
+
         return response()->json(['showengineno' => $showengine]);
     }
     public function selectlaborcost($id)
     {
         //
         $showdescription = Laborcost::find($id);
-        
+
         return response()->json(['showdescription' => $showdescription]);
     }
     public function selectpartno($id)
     {
         //
         $showdescription = Parts::find($id);
-        
+
         return response()->json(['showpartsdescription' => $showdescription]);
     }
     /**
@@ -107,16 +108,52 @@ class JceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Jcerequest $request)
     {
         //
-        $data = $request->validated();
 
-        Jce::create([
-            'incidentdatetime' => $request->incidentdatetime,
-        ]);
+        $jce = new Jce();
+        $jce->incidentdatetime = $request->incidentdatetime;
+        $jce->jce_number = $request->jce_number;
+        $jce->customer_id = $request->customer_id;
+        $jce->contact_no = $request->contact_no;
+        $jce->equipment_id = $request->equipment_id;
+        $jce->dispatch_date = $request->dispatch_date;
+        $jce->work_area = $request->work_area;
+        $jce->labor_amt = $request->labor_amt;
+        $jce->srt_amt = $request->srt_amt;
+        $jce->parts_amt = $request->parts_amt;
+        $jce->job_type = $request->job_type;
+        $jce->dealer = $request->dealer;
+        $jce->job_site = $request->job_site;
+        $jce->salestype = $request->salestype;
+        $jce->complaint_request = $request->complaint_request;
+        $jce->component = $request->component;
+        $jce->typeofissue = $request->typeofissue;
+        $jce->promised_datetime = $request->promised_datetime;
+        $jce->resolved = $request->resolved;
+        $jce->paymentterms = $request->paymentterms;
+        $jce->modeofpayment = $request->modeofpayment;
+        $jce->po_number = $request->po_number;
+        $jce->engine_hours = $request->engine_hours;
+        $jce->travel_days = $request->travel_days;
+        $jce->jce_type = $request->jce_type;
+        $jce->charge_to = $request->charge_to;
+        $jce->jcetypeparts = $request->jcetypeparts;
+        $jce->chargetoparts = $request->chargetoparts;
+        $jce->srtcode_no = $request->srtcode_no;
+        $jce->srtcode_total = $request->srtcode_total;
+        $jce->laborcost_no = $request->laborcost_no;
+        $jce->laborcost_total = $request->laborcost_total;
+        $jce->parts_no = $request->parts_no;
+        $jce->parts_total = $request->parts_total;
+        $jce->freight_cost = $request->freight_cost;
+        $jce->amount_due = $request->amount_due;
+        $jce->remarks = $request->remarks;
+        $jce->validity_date = $request->validity_date;
+        $jce->save();
 
-        return response()->json();
+        return response()->json(['success' => 'Ajax request submitted successfully']);
     }
 
     /**

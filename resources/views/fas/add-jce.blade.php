@@ -24,19 +24,23 @@
                     <div class="p-4 border rounded">
                         <form class="row g-3 needs-validation">
                             <div class="col-md-6">
-                                <label class="form-label">Incident Date/Time</label>
-                                <input type="text" class="form-control form-control-sm" id="incidentdate" value="" disabled>
-                            </div>
-                            <div class="col-md-6">
                                 <label class="form-label">Dispatch Date</label>
                                 <input type="date" class="form-control form-control-sm" id="dispatchdate">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Work Area</label>
+                                <select class="form-select form-select-sm" id="workarea" aria-label=".form-select-sm example">
+                                    <option selected></option>
+                                    <option value="Workshop">Workshop</option>
+                                    <option value="In-Field">In-Field</option>
+                                </select>
                             </div>
                             <div class="col-md-8">
                                 <label class="form-label">JCE Number</label>
                                 @forelse($jceno as $data)
                                 <input type="text" class="form-control form-control-sm" id="jceno" value="{{ $data->jce_number }}" disabled>
                                 @empty
-                                <input type="text" class="form-control form-control-sm" id="jceno" value="sd" disabled>
+                                <input type="text" class="form-control form-control-sm" id="jceno" value="00001" disabled>
                                 @endforelse
 
                             </div>
@@ -379,7 +383,7 @@
                                 <input type="text" class="form-control form-control-sm" id="amtdue">
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-primary" type="button" id="submitjceform">Save</button>
+                                <button class="btn btn-primary" id="submitjceform">Save</button>
                                 <button class="btn btn-danger">Cancel</button>
                             </div>
                         </form>
@@ -400,28 +404,68 @@
     $(document).ready(function() {
 
         //submit jce form
-        $("#submitjceform").click(function() {
+        $("#submitjceform").click(function(e) {
+            e.preventDefault();
             var url = "{{ url('/FAS/addjce') }}";
-             
-            var incidentdate = $("#incidentdate").val();
-            
+            var today = new Date();
+            var datetime = today.toLocaleString();
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
                 }
             });
-            
             $.ajax({
-                type: "POST",
                 url: url,
+                method: 'POST',
                 data: {
-                    incidentdatetime : $('#incidentdate').val(),
+                    incidentdatetime: datetime,
+                    jce_number: $("#jceno").val(),
+                    customer_id: $("#customernameid").val(),
+                    contact_no: $("#telno").val(),
+                    equipment_id: $("#engineno").children("option:selected").val(),
+                    dispatch_date: $("#dispatchdate").val(),
+                    work_area: $("#workarea").children("option:selected").val(),
+                    labor_amt: $("#laboramt").val(),
+                    srt_amt: "asdf",
+                    parts_amt: "asdf",
+                    job_type: "asd",
+                    dealer: "asdf",
+                    job_site: "asdf",
+                    salestype: "sdfsd",
+                    complaint_request: "sdf",
+                    component: "sdf",
+                    typeofissue: "sdf",
+                    promised_datetime: "asd",
+                    resolved: "sdf",
+                    paymentterms: "sdfsdf",
+                    modeofpayment: "asd",
+                    po_number: "asd",
+                    engine_hours: "234",
+                    travel_days: "asd",
+                    jce_type: "asdf",
+                    charge_to: "s43",
+                    jcetypeparts: "sdf",
+                    chargetoparts: "asdf",
+                    srtcode_no: "1",
+                    srtcode_total: "sdf",
+                    laborcost_no: "23",
+                    laborcost_total: "asdf",
+                    parts_no: "23",
+                    parts_total: "asdf",
+                    freight_cost: "asdf",
+                    amount_due: "asdf",
+                    remarks: "23asd",
+                    validity_date: "asdf",
                     _token: '{!! csrf_token() !!}'
                 },
-                success: function(response) {
-                   console.log(response);
+                dataType: 'JSON',
+                success: function(data) {
+                    console.log(data);
+                },
+                error: function(error) {
+                    console.log(error);
                 }
-            })
+            });
 
         });
 
@@ -749,6 +793,8 @@
             })
 
         });
+
+        //model
         $("#model").change(function() {
             var url = "{{ url('/FAS/show-serialno') }}" + "/" + $(this).children("option:selected").val();
 
@@ -775,6 +821,7 @@
 
         });
 
+        //Serial number
         $("#serialno").change(function() {
             var url = "{{ url('/FAS/show-engineno') }}" + "/" + $(this).children("option:selected").val();
 
@@ -788,37 +835,13 @@
                     $('#engineno').append(`<option value="">
                                   </option>`);
                     $.each(response.showengineno, function(key, item) {
-                        $('#engineno').append(`<option value="${item.engineno}">
+                        $('#engineno').append(`<option value="${item.id}">
                                        ${item.engineno}
                                   </option>`);
                     })
                 }
             })
         });
-
-        fetchincidentdate();
-
-        function fetchincidentdate() {
-            var today = new Date();
-            var datetime = today.toLocaleString();
-            $("#incidentdate").val(datetime);
-        }
-
-        fetchjceno();
-
-        function fetchjceno() {
-            $.ajax({
-                type: "GET",
-                url: "{{ url('/FAS/jceno') }}",
-                dataType: "json",
-                success: function(response) {
-                    $("#contactperson").val(response.showcustomer.contact);
-                    $("#jceno").val(datetime);
-                }
-            })
-
-        }
-
     });
 
     //delete SRT Table Code
