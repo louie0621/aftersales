@@ -69,6 +69,7 @@ Route::controller(App\Http\Controllers\JceController::class)->group(function () 
 
     Route::get('/FAS/jce', 'index');
     Route::get('/FAS/add-jce', 'create');
+    Route::get('/FAS/jcenumber', 'jcenumber');
     Route::post('/FAS/addjce', 'store');
     Route::get('/FAS/show-contactperson/{id}', 'contactperson');
     Route::get('/FAS/show-vehicletype/{type}', 'vehicletype');

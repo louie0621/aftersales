@@ -37,12 +37,7 @@
                             </div>
                             <div class="col-md-8">
                                 <label class="form-label">JCE Number</label>
-                                @forelse($jceno as $data)
-                                <input type="text" class="form-control form-control-sm" id="jceno" value="{{ $data->jce_number }}" disabled>
-                                @empty
-                                <input type="text" class="form-control form-control-sm" id="jceno" value="00001" disabled>
-                                @endforelse
-
+                                <input type="text" class="form-control form-control-sm" id="jceno" disabled>
                             </div>
                             <div class="col-md-4">
                                 <label class="form-label">Labor Amount</label>
@@ -426,36 +421,37 @@
                     dispatch_date: $("#dispatchdate").val(),
                     work_area: $("#workarea").children("option:selected").val(),
                     labor_amt: $("#laboramt").val(),
-                    srt_amt: "asdf",
-                    parts_amt: "asdf",
-                    job_type: "asd",
-                    dealer: "asdf",
-                    job_site: "asdf",
-                    salestype: "sdfsd",
-                    complaint_request: "sdf",
-                    component: "sdf",
-                    typeofissue: "sdf",
-                    promised_datetime: "asd",
-                    resolved: "sdf",
-                    paymentterms: "sdfsdf",
-                    modeofpayment: "asd",
-                    po_number: "asd",
-                    engine_hours: "234",
-                    travel_days: "asd",
-                    jce_type: "asdf",
-                    charge_to: "s43",
-                    jcetypeparts: "sdf",
-                    chargetoparts: "asdf",
+                    srt_amt: $("#srt").val(),
+                    parts_amt: $("#partsamt").val(),
+                    job_type: $("#jobtype").children("option:selected").val(),
+                    dealer: $("#dealer").children("option:selected").val(),
+                    job_site: $("#jobsite").val(),
+                    salestype: $("#salestype").val(),
+                    complaint_request: $("#complaintrequest").val(),
+                    component: $("#component").children("option:selected").val(),
+                    typeofissue: $("#typeofissue").children("option:selected").val(),
+                    promised_datetime: $("#promiseddate").val(),
+                    resolved: $("#resolved").children("option:selected").val(),
+                    paymentterms: $("#paymentterms").val(),
+                    modeofpayment: $("#modeofpayment").children("option:selected").val(),
+                    po_number: $("#pono").val(),
+                    engine_hours: $("#enginehours").val(),
+                    travel_days: $("#traveldays").val(),
+                    technician_id: "23",
+                    jce_type: $("#jcetype").children("option:selected").val(),
+                    charge_to: $("#jcechargeto").children("option:selected").val(),
+                    jcetypeparts: $("#jcetypeparts").children("option:selected").val(),
+                    chargetoparts: $("#jcechargetoparts").children("option:selected").val(),
                     srtcode_no: "1",
-                    srtcode_total: "sdf",
+                    srtcode_total: $("#totalsrtcode").val(),
                     laborcost_no: "23",
-                    laborcost_total: "asdf",
+                    laborcost_total: $("#totallaborcostamt").val(),
                     parts_no: "23",
-                    parts_total: "asdf",
-                    freight_cost: "asdf",
-                    amount_due: "asdf",
-                    remarks: "23asd",
-                    validity_date: "asdf",
+                    parts_total: $("#totalpartsamt").val(),
+                    freight_cost: $("#freightcost").val(),
+                    amount_due: $("#amtdue").val(),
+                    remarks: $("#remarks").val(),
+                    validity_date: $("#validitydate").val(),
                     _token: '{!! csrf_token() !!}'
                 },
                 dataType: 'JSON',
@@ -842,6 +838,33 @@
                 }
             })
         });
+
+        //JCE Number 
+        fetchjcenumber()
+
+        function fetchjcenumber() {
+            var url = "{{ url('/FAS/jcenumber') }}";
+            var arr = []
+            $.ajax({
+                type: "GET",
+                url: url,
+                dataType: "json",
+                success: function(response) {
+                    if (response.jcenumber.length < 1) {
+                        $("#jceno").val("JCE-BAC-0001");
+                    } else {
+                        $.each(response.jcenumber, function(key, item) {
+                            arr.push(item.jce_number)
+                        })
+                        console.log(arr)
+                        console.log(Math.max(...arr));
+                    }
+
+                }
+            })
+        }
+
+
     });
 
     //delete SRT Table Code

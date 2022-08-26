@@ -81,6 +81,13 @@ class JceController extends Controller
 
         return response()->json(['showpartsdescription' => $showdescription]);
     }
+    public function jcenumber()
+    {
+        //
+        $jcenumber = Jce::all();
+
+        return response()->json(['jcenumber' => $jcenumber]);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -96,10 +103,9 @@ class JceController extends Controller
         $typeofissue = Typeofissue::all();
         $customer = Customer::all();
         $techname = Technician::all();
-        $jceno = Jce::all();
         $laborcost = Laborcost::all();
         $parts = Parts::all();
-        return view('fas.add-jce', ['jobtype' => $jobtype, 'dealer' => $dealer, 'components' => $components, 'typeofissue' => $typeofissue, 'customer' => $customer, 'techname' => $techname, 'jceno' => $jceno, 'laborcost' => $laborcost, 'parts' => $parts]);
+        return view('fas.add-jce', ['jobtype' => $jobtype, 'dealer' => $dealer, 'components' => $components, 'typeofissue' => $typeofissue, 'customer' => $customer, 'techname' => $techname,'laborcost' => $laborcost, 'parts' => $parts]);
     }
 
     /**
@@ -137,6 +143,7 @@ class JceController extends Controller
         $jce->po_number = $request->po_number;
         $jce->engine_hours = $request->engine_hours;
         $jce->travel_days = $request->travel_days;
+        $jce->technician_id = $request->technician_id;
         $jce->jce_type = $request->jce_type;
         $jce->charge_to = $request->charge_to;
         $jce->jcetypeparts = $request->jcetypeparts;
