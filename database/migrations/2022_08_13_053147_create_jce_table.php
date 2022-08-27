@@ -39,7 +39,7 @@ return new class extends Migration
             $table->string('po_number')->nullable();
             $table->string('engine_hours')->nullable();
             $table->string('travel_days')->nullable();
-            $table->integer('technician_id')->nullable();
+            $table->integer('techentry_no')->nullable();
             $table->string('jce_type')->nullable();
             $table->string('charge_to')->nullable();
             $table->string('jcetypeparts')->nullable();

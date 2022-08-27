@@ -188,7 +188,7 @@
                             </div>
                             <div class="col-md-12">
                                 <label class="form-label">Techician Name</label>
-                                <select class="form-select form-select-sm" id="techname" name="techname[]" multiple="multiple">
+                                <select class="form-select form-select-sm techname" id="techname" name="techname[]" multiple="multiple">
                                     @foreach($techname as $data)
                                     <option value="{{ $data->id }}">{{ $data->name }}</option>
                                     @endforeach
@@ -377,11 +377,13 @@
                                 <label class="form-label">Amount Due</label>
                                 <input type="text" class="form-control form-control-sm" id="amtdue">
                             </div>
+
                             <div class="col-12">
-                                <button class="btn btn-primary" id="submitjceform">Save</button>
+                                <button class="btn btn-primary" type="button" id="submitjceform">Save</button>
                                 <button class="btn btn-danger">Cancel</button>
                             </div>
                         </form>
+                        <button class="btn btn-primary" id="samples">sample</button>
                     </div>
                 </div>
             </div>
@@ -397,6 +399,51 @@
 <!-- JS Files -->
 <script>
     $(document).ready(function() {
+
+        $("#samples").click(function() {
+            var selected = $('#techname').select2("val");
+            var arr = []
+            var a = 0;
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                type: "GET",
+                url: "{{ url('/FAS/jcequeue') }}",
+                dataType: "json",
+                success: function(response) {
+                    if (response.jcequeue.length < 1) {
+                        a = 1;
+                    } else {
+                        $.each(response.jcequeue, function(key, item) {
+                            arr.push(item.techentry_no)
+
+                        })
+                        a = Math.max(...arr) + 1;
+                    }
+                    $.ajax({
+                        method: "POST",
+                        url: "{{ url('/FAS/storejcetechname') }}",
+                        data: {
+                            techentry_no: a,
+                            tech_id: "selected",
+                            _token: '{!! csrf_token() !!}'
+                        },
+                        dataType: "json",
+                        success: function(response) {
+                            alert("done");
+
+                        }
+                    });
+
+                }
+            })
+
+
+        });
 
         //submit jce form
         $("#submitjceform").click(function(e) {
@@ -437,7 +484,7 @@
                     po_number: $("#pono").val(),
                     engine_hours: $("#enginehours").val(),
                     travel_days: $("#traveldays").val(),
-                    technician_id: "23",
+                    techentry_no: "23",
                     jce_type: $("#jcetype").children("option:selected").val(),
                     charge_to: $("#jcechargeto").children("option:selected").val(),
                     jcetypeparts: $("#jcetypeparts").children("option:selected").val(),
@@ -851,13 +898,15 @@
                 dataType: "json",
                 success: function(response) {
                     if (response.jcenumber.length < 1) {
-                        $("#jceno").val("JCE-BAC-0001");
+                        $("#jceno").val("JCE-BAC-1");
                     } else {
                         $.each(response.jcenumber, function(key, item) {
-                            arr.push(item.jce_number)
+                            slice = item.jce_number.slice(8, 15)
+                            arr.push(slice)
                         })
-                        console.log(arr)
-                        console.log(Math.max(...arr));
+                        a = Math.max(...arr) + 1;
+                        b = "JCE-BAC-" + a;
+                        $("#jceno").val(b);
                     }
 
                 }

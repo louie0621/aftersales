@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Jcerequest;
+use App\Http\Requests\JceTechnicianentryrequest;
 use App\Models\Component;
 use App\Models\Customer;
 use App\Models\Dealer;
@@ -13,6 +14,7 @@ use App\Models\Technician;
 use App\Models\Typeofissue;
 use App\Models\Laborcost;
 use App\Models\Parts;
+use App\Models\JceTechnicianentry;
 use Illuminate\Http\Request;
 
 class JceController extends Controller
@@ -88,6 +90,13 @@ class JceController extends Controller
 
         return response()->json(['jcenumber' => $jcenumber]);
     }
+    public function jcequeue()
+    {
+        //
+        $jcequeue = Jce::all();
+
+        return response()->json(['jcequeue' => $jcequeue]);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -105,7 +114,7 @@ class JceController extends Controller
         $techname = Technician::all();
         $laborcost = Laborcost::all();
         $parts = Parts::all();
-        return view('fas.add-jce', ['jobtype' => $jobtype, 'dealer' => $dealer, 'components' => $components, 'typeofissue' => $typeofissue, 'customer' => $customer, 'techname' => $techname,'laborcost' => $laborcost, 'parts' => $parts]);
+        return view('fas.add-jce', ['jobtype' => $jobtype, 'dealer' => $dealer, 'components' => $components, 'typeofissue' => $typeofissue, 'customer' => $customer, 'techname' => $techname, 'laborcost' => $laborcost, 'parts' => $parts]);
     }
 
     /**
@@ -114,6 +123,18 @@ class JceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function storejcetechname(JceTechnicianentryrequest $request)
+    {
+
+        
+        Laborcost::create([
+            'techentry_no' => $request->techentry_no,
+            'tech_id' => $request->tech_id
+        ]);
+        
+        return response()->json(['success' => 'Ajax request submitted successfully']);
+    }
+
     public function store(Jcerequest $request)
     {
         //
@@ -143,7 +164,7 @@ class JceController extends Controller
         $jce->po_number = $request->po_number;
         $jce->engine_hours = $request->engine_hours;
         $jce->travel_days = $request->travel_days;
-        $jce->technician_id = $request->technician_id;
+        $jce->techentry_no = $request->techentry_no;
         $jce->jce_type = $request->jce_type;
         $jce->charge_to = $request->charge_to;
         $jce->jcetypeparts = $request->jcetypeparts;

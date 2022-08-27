@@ -36,7 +36,7 @@ class Jce extends Model
         'po_number',
         'engine_hours',
         'travel_days',
-        'technician_id',
+        'techentry_no',
         'jce_type',
         'charge_to',
         'jcetypeparts',
