@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="minimal-theme">
+<html lang="en" class="headercolor2 semi-dark">
 
 <head>
     <!-- Required meta tags -->
@@ -36,8 +36,8 @@
     <!--start wrapper-->
     <div class="wrapper">
         <!--start top header-->
-        <header class="top-header">
-            <nav class="navbar navbar-expand">
+        <header class="top-header ">
+            <nav class="navbar navbar-expand ">
                 <div class="mobile-toggle-icon d-xl-none">
                     <i class="bi bi-list"></i>
                 </div>

@@ -402,8 +402,10 @@
 
         $("#samples").click(function() {
             var selected = $('#techname').select2("val");
-            var arr = []
+            var arr = [];
             var a = 0;
+            var b = [1,2];
+            var c = [1,2];
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -420,21 +422,22 @@
                     } else {
                         $.each(response.jcequeue, function(key, item) {
                             arr.push(item.techentry_no)
-
                         })
                         a = Math.max(...arr) + 1;
+                        
                     }
+                    console.log(b)
                     $.ajax({
                         method: "POST",
                         url: "{{ url('/FAS/storejcetechname') }}",
                         data: {
-                            techentry_no: a,
-                            tech_id: "selected",
+                            techentry_no: "1",
+                            tech_id: "s",
                             _token: '{!! csrf_token() !!}'
                         },
                         dataType: "json",
                         success: function(response) {
-                            alert("done");
+                            console.log(response)
 
                         }
                     });

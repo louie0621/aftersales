@@ -125,14 +125,17 @@ class JceController extends Controller
      */
     public function storejcetechname(JceTechnicianentryrequest $request)
     {
-
-        
-        Laborcost::create([
-            'techentry_no' => $request->techentry_no,
-            'tech_id' => $request->tech_id
-        ]);
-        
-        return response()->json(['success' => 'Ajax request submitted successfully']);
+        $sample = [1, 2, 3];
+        $sample1 = [1, 2, 3];
+        foreach ($sample as $key => $value) {
+            if (in_array($sample[$key], $sample)) {
+                $jcetech = new JceTechnicianentry;
+                $jcetech->tech_id = $sample[$key];
+                $jcetech->techentry_no = $sample1[$key];
+                $jcetech->save();
+            }
+        }
+        return response()->json(['success' => $sample]);
     }
 
     public function store(Jcerequest $request)
