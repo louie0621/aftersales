@@ -383,7 +383,7 @@
                                 <button class="btn btn-danger">Cancel</button>
                             </div>
                         </form>
-                        <button class="btn btn-primary" id="samples">sample</button>
+                        <!-- <button class="btn btn-primary" id="samples">sample</button> -->
                     </div>
                 </div>
             </div>
@@ -404,8 +404,12 @@
             var selected = $('#techname').select2("val");
             var arr = [];
             var a = 0;
-            var b = [1,2];
-            var c = [1,2];
+            var numberArray = [];
+            length = selected.length;
+            for (var i = 0; i < length; i++)
+                numberArray.push(parseInt(selected[i]));
+            
+            console.log($("#jceno").val().slice(8, 15));
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -424,15 +428,14 @@
                             arr.push(item.techentry_no)
                         })
                         a = Math.max(...arr) + 1;
-                        
+
                     }
-                    console.log(b)
                     $.ajax({
                         method: "POST",
                         url: "{{ url('/FAS/storejcetechname') }}",
                         data: {
-                            techentry_no: "1",
-                            tech_id: "s",
+                            techentry_no: a,
+                            tech_id: JSON.stringify(numberArray),
                             _token: '{!! csrf_token() !!}'
                         },
                         dataType: "json",
@@ -454,6 +457,15 @@
             var url = "{{ url('/FAS/addjce') }}";
             var today = new Date();
             var datetime = today.toLocaleString();
+
+            var selected = $('#techname').select2("val");
+            var arr = [];
+            var a = 0;
+            var numberArray = [];
+            length = selected.length;
+            for (var i = 0; i < length; i++)
+                numberArray.push(parseInt(selected[i]));
+
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -487,7 +499,7 @@
                     po_number: $("#pono").val(),
                     engine_hours: $("#enginehours").val(),
                     travel_days: $("#traveldays").val(),
-                    techentry_no: "23",
+                    techentry_no: $("#jceno").val().slice(8, 15),
                     jce_type: $("#jcetype").children("option:selected").val(),
                     charge_to: $("#jcechargeto").children("option:selected").val(),
                     jcetypeparts: $("#jcetypeparts").children("option:selected").val(),
@@ -510,6 +522,22 @@
                 },
                 error: function(error) {
                     console.log(error);
+                }
+            });
+
+            //store technician entry
+            $.ajax({
+                method: "POST",
+                url: "{{ url('/FAS/storejcetechname') }}",
+                data: {
+                    techentry_no: $("#jceno").val().slice(8, 15),
+                    tech_id: JSON.stringify(numberArray),
+                    _token: '{!! csrf_token() !!}'
+                },
+                dataType: "json",
+                success: function(response) {
+                    console.log(response)
+
                 }
             });
 

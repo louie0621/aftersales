@@ -49,6 +49,7 @@ a {
 }
 
 /* Header */
+input[type="text"]:disabled{background-color:rgb(255, 255, 255);}
 
 .top-header .navbar{
     position: fixed;

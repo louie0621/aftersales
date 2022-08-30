@@ -125,17 +125,17 @@ class JceController extends Controller
      */
     public function storejcetechname(JceTechnicianentryrequest $request)
     {
-        $sample = [1, 2, 3];
-        $sample1 = [1, 2, 3];
-        foreach ($sample as $key => $value) {
-            if (in_array($sample[$key], $sample)) {
+        $techid = json_decode($request->tech_id);
+        $techentry = $request->techentry_no;
+        foreach ($techid as $key => $value) {
+            if (in_array($techid[$key], $techid)) {
                 $jcetech = new JceTechnicianentry;
-                $jcetech->tech_id = $sample[$key];
-                $jcetech->techentry_no = $sample1[$key];
+                $jcetech->tech_id = $techid[$key];
+                $jcetech->techentry_no = $techentry;
                 $jcetech->save();
             }
         }
-        return response()->json(['success' => $sample]);
+        return response()->json();
     }
 
     public function store(Jcerequest $request)
