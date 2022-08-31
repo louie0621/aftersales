@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Jcerequest;
 use App\Http\Requests\JceTechnicianentryrequest;
+use App\Http\Requests\JceSrtcodeentryrequest;
 use App\Models\Component;
 use App\Models\Customer;
 use App\Models\Dealer;
@@ -15,6 +16,7 @@ use App\Models\Typeofissue;
 use App\Models\Laborcost;
 use App\Models\Parts;
 use App\Models\JceTechnicianentry;
+use App\Models\JceSrtcodeentry;
 use Illuminate\Http\Request;
 
 class JceController extends Controller
@@ -133,6 +135,24 @@ class JceController extends Controller
                 $jcetech->tech_id = $techid[$key];
                 $jcetech->techentry_no = $techentry;
                 $jcetech->save();
+            }
+        }
+        return response()->json();
+    }
+
+    public function storejcesrtcodeentry(JceSrtcodeentryrequest $request)
+    {
+        $srt_code = json_decode($request->srt_code);
+        $description = json_decode($request->description);
+        $working_unit = json_decode($request->working_unit);
+        foreach ($srt_code as $key => $value) {
+            if (in_array($srt_code[$key], $srt_code)) {
+                $jcesrtcode = new JceSrtcodeentry;
+                $jcesrtcode->srt_code = $srt_code[$key];
+                $jcesrtcode->description = $description[$key];
+                $jcesrtcode->working_unit =$working_unit[$key];
+                $jcesrtcode->srtcode_no = $request->srtcode_no;
+                $jcesrtcode->save();
             }
         }
         return response()->json();

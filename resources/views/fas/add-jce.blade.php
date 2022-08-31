@@ -383,7 +383,7 @@
                                 <button class="btn btn-danger">Cancel</button>
                             </div>
                         </form>
-                        <!-- <button class="btn btn-primary" id="samples">sample</button> -->
+                        <button class="btn btn-primary" id="samples">sample</button>
                     </div>
                 </div>
             </div>
@@ -408,7 +408,7 @@
             length = selected.length;
             for (var i = 0; i < length; i++)
                 numberArray.push(parseInt(selected[i]));
-            
+
             console.log($("#jceno").val().slice(8, 15));
             $.ajaxSetup({
                 headers: {
@@ -430,12 +430,29 @@
                         a = Math.max(...arr) + 1;
 
                     }
+
+                    var tdsrtcode = [];
+                    var tddescription = [];
+                    var tdworkunit = [];
+
+                    $(".tdsrtcode").each(function() {
+                        tdsrtcode.push($(this).text());
+                    });
+                    $(".tddescription").each(function() {
+                        tddescription.push($(this).text());
+                    });
+                    $(".tdworkunit").each(function() {
+                        tdworkunit.push($(this).text());
+                    });
+                    
                     $.ajax({
                         method: "POST",
-                        url: "{{ url('/FAS/storejcetechname') }}",
+                        url: "{{ url('/FAS/storejcesrtcodeentry') }}",
                         data: {
-                            techentry_no: a,
-                            tech_id: JSON.stringify(numberArray),
+                            srtcode_no: a,
+                            srt_code: JSON.stringify(tdsrtcode),
+                            description: JSON.stringify(tddescription),
+                            working_unit: JSON.stringify(tdworkunit),
                             _token: '{!! csrf_token() !!}'
                         },
                         dataType: "json",
@@ -504,7 +521,7 @@
                     charge_to: $("#jcechargeto").children("option:selected").val(),
                     jcetypeparts: $("#jcetypeparts").children("option:selected").val(),
                     chargetoparts: $("#jcechargetoparts").children("option:selected").val(),
-                    srtcode_no: "1",
+                    srtcode_no: $("#jceno").val().slice(8, 15),
                     srtcode_total: $("#totalsrtcode").val(),
                     laborcost_no: "23",
                     laborcost_total: $("#totallaborcostamt").val(),
@@ -532,6 +549,37 @@
                 data: {
                     techentry_no: $("#jceno").val().slice(8, 15),
                     tech_id: JSON.stringify(numberArray),
+                    _token: '{!! csrf_token() !!}'
+                },
+                dataType: "json",
+                success: function(response) {
+                    console.log(response)
+
+                }
+            });
+
+            var tdsrtcode = [];
+            var tddescription = [];
+            var tdworkunit = [];
+
+            $(".tdsrtcode").each(function() {
+                tdsrtcode.push($(this).text());
+            });
+            $(".tddescription").each(function() {
+                tddescription.push($(this).text());
+            });
+            $(".tdworkunit").each(function() {
+                tdworkunit.push($(this).text());
+            });
+
+            $.ajax({
+                method: "POST",
+                url: "{{ url('/FAS/storejcesrtcodeentry') }}",
+                data: {
+                    srtcode_no: $("#jceno").val().slice(8, 15),
+                    srt_code: JSON.stringify(tdsrtcode),
+                    description: JSON.stringify(tddescription),
+                    working_unit: JSON.stringify(tdworkunit),
                     _token: '{!! csrf_token() !!}'
                 },
                 dataType: "json",
@@ -794,7 +842,7 @@
             }
 
             if ($("#srtcodeentry").val().length > 0 && $("#srtdesentry").val().length > 0 && $("#srtworkunitentry").val().length > 0) {
-                var row = "<tr class='srtcodetr col-md-3'><td>" + srtcode + "</td><td class='clss col-md-6'>" + des + "</td><td class='clss text-center'>" + workunit + "</td> <td><a href='javascript:;' onclick='srttblDelete(this);' class='text-danger' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Delete'><i class='bi bi-trash-fill'></i></a></td></tr>";
+                var row = "<tr class='srtcodetr col-md-3'><td class='tdsrtcode'>" + srtcode + "</td><td class='clss col-md-6 tddescription'>" + des + "</td><td class='clss text-center tdworkunit'>" + workunit + "</td> <td><a href='javascript:;' onclick='srttblDelete(this);' class='text-danger' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Delete'><i class='bi bi-trash-fill'></i></a></td></tr>";
 
                 $("#srtcodetbody").append(row);
 

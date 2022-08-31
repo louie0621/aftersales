@@ -13,7 +13,7 @@ class Adduserrequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,6 +25,21 @@ class Adduserrequest extends FormRequest
     {
         return [
             //
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'username' => ['required', 'string', 'max:255'],
+            'usertype' => ['required', 'string', 'max:255'],
+            'password' => ['required', 'string', 'max:255'],
         ];
+    }
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'name' => strip_tags($this->name),
+            'email' => strip_tags($this->email),
+            'username' => strip_tags($this->username),
+            'usertype' => strip_tags($this->usertype),
+            'password' => strip_tags($this->password)
+        ]);
     }
 }
