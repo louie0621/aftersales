@@ -15,10 +15,12 @@ return new class extends Migration
     {
         Schema::create('jce_partsentry', function (Blueprint $table) {
             $table->id();
+            $table->integer('parts_no')->nullable();
             $table->integer('parts_id')->nullable();
-            $table->integer('quantity')->nullable();
+            $table->string('quantity')->nullable();
             $table->string('disc_percent')->nullable();
             $table->string('disc_amt')->nullable();
+            $table->string('total_amt')->nullable();
             $table->timestamps();
         });
     }

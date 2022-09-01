@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Jcerequest;
 use App\Http\Requests\JceTechnicianentryrequest;
 use App\Http\Requests\JceSrtcodeentryrequest;
+use App\Http\Requests\JceLaborcostentryrequest;
+use App\Http\Requests\JcePartsentryrequest;
 use App\Models\Component;
 use App\Models\Customer;
 use App\Models\Dealer;
@@ -17,6 +19,8 @@ use App\Models\Laborcost;
 use App\Models\Parts;
 use App\Models\JceTechnicianentry;
 use App\Models\JceSrtcodeentry;
+use App\Models\JceLaborcostentry;
+use App\Models\JcePartsentry;
 use Illuminate\Http\Request;
 
 class JceController extends Controller
@@ -158,6 +162,46 @@ class JceController extends Controller
         return response()->json();
     }
 
+    public function storejcelaborcostentry(JceLaborcostentryrequest $request)
+    {
+        $laborcost_id = json_decode($request->laborcost_id);
+        $quantity = json_decode($request->quantity);
+        $amount = json_decode($request->amount);
+        foreach ($laborcost_id as $key => $value) {
+            if (in_array($laborcost_id[$key], $laborcost_id)) {
+                $jcelaborcost = new JceLaborcostentry;
+                $jcelaborcost->laborcost_id = $laborcost_id[$key];
+                $jcelaborcost->quantity = $quantity[$key];
+                $jcelaborcost->amount =$amount[$key];
+                $jcelaborcost->laborcost_no = $request->laborcost_no;
+                $jcelaborcost->save();
+            }
+        }
+        return response()->json();
+    }
+
+    public function storejcepartsentry(JcePartsentryrequest $request)
+    {
+        $parts_id = json_decode($request->parts_id);
+        $quantity = json_decode($request->quantity);
+        $disc_percent = json_decode($request->disc_percent);
+        $disc_amt = json_decode($request->disc_amt);
+        $total_amt = json_decode($request->total_amt);
+        foreach ($parts_id as $key => $value) {
+            if (in_array($parts_id[$key], $parts_id)) {
+                $jceparts = new JcePartsentry;
+                $jceparts->parts_id = $parts_id[$key];
+                $jceparts->quantity = $quantity[$key];
+                $jceparts->disc_percent =$disc_percent[$key];
+                $jceparts->disc_amt =$disc_amt[$key];
+                $jceparts->total_amt =$total_amt[$key];
+                $jceparts->parts_no = $request->parts_no;
+                $jceparts->save();
+            }
+        }
+        return response()->json();
+    }
+
     public function store(Jcerequest $request)
     {
         //
@@ -204,7 +248,7 @@ class JceController extends Controller
         $jce->validity_date = $request->validity_date;
         $jce->save();
 
-        return response()->json(['success' => 'Ajax request submitted successfully']);
+        return response()->json();
     }
 
     /**

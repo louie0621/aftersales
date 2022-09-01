@@ -45,7 +45,7 @@
                             </div>
                             <div class="col-md-8">
                                 <label class="form-label">Customer Name</label>
-                                <select class="form-select form-select-sm" id="customernameid" aria-label=".form-select-sm example">
+                                <select class="form-select form-select-sm " id="customernameid" aria-label=".form-select-sm example">
                                     <option selected></option>
                                     @foreach($customer as $data)
                                     <option value="{{ $data->id}}">{{ $data->customername }}</option>
@@ -118,6 +118,7 @@
                             <div class="col-md-8">
                                 <label class="form-label">Engine Number</label>
                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="engineno" disabled>
+                                    <option selected></option>
                                 </select>
                             </div>
                             <div class="col-md-4">
@@ -188,7 +189,7 @@
                             </div>
                             <div class="col-md-12">
                                 <label class="form-label">Techician Name</label>
-                                <select class="form-select form-select-sm techname" id="techname" name="techname[]" multiple="multiple">
+                                <select class="form-select form-select-sm techname " id="techname" name="techname[]" multiple="multiple">
                                     @foreach($techname as $data)
                                     <option value="{{ $data->id }}">{{ $data->name }}</option>
                                     @endforeach
@@ -375,7 +376,7 @@
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label">Amount Due</label>
-                                <input type="text" class="form-control form-control-sm" id="amtdue">
+                                <input type="text" class="form-control form-control-sm" id="amtdue" disabled>
                             </div>
 
                             <div class="col-12">
@@ -383,7 +384,6 @@
                                 <button class="btn btn-danger">Cancel</button>
                             </div>
                         </form>
-                        <button class="btn btn-primary" id="samples">sample</button>
                     </div>
                 </div>
             </div>
@@ -400,73 +400,6 @@
 <script>
     $(document).ready(function() {
 
-        $("#samples").click(function() {
-            var selected = $('#techname').select2("val");
-            var arr = [];
-            var a = 0;
-            var numberArray = [];
-            length = selected.length;
-            for (var i = 0; i < length; i++)
-                numberArray.push(parseInt(selected[i]));
-
-            console.log($("#jceno").val().slice(8, 15));
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                }
-            });
-
-            $.ajax({
-                type: "GET",
-                url: "{{ url('/FAS/jcequeue') }}",
-                dataType: "json",
-                success: function(response) {
-                    if (response.jcequeue.length < 1) {
-                        a = 1;
-                    } else {
-                        $.each(response.jcequeue, function(key, item) {
-                            arr.push(item.techentry_no)
-                        })
-                        a = Math.max(...arr) + 1;
-
-                    }
-
-                    var tdsrtcode = [];
-                    var tddescription = [];
-                    var tdworkunit = [];
-
-                    $(".tdsrtcode").each(function() {
-                        tdsrtcode.push($(this).text());
-                    });
-                    $(".tddescription").each(function() {
-                        tddescription.push($(this).text());
-                    });
-                    $(".tdworkunit").each(function() {
-                        tdworkunit.push($(this).text());
-                    });
-                    
-                    $.ajax({
-                        method: "POST",
-                        url: "{{ url('/FAS/storejcesrtcodeentry') }}",
-                        data: {
-                            srtcode_no: a,
-                            srt_code: JSON.stringify(tdsrtcode),
-                            description: JSON.stringify(tddescription),
-                            working_unit: JSON.stringify(tdworkunit),
-                            _token: '{!! csrf_token() !!}'
-                        },
-                        dataType: "json",
-                        success: function(response) {
-                            console.log(response)
-
-                        }
-                    });
-
-                }
-            })
-
-
-        });
 
         //submit jce form
         $("#submitjceform").click(function(e) {
@@ -474,14 +407,224 @@
             var url = "{{ url('/FAS/addjce') }}";
             var today = new Date();
             var datetime = today.toLocaleString();
-
+            var jcenocode = $("#jceno").val().slice(8, 15);
             var selected = $('#techname').select2("val");
-            var arr = [];
-            var a = 0;
-            var numberArray = [];
-            length = selected.length;
-            for (var i = 0; i < length; i++)
-                numberArray.push(parseInt(selected[i]));
+
+            if ($("#dispatchdate").val().length > 0) {
+                $("#dispatchdate").removeClass("is-invalid");
+            } else {
+                $("#dispatchdate").addClass("is-invalid");
+            }
+            if ($("#workarea").val().length > 0) {
+                $("#workarea").removeClass("is-invalid");
+            } else {
+                $("#workarea").addClass("is-invalid");
+            }
+            if ($("#laboramt").val().length > 0) {
+                $("#laboramt").removeClass("is-invalid");
+            } else {
+                $("#laboramt").addClass("is-invalid");
+            }
+            if ($("#srt").val().length > 0) {
+                $("#srt").removeClass("is-invalid");
+            } else {
+                $("#srt").addClass("is-invalid");
+            }
+            if ($("#partsamt").val().length > 0) {
+                $("#partsamt").removeClass("is-invalid");
+            } else {
+                $("#partsamt").addClass("is-invalid");
+            }
+            if ($("#telno").val().length > 0) {
+                $("#telno").removeClass("is-invalid");
+            } else {
+                $("#telno").addClass("is-invalid");
+            }
+            if ($("#jobtype").val().length > 0) {
+                $("#jobtype").removeClass("is-invalid");
+            } else {
+                $("#jobtype").addClass("is-invalid");
+            }
+            if ($("#vehicletypeid").val().length > 0) {
+                $("#vehicletypeid").removeClass("is-invalid");
+            } else {
+                $("#vehicletypeid").addClass("is-invalid");
+            }
+            if ($("#dealer").val().length > 0) {
+                $("#dealer").removeClass("is-invalid");
+            } else {
+                $("#dealer").addClass("is-invalid");
+            }
+            if ($("#jobsite").val().length > 0) {
+                $("#jobsite").removeClass("is-invalid");
+            } else {
+                $("#jobsite").addClass("is-invalid");
+            }
+            if ($("#unitstatus").val().length > 0) {
+                $("#unitstatus").removeClass("is-invalid");
+            } else {
+                $("#unitstatus").addClass("is-invalid");
+            }
+            if ($("#salestype").val().length > 0) {
+                $("#salestype").removeClass("is-invalid");
+            } else {
+                $("#salestype").addClass("is-invalid");
+            }
+            if ($("#customernameid").val().length > 0) {
+                $("#customernameid").removeClass("is-invalid");
+            } else {
+                $("#customernameid").addClass("is-invalid");
+            }
+            if ($("#telno").val().length > 0) {
+                $("#telno").removeClass("is-invalid");
+            } else {
+                $("#telno").addClass("is-invalid");
+            }
+            if ($("#model").val().length > 0) {
+                $("#model").removeClass("is-invalid");
+            } else {
+                $("#model").addClass("is-invalid");
+            }
+            if ($("#serialno").val().length > 0) {
+                $("#serialno").removeClass("is-invalid");
+            } else {
+                $("#serialno").addClass("is-invalid");
+            }
+            if ($("#engineno").val().length > 0) {
+                $("#engineno").removeClass("is-invalid");
+            } else {
+                $("#engineno").addClass("is-invalid");
+            }
+            if ($("#complaintrequest").val().length > 0) {
+                $("#complaintrequest").removeClass("is-invalid");
+            } else {
+                $("#complaintrequest").addClass("is-invalid");
+            }
+            if ($("#component").val().length > 0) {
+                $("#component").removeClass("is-invalid");
+            } else {
+                $("#component").addClass("is-invalid");
+            }
+            if ($("#typeofissue").val().length > 0) {
+                $("#typeofissue").removeClass("is-invalid");
+            } else {
+                $("#typeofissue").addClass("is-invalid");
+            }
+            if ($("#promiseddate").val().length > 0) {
+                $("#promiseddate").removeClass("is-invalid");
+            } else {
+                $("#promiseddate").addClass("is-invalid");
+            }
+            if ($("#resolved").val().length > 0) {
+                $("#resolved").removeClass("is-invalid");
+            } else {
+                $("#resolved").addClass("is-invalid");
+            }
+            if ($("#paymentterms").val().length > 0) {
+                $("#paymentterms").removeClass("is-invalid");
+            } else {
+                $("#paymentterms").addClass("is-invalid");
+            }
+            if ($("#modeofpayment").val().length > 0) {
+                $("#modeofpayment").removeClass("is-invalid");
+            } else {
+                $("#modeofpayment").addClass("is-invalid");
+            }
+            if ($("#pono").val().length > 0) {
+                $("#pono").removeClass("is-invalid");
+            } else {
+                $("#pono").addClass("is-invalid");
+            }
+            if ($("#enginehours").val().length > 0) {
+                $("#enginehours").removeClass("is-invalid");
+            } else {
+                $("#enginehours").addClass("is-invalid");
+            }
+            if ($("#traveldays").val().length > 0) {
+                $("#traveldays").removeClass("is-invalid");
+            } else {
+                $("#traveldays").addClass("is-invalid");
+            }
+            if ($("#techname").val().length > 0) {
+                $("#techname").removeClass("is-invalid");
+            } else {
+                $("#techname").addClass("is-invalid");
+            }
+            if ($("#jcetype").val().length > 0) {
+                $("#jcetype").removeClass("is-invalid");
+            } else {
+                $("#jcetype").addClass("is-invalid");
+            }
+            if ($("#jcetypeparts").val().length > 0) {
+                $("#jcetypeparts").removeClass("is-invalid");
+            } else {
+                $("#jcetypeparts").addClass("is-invalid");
+            }
+            if ($("#jcechargeto").val().length > 0) {
+                $("#jcechargeto").removeClass("is-invalid");
+            } else {
+                $("#jcechargeto").addClass("is-invalid");
+            }
+            if ($("#jcechargetoparts").val().length > 0) {
+                $("#jcechargetoparts").removeClass("is-invalid");
+            } else {
+                $("#jcechargetoparts").addClass("is-invalid");
+            }
+            if ($("#srtcodeentry").val().length > 0) {
+                $("#srtcodeentry").removeClass("is-invalid");
+            } else {
+                $("#srtcodeentry").addClass("is-invalid");
+            }
+            if ($("#srtdesentry").val().length > 0) {
+                $("#srtdesentry").removeClass("is-invalid");
+            } else {
+                $("#srtdesentry").addClass("is-invalid");
+            }
+            if ($("#srtworkunitentry").val().length > 0) {
+                $("#srtworkunitentry").removeClass("is-invalid");
+            } else {
+                $("#srtworkunitentry").addClass("is-invalid");
+            }
+            if ($("#labordescription").val().length > 0) {
+                $("#labordescription").removeClass("is-invalid");
+            } else {
+                $("#labordescription").addClass("is-invalid");
+            }
+            if ($("#laborcostqty").val().length > 0) {
+                $("#laborcostqty").removeClass("is-invalid");
+            } else {
+                $("#laborcostqty").addClass("is-invalid");
+            }
+            if ($("#partsno").val().length > 0) {
+                $("#partsno").removeClass("is-invalid");
+            } else {
+                $("#partsno").addClass("is-invalid");
+            }
+            if ($("#partqty").val().length > 0) {
+                $("#partqty").removeClass("is-invalid");
+            } else {
+                $("#partqty").addClass("is-invalid");
+            }
+            if ($("#remarks").val().length > 0) {
+                $("#remarks").removeClass("is-invalid");
+            } else {
+                $("#remarks").addClass("is-invalid");
+            }
+            if ($("#totalpartsamt").val().length > 0) {
+                $("#totalpartsamt").removeClass("is-invalid");
+            } else {
+                $("#totalpartsamt").addClass("is-invalid");
+            }
+            if ($("#freightcost").val().length > 0) {
+                $("#freightcost").removeClass("is-invalid");
+            } else {
+                $("#freightcost").addClass("is-invalid");
+            }
+            if ($("#validitydate").val().length > 0) {
+                $("#validitydate").removeClass("is-invalid");
+            } else {
+                $("#validitydate").addClass("is-invalid");
+            }
 
             $.ajaxSetup({
                 headers: {
@@ -516,16 +659,16 @@
                     po_number: $("#pono").val(),
                     engine_hours: $("#enginehours").val(),
                     travel_days: $("#traveldays").val(),
-                    techentry_no: $("#jceno").val().slice(8, 15),
+                    techentry_no: jcenocode,
                     jce_type: $("#jcetype").children("option:selected").val(),
                     charge_to: $("#jcechargeto").children("option:selected").val(),
                     jcetypeparts: $("#jcetypeparts").children("option:selected").val(),
                     chargetoparts: $("#jcechargetoparts").children("option:selected").val(),
-                    srtcode_no: $("#jceno").val().slice(8, 15),
+                    srtcode_no: jcenocode,
                     srtcode_total: $("#totalsrtcode").val(),
-                    laborcost_no: "23",
+                    laborcost_no: jcenocode,
                     laborcost_total: $("#totallaborcostamt").val(),
-                    parts_no: "23",
+                    parts_no: jcenocode,
                     parts_total: $("#totalpartsamt").val(),
                     freight_cost: $("#freightcost").val(),
                     amount_due: $("#amtdue").val(),
@@ -535,7 +678,7 @@
                 },
                 dataType: 'JSON',
                 success: function(data) {
-                    console.log(data);
+
                 },
                 error: function(error) {
                     console.log(error);
@@ -548,15 +691,14 @@
                 url: "{{ url('/FAS/storejcetechname') }}",
                 data: {
                     techentry_no: $("#jceno").val().slice(8, 15),
-                    tech_id: JSON.stringify(numberArray),
+                    tech_id: JSON.stringify(selected),
                     _token: '{!! csrf_token() !!}'
                 },
                 dataType: "json",
-                success: function(response) {
-                    console.log(response)
-
-                }
+                success: function(response) {}
             });
+
+            //Store SRT Code Entry
 
             var tdsrtcode = [];
             var tddescription = [];
@@ -583,10 +725,77 @@
                     _token: '{!! csrf_token() !!}'
                 },
                 dataType: "json",
-                success: function(response) {
-                    console.log(response)
+                success: function(response) {}
+            });
 
-                }
+            //Store Labor Cost Entry
+
+            var tdlcnumber = [];
+            var tdlcquantity = [];
+            var tdlcamount = [];
+
+            $(".tdlcnumber").each(function() {
+                tdlcnumber.push($(this).text());
+            });
+            $(".tdlcquantity").each(function() {
+                tdlcquantity.push($(this).text());
+            });
+            $(".tdlcamount").each(function() {
+                tdlcamount.push($(this).text());
+            });
+
+            $.ajax({
+                method: "POST",
+                url: "{{ url('/FAS/storejcelaborcostentry') }}",
+                data: {
+                    laborcost_no: $("#jceno").val().slice(8, 15),
+                    laborcost_id: JSON.stringify(tdlcnumber),
+                    quantity: JSON.stringify(tdlcquantity),
+                    amount: JSON.stringify(tdlcamount),
+                    _token: '{!! csrf_token() !!}'
+                },
+                dataType: "json",
+                success: function(response) {}
+            });
+
+            //Store Parts Entry
+
+            var tdpartsnumber = [];
+            var tdpartsquantity = [];
+            var tdpartsdispercent = [];
+            var tdpartsdisamt = [];
+            var tdpartstotal = [];
+
+            $(".tdpartsnumber").each(function() {
+                tdpartsnumber.push($(this).text());
+            });
+            $(".tdpartsquantity").each(function() {
+                tdpartsquantity.push($(this).text());
+            });
+            $(".tdpartsdispercent").each(function() {
+                tdpartsdispercent.push($(this).text());
+            });
+            $(".tdpartsdisamt").each(function() {
+                tdpartsdisamt.push($(this).text());
+            });
+            $(".tdpartstotal").each(function() {
+                tdpartstotal.push($(this).text());
+            });
+
+            $.ajax({
+                method: "POST",
+                url: "{{ url('/FAS/storejcepartsentry') }}",
+                data: {
+                    parts_no: $("#jceno").val().slice(8, 15),
+                    parts_id: JSON.stringify(tdpartsnumber),
+                    quantity: JSON.stringify(tdpartsquantity),
+                    disc_percent: JSON.stringify(tdpartsdispercent),
+                    disc_amt: JSON.stringify(tdpartsdisamt),
+                    total_amt: JSON.stringify(tdpartstotal),
+                    _token: '{!! csrf_token() !!}'
+                },
+                dataType: "json",
+                success: function(response) {}
             });
 
         });
@@ -594,6 +803,7 @@
         //Add Part 
         $("#addparts").click(function() {
             var partno = $("#partsno option:selected").text();
+            var partid = $("#partsno option:selected").val();
             var partdes = $("#partdes").val();
             var partavail = $("#partavail").val();
             var partqty = $("#partqty").val();
@@ -602,27 +812,28 @@
             var partdiscamt = $("#partdiscamt").val();
             var parttotal = $("#parttotal").val();
 
-            var row = "<tr class='parttr'><td class='clss text-center'>" + partno +
-                "</td><td class='clss'>" + partdes +
+            var row = "<tr class='parttr'><td class='tdpartsnumber' hidden>" + partid + "</td><td class='clss text-center'>" + partno +
+                "</td><td class='clss '>" + partdes +
                 "</td><td class='clss text-center'>" + partavail +
-                "</td><td class='clss text-center'>" + partqty +
+                "</td><td class='clss text-center tdpartsquantity'>" + partqty +
                 "</td><td class='clss' style='text-align: right;'>" + partprice +
-                "</td><td class='clss text-center'>" + partdiscpercent +
-                "</td><td class='clss' style='text-align: right;'>" + partdiscamt +
-                "</td><td class='clss' style='text-align: right;'>" + parttotal +
+                "</td><td class='clss text-center tdpartsdispercent'>" + partdiscpercent +
+                "</td><td class='clss tdpartsdisamt' style='text-align: right;'>" + partdiscamt +
+                "</td><td class='clss tdpartstotal' style='text-align: right;'>" + parttotal +
                 "</td><td><a href='javascript:;' onclick='partstblDelete(this);' class='text-danger' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Delete'><i class='bi bi-trash-fill'></i></a></td></tr>";
 
             $("#partbody").append(row);
 
             var arr = [];
             $(".parttr").each(function() {
-                arr.push($(this).find("td:nth-child(8)").text()); //put elements into array
+                arr.push($(this).find("td:nth-child(9)").text()); //put elements into array
             });
 
             var sum = arr.reduce(function(a, b) {
                 return parseFloat(a) + parseFloat(b);
             }, 0);
 
+            $("#totalpartsamt").val(sum);
             $("#partsno").find('option:eq(0)').prop('selected', true);
             $("#partdes").val('');
             $("#partavail").val('');
@@ -631,7 +842,7 @@
             $("#partdiscpercent").val('');
             $("#partdiscamt").val('');
             $("#parttotal").val('');
-            $("#totalpartsamt").val(sum);
+
         });
 
         //part discount amount
@@ -739,21 +950,22 @@
         //Add Labor Cost
         $("#addlaborcost").click(function() {
             var des = $("#labordescription option:selected").text();
+            var desnumber = $("#labordescription option:selected").val();
             var rate = $("#laborcostrate").val();
             var qty = $("#laborcostqty").val();
             var amt = $("#laborcostamt").val();
 
-            var row = "<tr class='laborcosttr'><td>" + des +
+            var row = "<tr class='laborcosttr'><td class='tdlcnumber' hidden>" + desnumber + "</td><td class='tdlcdescription'>" + des +
                 "</td><td class='clss text-center'>" + rate +
-                "</td><td class='clss text-center'>" + qty +
-                "</td><td class='clss' style='text-align:right;'>" + amt +
+                "</td><td class='clss text-center tdlcquantity'>" + qty +
+                "</td><td class='clss tdlcamount' style='text-align:right;'>" + amt +
                 "</td><td><a href='javascript:;' onclick='lcosttblDelete(this);' class='text-danger' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Delete'><i class='bi bi-trash-fill'></i></a></td></tr>";
 
             $("#laborcostbody").append(row);
 
             var arr = [];
             $(".laborcosttr").each(function() {
-                arr.push($(this).find("td:nth-child(4)").text()); //put elements into array
+                arr.push($(this).find("td:nth-child(5)").text()); //put elements into array
             });
 
             var sum = arr.reduce(function(a, b) {
@@ -875,15 +1087,21 @@
         $("#customernameid").change(function() {
             var url = "{{ url('/FAS/show-contactperson') }}" + "/" + $(this).children("option:selected").val();
 
-            $.ajax({
-                type: "GET",
-                url: url,
-                dataType: "json",
-                success: function(response) {
-                    $("#contactperson").val(response.showcustomer.contact);
-                    $("#telno").val(response.showcustomer.phone);
-                }
-            })
+            if ($(this).children("option:selected").val().length > 0) {
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    dataType: "json",
+                    success: function(response) {
+                        $("#contactperson").val(response.showcustomer.contact);
+                        $("#telno").val(response.showcustomer.phone);
+                    }
+                })
+            } else {
+                $("#contactperson").val('');
+                $("#telno").val('');
+            }
+
 
         });
         // 
@@ -891,29 +1109,41 @@
         $("#vehicletypeid").change(function() {
             var url = "{{ url('/FAS/show-vehicletype') }}" + "/" + $(this).children("option:selected").val();
 
-            $.ajax({
-                type: "GET",
-                url: url,
-                dataType: "json",
-                success: function(response) {
-                    $("#model").prop("disabled", false);
-                    $('#model').empty();
-                    $("#serialno").prop("disabled", true);
-                    $('#serialno').empty();
-                    $('#model').append(`<option value="">
+            if ($(this).children("option:selected").val().length > 0) {
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    dataType: "json",
+                    success: function(response) {
+                        $("#model").prop("disabled", false);
+                        $('#model').empty();
+                        $("#serialno").prop("disabled", true);
+                        $('#serialno').empty();
+                        $('#model').append(`<option value="">
                                   </option>`);
-                    $("#engineno").prop("disabled", true);
-                    $('#engineno').empty();
-                    $('#engineno').append(`<option value="">
+                        $("#engineno").prop("disabled", true);
+                        $('#engineno').empty();
+                        $('#engineno').append(`<option value="">
                                   </option>`);
-                    $.each(response.showmodel, function(key, item) {
-                        $('#model').append(`<option value="${item.vehiclemodel}">
+                        $.each(response.showmodel, function(key, item) {
+                            $('#model').append(`<option value="${item.vehiclemodel}">
                                        ${item.vehiclemodel}
                                   </option>`);
-                    })
-                }
-            })
-
+                        })
+                    }
+                })
+            } else {
+                $("#model").prop("disabled", true);
+                $('#model').empty();
+                $("#serialno").prop("disabled", true);
+                $('#serialno').empty();
+                $('#model').append(`<option value="">
+                                  </option>`);
+                $("#engineno").prop("disabled", true);
+                $('#engineno').empty();
+                $('#engineno').append(`<option value="">
+                                  </option>`);
+            }
         });
 
         //model

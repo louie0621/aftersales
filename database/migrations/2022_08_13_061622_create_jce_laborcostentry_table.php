@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('jce_laborcostentry', function (Blueprint $table) {
             $table->id();
+            $table->integer('laborcost_no')->nullable();
             $table->integer('laborcost_id')->nullable();
             $table->string('quantity')->nullable();
+            $table->string('amount')->nullable();
             $table->timestamps();
         });
     }
