@@ -779,11 +779,11 @@
                     },
                     dataType: "json",
                     success: function(response) {
-                        console.log(response);
+                        window.location.reload();
                     }
                 });
             } else {
-                alert("error");
+                
             }
 
 
