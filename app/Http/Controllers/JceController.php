@@ -22,6 +22,7 @@ use App\Models\JceSrtcodeentry;
 use App\Models\JceLaborcostentry;
 use App\Models\JcePartsentry;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class JceController extends Controller
 {
@@ -42,7 +43,11 @@ class JceController extends Controller
     public function index()
     {
         //
-        return view('fas.jce');
+        $showjce = DB::table('jce')
+            ->join('customers', 'jce.customer_id', '=', 'customers.id')// joining the contacts table , where user_id and contact_user_id are same
+            ->select('jce.*', 'customers.customername','customers.contact')
+            ->get();
+        return view('fas.jce', ['jcedata' => $showjce]);
     }
     public function contactperson($id)
     {
@@ -154,7 +159,7 @@ class JceController extends Controller
                 $jcesrtcode = new JceSrtcodeentry;
                 $jcesrtcode->srt_code = $srt_code[$key];
                 $jcesrtcode->description = $description[$key];
-                $jcesrtcode->working_unit =$working_unit[$key];
+                $jcesrtcode->working_unit = $working_unit[$key];
                 $jcesrtcode->srtcode_no = $request->srtcode_no;
                 $jcesrtcode->save();
             }
@@ -172,7 +177,7 @@ class JceController extends Controller
                 $jcelaborcost = new JceLaborcostentry;
                 $jcelaborcost->laborcost_id = $laborcost_id[$key];
                 $jcelaborcost->quantity = $quantity[$key];
-                $jcelaborcost->amount =$amount[$key];
+                $jcelaborcost->amount = $amount[$key];
                 $jcelaborcost->laborcost_no = $request->laborcost_no;
                 $jcelaborcost->save();
             }
@@ -192,9 +197,9 @@ class JceController extends Controller
                 $jceparts = new JcePartsentry;
                 $jceparts->parts_id = $parts_id[$key];
                 $jceparts->quantity = $quantity[$key];
-                $jceparts->disc_percent =$disc_percent[$key];
-                $jceparts->disc_amt =$disc_amt[$key];
-                $jceparts->total_amt =$total_amt[$key];
+                $jceparts->disc_percent = $disc_percent[$key];
+                $jceparts->disc_amt = $disc_amt[$key];
+                $jceparts->total_amt = $total_amt[$key];
                 $jceparts->parts_no = $request->parts_no;
                 $jceparts->save();
             }
@@ -257,9 +262,11 @@ class JceController extends Controller
      * @param  \App\Models\Jce  $jce
      * @return \Illuminate\Http\Response
      */
-    public function show(Jce $jce)
+    public function show(Jce $jce,$id)
     {
         //
+        $viewjce = Jce::find($id);
+        return response()->json(['viewjce' => $viewjce]);
     }
 
     /**

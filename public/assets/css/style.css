@@ -50,6 +50,9 @@ a {
 
 /* Header */
 input[type="text"]:disabled{background-color:rgb(255, 255, 255);}
+.form-control:disabled, .form-control[readonly] {
+    background-color: #ffffff;
+}
 
 .top-header .navbar{
     position: fixed;

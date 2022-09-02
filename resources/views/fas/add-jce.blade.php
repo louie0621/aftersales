@@ -376,7 +376,7 @@
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label">Amount Due</label>
-                                <input type="text" class="form-control form-control-sm" id="amtdue" disabled>
+                                <input type="text" class="form-control form-control-sm" id="amtdue">
                             </div>
 
                             <div class="col-12">
@@ -570,50 +570,33 @@
             } else {
                 $("#jcechargetoparts").addClass("is-invalid");
             }
-            if ($("#srtcodeentry").val().length > 0) {
+            if ($("#totalsrtcode").val().length > 0) {
                 $("#srtcodeentry").removeClass("is-invalid");
-            } else {
-                $("#srtcodeentry").addClass("is-invalid");
-            }
-            if ($("#srtdesentry").val().length > 0) {
                 $("#srtdesentry").removeClass("is-invalid");
-            } else {
-                $("#srtdesentry").addClass("is-invalid");
-            }
-            if ($("#srtworkunitentry").val().length > 0) {
                 $("#srtworkunitentry").removeClass("is-invalid");
             } else {
+                $("#srtcodeentry").addClass("is-invalid");
+                $("#srtdesentry").addClass("is-invalid");
                 $("#srtworkunitentry").addClass("is-invalid");
             }
-            if ($("#labordescription").val().length > 0) {
+            if ($("#totallaborcostamt").val().length > 0) {
                 $("#labordescription").removeClass("is-invalid");
-            } else {
-                $("#labordescription").addClass("is-invalid");
-            }
-            if ($("#laborcostqty").val().length > 0) {
                 $("#laborcostqty").removeClass("is-invalid");
             } else {
+                $("#labordescription").addClass("is-invalid");
                 $("#laborcostqty").addClass("is-invalid");
             }
-            if ($("#partsno").val().length > 0) {
+            if ($("#totalpartsamt").val().length > 0) {
                 $("#partsno").removeClass("is-invalid");
-            } else {
-                $("#partsno").addClass("is-invalid");
-            }
-            if ($("#partqty").val().length > 0) {
                 $("#partqty").removeClass("is-invalid");
             } else {
+                $("#partsno").addClass("is-invalid");
                 $("#partqty").addClass("is-invalid");
             }
             if ($("#remarks").val().length > 0) {
                 $("#remarks").removeClass("is-invalid");
             } else {
                 $("#remarks").addClass("is-invalid");
-            }
-            if ($("#totalpartsamt").val().length > 0) {
-                $("#totalpartsamt").removeClass("is-invalid");
-            } else {
-                $("#totalpartsamt").addClass("is-invalid");
             }
             if ($("#freightcost").val().length > 0) {
                 $("#freightcost").removeClass("is-invalid");
@@ -625,178 +608,184 @@
             } else {
                 $("#validitydate").addClass("is-invalid");
             }
+            if ($("#dispatchdate").val().length > 0 && $("#workarea").val().length > 0 && $("#laboramt").val().length > 0 && $("#srt").val().length > 0 && $("#partsamt").val().length > 0 && $("#telno").val().length > 0 && $("#jobtype").val().length > 0 && $("#vehicletypeid").val().length > 0 && $("#dealer").val().length > 0 && $("#jobsite").val().length > 0 && $("#unitstatus").val().length > 0 && $("#salestype").val().length > 0 && $("#customernameid").val().length > 0 && $("#telno").val().length > 0 && $("#model").val().length > 0 && $("#serialno").val().length > 0 && $("#engineno").val().length > 0 && $("#complaintrequest").val().length > 0 && $("#component").val().length > 0 && $("#typeofissue").val().length > 0 && $("#promiseddate").val().length > 0 && $("#resolved").val().length > 0 && $("#paymentterms").val().length > 0 && $("#modeofpayment").val().length > 0 && $("#pono").val().length > 0 && $("#enginehours").val().length > 0 && $("#traveldays").val().length > 0 && $("#techname").val().length > 0 && $("#jcetype").val().length > 0 && $("#jcetypeparts").val().length > 0 && $("#jcechargeto").val().length > 0 && $("#jcechargetoparts").val().length > 0 && $("#totalsrtcode").val().length > 0 && $("#totallaborcostamt").val().length > 0 && $("#totalpartsamt").val().length > 0 && $("#remarks").val().length > 0 && $("#totalpartsamt").val().length > 0 && $("#freightcost").val().length > 0 && $("#validitydate").val().length > 0) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: url,
+                    method: 'POST',
+                    data: {
+                        incidentdatetime: datetime,
+                        jce_number: $("#jceno").val(),
+                        customer_id: $("#customernameid").val(),
+                        contact_no: $("#telno").val(),
+                        equipment_id: $("#engineno").children("option:selected").val(),
+                        dispatch_date: $("#dispatchdate").val(),
+                        work_area: $("#workarea").children("option:selected").val(),
+                        labor_amt: $("#laboramt").val(),
+                        srt_amt: $("#srt").val(),
+                        parts_amt: $("#partsamt").val(),
+                        job_type: $("#jobtype").children("option:selected").val(),
+                        dealer: $("#dealer").children("option:selected").val(),
+                        job_site: $("#jobsite").val(),
+                        salestype: $("#salestype").val(),
+                        complaint_request: $("#complaintrequest").val(),
+                        component: $("#component").children("option:selected").val(),
+                        typeofissue: $("#typeofissue").children("option:selected").val(),
+                        promised_datetime: $("#promiseddate").val(),
+                        resolved: $("#resolved").children("option:selected").val(),
+                        paymentterms: $("#paymentterms").val(),
+                        modeofpayment: $("#modeofpayment").children("option:selected").val(),
+                        po_number: $("#pono").val(),
+                        engine_hours: $("#enginehours").val(),
+                        travel_days: $("#traveldays").val(),
+                        techentry_no: jcenocode,
+                        jce_type: $("#jcetype").children("option:selected").val(),
+                        charge_to: $("#jcechargeto").children("option:selected").val(),
+                        jcetypeparts: $("#jcetypeparts").children("option:selected").val(),
+                        chargetoparts: $("#jcechargetoparts").children("option:selected").val(),
+                        srtcode_no: jcenocode,
+                        srtcode_total: $("#totalsrtcode").val(),
+                        laborcost_no: jcenocode,
+                        laborcost_total: $("#totallaborcostamt").val(),
+                        parts_no: jcenocode,
+                        parts_total: $("#totalpartsamt").val(),
+                        freight_cost: $("#freightcost").val(),
+                        amount_due: $("#amtdue").val(),
+                        remarks: $("#remarks").val(),
+                        validity_date: $("#validitydate").val(),
+                        _token: '{!! csrf_token() !!}'
+                    },
+                    dataType: 'JSON',
+                    success: function(data) {
 
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                }
-            });
-            $.ajax({
-                url: url,
-                method: 'POST',
-                data: {
-                    incidentdatetime: datetime,
-                    jce_number: $("#jceno").val(),
-                    customer_id: $("#customernameid").val(),
-                    contact_no: $("#telno").val(),
-                    equipment_id: $("#engineno").children("option:selected").val(),
-                    dispatch_date: $("#dispatchdate").val(),
-                    work_area: $("#workarea").children("option:selected").val(),
-                    labor_amt: $("#laboramt").val(),
-                    srt_amt: $("#srt").val(),
-                    parts_amt: $("#partsamt").val(),
-                    job_type: $("#jobtype").children("option:selected").val(),
-                    dealer: $("#dealer").children("option:selected").val(),
-                    job_site: $("#jobsite").val(),
-                    salestype: $("#salestype").val(),
-                    complaint_request: $("#complaintrequest").val(),
-                    component: $("#component").children("option:selected").val(),
-                    typeofissue: $("#typeofissue").children("option:selected").val(),
-                    promised_datetime: $("#promiseddate").val(),
-                    resolved: $("#resolved").children("option:selected").val(),
-                    paymentterms: $("#paymentterms").val(),
-                    modeofpayment: $("#modeofpayment").children("option:selected").val(),
-                    po_number: $("#pono").val(),
-                    engine_hours: $("#enginehours").val(),
-                    travel_days: $("#traveldays").val(),
-                    techentry_no: jcenocode,
-                    jce_type: $("#jcetype").children("option:selected").val(),
-                    charge_to: $("#jcechargeto").children("option:selected").val(),
-                    jcetypeparts: $("#jcetypeparts").children("option:selected").val(),
-                    chargetoparts: $("#jcechargetoparts").children("option:selected").val(),
-                    srtcode_no: jcenocode,
-                    srtcode_total: $("#totalsrtcode").val(),
-                    laborcost_no: jcenocode,
-                    laborcost_total: $("#totallaborcostamt").val(),
-                    parts_no: jcenocode,
-                    parts_total: $("#totalpartsamt").val(),
-                    freight_cost: $("#freightcost").val(),
-                    amount_due: $("#amtdue").val(),
-                    remarks: $("#remarks").val(),
-                    validity_date: $("#validitydate").val(),
-                    _token: '{!! csrf_token() !!}'
-                },
-                dataType: 'JSON',
-                success: function(data) {
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
 
-                },
-                error: function(error) {
-                    console.log(error);
-                }
-            });
+                //store technician entry
+                $.ajax({
+                    method: "POST",
+                    url: "{{ url('/FAS/storejcetechname') }}",
+                    data: {
+                        techentry_no: $("#jceno").val().slice(8, 15),
+                        tech_id: JSON.stringify(selected),
+                        _token: '{!! csrf_token() !!}'
+                    },
+                    dataType: "json",
+                    success: function(response) {}
+                });
 
-            //store technician entry
-            $.ajax({
-                method: "POST",
-                url: "{{ url('/FAS/storejcetechname') }}",
-                data: {
-                    techentry_no: $("#jceno").val().slice(8, 15),
-                    tech_id: JSON.stringify(selected),
-                    _token: '{!! csrf_token() !!}'
-                },
-                dataType: "json",
-                success: function(response) {}
-            });
+                //Store SRT Code Entry
 
-            //Store SRT Code Entry
+                var tdsrtcode = [];
+                var tddescription = [];
+                var tdworkunit = [];
 
-            var tdsrtcode = [];
-            var tddescription = [];
-            var tdworkunit = [];
+                $(".tdsrtcode").each(function() {
+                    tdsrtcode.push($(this).text());
+                });
+                $(".tddescription").each(function() {
+                    tddescription.push($(this).text());
+                });
+                $(".tdworkunit").each(function() {
+                    tdworkunit.push($(this).text());
+                });
 
-            $(".tdsrtcode").each(function() {
-                tdsrtcode.push($(this).text());
-            });
-            $(".tddescription").each(function() {
-                tddescription.push($(this).text());
-            });
-            $(".tdworkunit").each(function() {
-                tdworkunit.push($(this).text());
-            });
+                $.ajax({
+                    method: "POST",
+                    url: "{{ url('/FAS/storejcesrtcodeentry') }}",
+                    data: {
+                        srtcode_no: $("#jceno").val().slice(8, 15),
+                        srt_code: JSON.stringify(tdsrtcode),
+                        description: JSON.stringify(tddescription),
+                        working_unit: JSON.stringify(tdworkunit),
+                        _token: '{!! csrf_token() !!}'
+                    },
+                    dataType: "json",
+                    success: function(response) {}
+                });
 
-            $.ajax({
-                method: "POST",
-                url: "{{ url('/FAS/storejcesrtcodeentry') }}",
-                data: {
-                    srtcode_no: $("#jceno").val().slice(8, 15),
-                    srt_code: JSON.stringify(tdsrtcode),
-                    description: JSON.stringify(tddescription),
-                    working_unit: JSON.stringify(tdworkunit),
-                    _token: '{!! csrf_token() !!}'
-                },
-                dataType: "json",
-                success: function(response) {}
-            });
+                //Store Labor Cost Entry
 
-            //Store Labor Cost Entry
+                var tdlcnumber = [];
+                var tdlcquantity = [];
+                var tdlcamount = [];
 
-            var tdlcnumber = [];
-            var tdlcquantity = [];
-            var tdlcamount = [];
+                $(".tdlcnumber").each(function() {
+                    tdlcnumber.push($(this).text());
+                });
+                $(".tdlcquantity").each(function() {
+                    tdlcquantity.push($(this).text());
+                });
+                $(".tdlcamount").each(function() {
+                    tdlcamount.push($(this).text());
+                });
 
-            $(".tdlcnumber").each(function() {
-                tdlcnumber.push($(this).text());
-            });
-            $(".tdlcquantity").each(function() {
-                tdlcquantity.push($(this).text());
-            });
-            $(".tdlcamount").each(function() {
-                tdlcamount.push($(this).text());
-            });
+                $.ajax({
+                    method: "POST",
+                    url: "{{ url('/FAS/storejcelaborcostentry') }}",
+                    data: {
+                        laborcost_no: $("#jceno").val().slice(8, 15),
+                        laborcost_id: JSON.stringify(tdlcnumber),
+                        quantity: JSON.stringify(tdlcquantity),
+                        amount: JSON.stringify(tdlcamount),
+                        _token: '{!! csrf_token() !!}'
+                    },
+                    dataType: "json",
+                    success: function(response) {}
+                });
 
-            $.ajax({
-                method: "POST",
-                url: "{{ url('/FAS/storejcelaborcostentry') }}",
-                data: {
-                    laborcost_no: $("#jceno").val().slice(8, 15),
-                    laborcost_id: JSON.stringify(tdlcnumber),
-                    quantity: JSON.stringify(tdlcquantity),
-                    amount: JSON.stringify(tdlcamount),
-                    _token: '{!! csrf_token() !!}'
-                },
-                dataType: "json",
-                success: function(response) {}
-            });
+                //Store Parts Entry
 
-            //Store Parts Entry
+                var tdpartsnumber = [];
+                var tdpartsquantity = [];
+                var tdpartsdispercent = [];
+                var tdpartsdisamt = [];
+                var tdpartstotal = [];
 
-            var tdpartsnumber = [];
-            var tdpartsquantity = [];
-            var tdpartsdispercent = [];
-            var tdpartsdisamt = [];
-            var tdpartstotal = [];
+                $(".tdpartsnumber").each(function() {
+                    tdpartsnumber.push($(this).text());
+                });
+                $(".tdpartsquantity").each(function() {
+                    tdpartsquantity.push($(this).text());
+                });
+                $(".tdpartsdispercent").each(function() {
+                    tdpartsdispercent.push($(this).text());
+                });
+                $(".tdpartsdisamt").each(function() {
+                    tdpartsdisamt.push($(this).text());
+                });
+                $(".tdpartstotal").each(function() {
+                    tdpartstotal.push($(this).text());
+                });
 
-            $(".tdpartsnumber").each(function() {
-                tdpartsnumber.push($(this).text());
-            });
-            $(".tdpartsquantity").each(function() {
-                tdpartsquantity.push($(this).text());
-            });
-            $(".tdpartsdispercent").each(function() {
-                tdpartsdispercent.push($(this).text());
-            });
-            $(".tdpartsdisamt").each(function() {
-                tdpartsdisamt.push($(this).text());
-            });
-            $(".tdpartstotal").each(function() {
-                tdpartstotal.push($(this).text());
-            });
+                $.ajax({
+                    method: "POST",
+                    url: "{{ url('/FAS/storejcepartsentry') }}",
+                    data: {
+                        parts_no: $("#jceno").val().slice(8, 15),
+                        parts_id: JSON.stringify(tdpartsnumber),
+                        quantity: JSON.stringify(tdpartsquantity),
+                        disc_percent: JSON.stringify(tdpartsdispercent),
+                        disc_amt: JSON.stringify(tdpartsdisamt),
+                        total_amt: JSON.stringify(tdpartstotal),
+                        _token: '{!! csrf_token() !!}'
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        console.log(response);
+                    }
+                });
+            } else {
+                alert("error");
+            }
 
-            $.ajax({
-                method: "POST",
-                url: "{{ url('/FAS/storejcepartsentry') }}",
-                data: {
-                    parts_no: $("#jceno").val().slice(8, 15),
-                    parts_id: JSON.stringify(tdpartsnumber),
-                    quantity: JSON.stringify(tdpartsquantity),
-                    disc_percent: JSON.stringify(tdpartsdispercent),
-                    disc_amt: JSON.stringify(tdpartsdisamt),
-                    total_amt: JSON.stringify(tdpartstotal),
-                    _token: '{!! csrf_token() !!}'
-                },
-                dataType: "json",
-                success: function(response) {}
-            });
 
         });
 
