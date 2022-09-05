@@ -79,11 +79,11 @@
                                                                 </div>
                                                                 <div class="col-12 col-lg-4">
                                                                     <label class="form-label">Customer Name</label>
-                                                                    <input type="text" class="form-control form-select-sm" id="viewcustomername" disabled>
+                                                                    <input type="text" class="form-control form-select-sm text-break" id="viewcustomername">
                                                                 </div>
                                                                 <div class="col-12 col-lg-4">
                                                                     <label class="form-label">Contact Person</label>
-                                                                    <input type="text" class="form-control form-select-sm" id="viewcontactperson" disabled>
+                                                                    <input type="text" class="form-control form-select-sm text-wrap" id="viewcontactperson" disabled>
                                                                 </div>
                                                                 <div class="col-12 col-lg-4">
                                                                     <label class="form-label">TelNo.</label>
@@ -119,7 +119,7 @@
                                                                 </div>
                                                                 <div class="col-12 col-lg-4">
                                                                     <label class="form-label">Promised Date/Time</label>
-                                                                    <input type="text" class="form-control form-select-sm" id="viewpromiseddate"disabled>
+                                                                    <input type="text" class="form-control form-select-sm" id="viewpromiseddate" disabled>
                                                                 </div>
                                                                 <div class="col-12 col-lg-4">
                                                                     <label class="form-label">Resolved</label>
@@ -147,7 +147,7 @@
                                                                 </div>
                                                                 <div class="col-12 col-lg-6" style="padding-bottom: 2.4em;">
                                                                     <label class="form-label">Charge To Parts</label>
-                                                                    <input type="text" class="form-control form-select-sm" id="viewchargetoparts" disabled> 
+                                                                    <input type="text" class="form-control form-select-sm" id="viewchargetoparts" disabled>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -183,7 +183,7 @@
                                                                 </div>
                                                                 <div class="col-12">
                                                                     <label class="form-label">Dealer</label>
-                                                                    <input type="text" class="form-control form-select-sm" id="viewdealer" disabled> 
+                                                                    <input type="text" class="form-control form-select-sm" id="viewdealer" disabled>
                                                                 </div>
                                                                 <div class="col-12">
                                                                     <label class="form-label">Job Site</label>
@@ -224,29 +224,23 @@
                                                     <div class="card-body">
                                                         <div class="row g-3">
                                                             <div class="col-12">
-                                                                <label class="form-label"><strong>JCE Number</strong></label>
+                                                                <label class="form-label"><strong>SRT Code</strong></label>
                                                                 <div class="table-responsive mt-3 ">
                                                                     <table class="table align-middle table-sm">
                                                                         <thead class="table-secondary">
                                                                             <tr>
                                                                                 <th>SRT</th>
                                                                                 <th>Description</th>
-                                                                                <th>Work Unit</th>
-                                                                                <th>Action</th>
+                                                                                <th class="text-center">Work Unit</th>
                                                                             </tr>
                                                                         </thead>
-                                                                        <tbody id="">
-                                                                            <tr>
-                                                                                <td class="col-md-3"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; padding-left:.5rem;" id="srtcodeentry"></td>
-                                                                                <td class="col-md-6"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; padding-left:.5rem;" id="srtdesentry"></td>
-                                                                                <td><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center; padding-right:.5rem;" id="srtworkunitentry"></td>
-                                                                                <td><strong><a href="javascript:;" id="addsrtcode" class="text-success" style="font-size: 20px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add"><i class="bi bi-plus-square-fill"></i></a></strong></td>
-                                                                            </tr>
+                                                                        <tbody id="viewsrtcodetbl">
+
                                                                         </tbody>
                                                                         <tfoot>
                                                                             <tr>
                                                                                 <td colspan="2" style="text-align: right;"><strong>SRT (Total Hours)</strong></td>
-                                                                                <td><strong><span id=""></span> <input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="totalsrtcode" disabled></strong></td>
+                                                                                <td><strong><span id=""></span> <input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="viewtotalsrtcode" disabled></strong></td>
                                                                                 <td></td>
                                                                             </tr>
                                                                         </tfoot>
@@ -264,27 +258,14 @@
                                                                                 <th>Rate</th>
                                                                                 <th>Quantity</th>
                                                                                 <th>Amount</th>
-                                                                                <th>Action</th>
                                                                             </tr>
                                                                         </thead>
-                                                                        <tbody id="laborcostbody">
-                                                                            <tr>
-                                                                                <td class="col-md-6">
-                                                                                    <select class="form-select form-select-sm" id="labordescription" style="min-height: 0rem; padding:0rem; padding-left:.5rem;" aria-label=".form-select-sm example">
-                                                                                        <option value=""></option>
-
-                                                                                    </select>
-                                                                                </td>
-                                                                                <td class="col-md-2"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="laborcostrate" disabled></td>
-                                                                                <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="laborcostqty"></td>
-                                                                                <td><input type="text" class="form-control form-control-sm " style="min-height: 0rem; padding:0rem; text-align:right; padding-right:.5rem;" id="laborcostamt" disabled></td>
-                                                                                <td><strong><a href="javascript:;" id="addlaborcost" class="text-success" style="font-size: 20px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add"><i class="bi bi-plus-square-fill"></i></a></strong></td>
-                                                                            </tr>
+                                                                        <tbody id="laborcostbodytbl">
                                                                         </tbody>
                                                                         <tfoot>
                                                                             <tr>
                                                                                 <td colspan="3" style="text-align: right;"><strong>JCE Amount</strong></td>
-                                                                                <td><strong><span id=""></span> <input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="totallaborcostamt" disabled></strong></td>
+                                                                                <td><strong><span id=""></span> <input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="viewtotallaborcostamt" disabled></strong></td>
                                                                                 <td></td>
                                                                             </tr>
                                                                         </tfoot>
@@ -306,51 +287,35 @@
                                                                                 <th>Disc %</th>
                                                                                 <th>Disc Amount</th>
                                                                                 <th>Total</th>
-                                                                                <th>Action</th>
                                                                             </tr>
                                                                         </thead>
-                                                                        <tbody id="partbody">
-                                                                            <tr>
-                                                                                <td class="col-md-2">
-                                                                                    <select class="form-select form-select-sm selectpart" id="partsno" style="min-height: 0rem; padding:0rem; padding-left:.5rem;" aria-label=".form-select-sm example">
-                                                                                        <option value=""></option>
-
-                                                                                    </select>
-                                                                                </td>
-                                                                                <td class="col-md-3"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id="partdes" disabled></td>
-                                                                                <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="partavail" disabled></td>
-                                                                                <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="partqty"></td>
-                                                                                <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:right;" id="partprice" disabled></td>
-                                                                                <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="partdiscpercent" disabled></td>
-                                                                                <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:right;" id="partdiscamt" disabled></td>
-                                                                                <td class="col-md-2"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:right;" id="parttotal" disabled></td>
-                                                                                <td><strong><a href="javascript:;" id="addparts" class="text-success" style="font-size: 20px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add"><i class="bi bi-plus-square-fill"></i></a></strong></td>
-                                                                            </tr>
+                                                                        <tbody id="partbodytbl">
+                                                                            
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
                                                             </div>
                                                             <div class="col-12 col-lg-8">
                                                                 <label class="form-label">Remarks</label>
-                                                                <textarea class="form-control form-select-sm" rows="3" cols="4"></textarea>
+                                                                <textarea class="form-control form-select-sm" rows="3" cols="4" id="viewremarks"></textarea>
                                                             </div>
                                                             <div class="col-12 col-lg-4">
                                                                 <label class="form-label">Total Parts Amount</label>
-                                                                <input type="text" class="form-control form-select-sm">
+                                                                <input type="text" class="form-control form-select-sm" id="viewtotalpartsamt">
                                                             </div>
                                                             <div class="col-12 col-lg-8">
                                                             </div>
                                                             <div class="col-12 col-lg-4">
                                                                 <label class="form-label">Freight Cost</label>
-                                                                <input type="text" class="form-control form-select-sm">
+                                                                <input type="text" class="form-control form-select-sm" id="viewfreightcost" disabled>
                                                             </div>
                                                             <div class="col-12 col-lg-8">
                                                                 <label class="form-label">Validity Date</label>
-                                                                <input type="text" class="form-control form-select-sm">
+                                                                <input type="text" class="form-control form-select-sm" id="viewvaliditydate" disabled>
                                                             </div>
                                                             <div class="col-12 col-lg-4">
                                                                 <label class="form-label">Amount Due</label>
-                                                                <input type="text" class="form-control form-select-sm">
+                                                                <input type="text" class="form-control form-select-sm" id="viewamountdue" disabled>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -382,7 +347,7 @@
 
         $(document).on("click", ".view", function(e) {
             var url = "{{ url('FAS/viewjcedetails') }}" + "/" + $(e.currentTarget).data("viewid");
-            
+
             $.ajax({
                 type: "GET",
                 url: url,
@@ -390,7 +355,13 @@
                 success: function(response) {
                     //console.log(response.viewequipment);
                     $('#viewjcenumber').val(response.viewjce.jce_number);
+                    $('#viewcustomername').val(response.viewcustomer.customername);
+                    $('#viewcontactperson').val(response.viewcustomer.contact);
                     $('#viewtelno').val(response.viewjce.contact_no);
+                    $('#viewvehicletype').val(response.viewequipment.type);
+                    $('#viewmodel').val(response.viewequipment.vehiclemodel);
+                    $('#viewserialno').val(response.viewequipment.serialnumber);
+                    $('#viewengineno').val(response.viewequipment.engineno);
                     $('#viewcomplaint').val(response.viewjce.complaint_request);
                     $('#viewcomponent').val(response.viewjce.component);
                     $('#viewtypeofissue').val(response.viewjce.typeofissue);
@@ -414,10 +385,58 @@
                     $('#viewpono').val(response.viewjce.po_number);
                     $('#viewenginehours').val(response.viewjce.engine_hours);
                     $('#viewtraveldays').val(response.viewjce.travel_days);
+                    $('#viewtotalsrtcode').val(response.viewjce.srtcode_total);
+                    $('#viewtotallaborcostamt').val(response.viewjce.laborcost_total);
+                    $('#viewtotalpartsamt').val(response.viewjce.parts_total);
                     
+                    $(".viewtbl").remove();
+
+                    var tech = []
+                    $.each(response.viewtech, function(key, item) {
+                        tech.push(item.name);
+                    });
+                    $('#viewtechnicianname').val(tech);
+
+                    $.each(response.viewjcenumber, function(key, item) {
+                        var row = "<tr class='viewtbl' ><td class='col-md-2'>" + item.srt_code +
+                            "</td><td class='col-md-7'>" + item.description +
+                            "</td><td class='text-center'>" + item.working_unit +
+                            "</tr>";
+
+                        $("#viewsrtcodetbl").append(row);
+                    });
+
+                    $.each(response.viewlaborcost, function(key, item) {
+                        var row = "<tr class='viewtbl' ><td class='col-md-6'>" + item.description +
+                            "</td><td class='text-center'>" + item.rate +
+                            "</td><td class='text-center'>" + item.quantity +
+                            "</td><td class='text-center'>" + item.amount +
+                            "</tr>";
+
+                        $("#laborcostbodytbl").append(row);
+                    });
+                    
+                    $.each(response.viewparts, function(key, item) {
+                        var row = "<tr class='viewtbl' ><td class='col-md-6'>" + item.part_number +
+                            "</td><td class=''>" + item.description +
+                            "</td><td class='text-center'>" + item.stocks +
+                            "</td><td class='text-center'>" + item.quantity +
+                            "</td><td class='text-center'>" + item.price +
+                            "</td><td class='text-center'>" + item.disc_percent +
+                            "</td><td class='text-center'>" + item.disc_amt +
+                            "</td><td class='text-center'>" + item.total_amt +
+                            "</tr>";
+
+                        $("#partbodytbl").append(row);
+                    });
+
+                    $('#viewremarks').val(response.viewjce.remarks);
+                    $('#viewfreightcost').val(response.viewjce.freight_cost);
+                    $('#viewvaliditydate').val(response.viewjce.validity_date);
+                    $('#viewamountdue').val(response.viewjce.amount_due);
 
                     $("#viewModal").modal('show');
-                    
+
                 },
                 error: function(data, textStatus, errorThrown) {
                     console.log(data);

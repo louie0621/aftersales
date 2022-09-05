@@ -44,8 +44,8 @@ class JceController extends Controller
     {
         //
         $showjce = DB::table('jce')
-            ->join('customers', 'jce.customer_id', '=', 'customers.id')// joining the contacts table , where user_id and contact_user_id are same
-            ->select('jce.*', 'customers.customername','customers.contact')
+            ->join('customers', 'jce.customer_id', '=', 'customers.id') // joining the contacts table , where user_id and contact_user_id are same
+            ->select('jce.*', 'customers.customername', 'customers.contact')
             ->get();
         return view('fas.jce', ['jcedata' => $showjce]);
     }
@@ -262,11 +262,33 @@ class JceController extends Controller
      * @param  \App\Models\Jce  $jce
      * @return \Illuminate\Http\Response
      */
-    public function show(Jce $jce,$id)
+    public function show(Jce $jce, $id)
     {
         //
         $viewjce = Jce::find($id);
-        return response()->json(['viewjce' => $viewjce]);
+        $viewcustomer = Customer::find($viewjce->customer_id);
+        $viewequipment = Equipment::find($viewjce->equipment_id);
+
+        $viewtech = DB::table('jce_techicianentry')
+            ->where('techentry_no', $viewjce->techentry_no)
+            ->join('technician', 'jce_techicianentry.tech_id', '=', 'technician.id')
+            ->get();
+
+        $viewjcenumber = DB::table('jce_srtcodeentry')
+            ->where('srtcode_no', $viewjce->srtcode_no)
+            ->get();
+
+        $viewlaborcost = DB::table('jce_laborcostentry')
+            ->where('laborcost_no', $viewjce->laborcost_no)
+            ->join('config_laborcost', 'jce_laborcostentry.laborcost_id', '=', 'config_laborcost.id')
+            ->get();
+
+        $viewparts = DB::table('jce_partsentry')
+            ->where('parts_no', $viewjce->parts_no)
+            ->join('config_parts', 'jce_partsentry.parts_id', '=', 'config_parts.id')
+            ->get();
+
+        return response()->json(['viewparts' => $viewparts,'viewlaborcost' => $viewlaborcost, 'viewjcenumber' => $viewjcenumber, 'viewtech' => $viewtech, 'viewjce' => $viewjce, 'viewcustomer' => $viewcustomer, 'viewequipment' => $viewequipment, 'viewtech' => $viewtech]);
     }
 
     /**
