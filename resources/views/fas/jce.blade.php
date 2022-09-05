@@ -35,16 +35,16 @@
                     <tbody>
                         @foreach($jcedata as $data)
                         <tr>
-                            <td class="view" data-viewid="{{ $data->id }}">{{ $loop->iteration }}</td>
-                            <td class="view" data-viewid="{{ $data->id }}">{{ $data->jce_number }}</td>
-                            <td class="view" data-viewid="{{ $data->id }}">{{ $data->customername }}</td>
-                            <td class="view" data-viewid="{{ $data->id }}">{{ $data->contact }}</td>
-                            <td class="view" data-viewid="{{ $data->id }}">{{ $data->contact_no }}</td>
-                            <td class="view" data-viewid="{{ $data->id }}">{{ $data->po_number }}</td>
-                            <td class="view" data-viewid="{{ $data->id }}">{{ $data->validity_date }}</td>
+                            <td class="view" data-viewid="{{ $data->id }}" style="cursor: default;">{{ $loop->iteration }}</td>
+                            <td class="view" data-viewid="{{ $data->id }}" style="cursor: default;">{{ $data->jce_number }}</td>
+                            <td class="view" data-viewid="{{ $data->id }}" style="cursor: default;">{{ $data->customername }}</td>
+                            <td class="view" data-viewid="{{ $data->id }}" style="cursor: default;">{{ $data->contact }}</td>
+                            <td class="view" data-viewid="{{ $data->id }}" style="cursor: default;">{{ $data->contact_no }}</td>
+                            <td class="view" data-viewid="{{ $data->id }}" style="cursor: default;">{{ $data->po_number }}</td>
+                            <td class="view" data-viewid="{{ $data->id }}" style="cursor: default;">{{ $data->validity_date }}</td>
                             <td>
                                 <div class="table-actions d-flex align-items-center gap-3 fs-6">
-                                    <a href="javascript:;" class="text-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit"><i class="bi bi-pencil-fill"></i></a>
+                                    <a href="javascript:;" id="viewedit" data-viewid="{{ $data->id }}" class="text-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit"><i class="bi bi-pencil-fill"></i></a>
                                     <a href="javascript:;" class="text-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete"><i class="bi bi-trash-fill"></i></a>
                                 </div>
                             </td>
@@ -290,7 +290,7 @@
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody id="partbodytbl">
-                                                                            
+
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
@@ -301,7 +301,7 @@
                                                             </div>
                                                             <div class="col-12 col-lg-4">
                                                                 <label class="form-label">Total Parts Amount</label>
-                                                                <input type="text" class="form-control form-select-sm" id="viewtotalpartsamt">
+                                                                <input type="text" class="form-control form-select-sm" id="viewtotalpartsamt" disabled>
                                                             </div>
                                                             <div class="col-12 col-lg-8">
                                                             </div>
@@ -334,6 +334,305 @@
                     </div>
                 </div>
             </div>
+            <!-- Edit modal -->
+            <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Job Cost Estimating Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!--end breadcrumb-->
+                            <div class="row">
+                                <div class="col-lg-12 mx-auto">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row g-3">
+                                                <div class="col-12 col-lg-8">
+                                                    <div class="card shadow-none bg-light border">
+                                                        <div class="card-body">
+                                                            <div class="row g-3">
+                                                                <div class="col-12">
+                                                                    <label class="form-label">JCE Number</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="editjcenumber" disabled>
+                                                                </div>
+                                                                <div class="col-12 col-lg-4">
+                                                                    <label class="form-label">Customer Name</label>
+                                                                    <input type="text" class="form-control form-select-sm text-break" id="editcustomername">
+                                                                </div>
+                                                                <div class="col-12 col-lg-4">
+                                                                    <label class="form-label">Contact Person</label>
+                                                                    <input type="text" class="form-control form-select-sm text-wrap" id="editcontactperson" disabled>
+                                                                </div>
+                                                                <div class="col-12 col-lg-4">
+                                                                    <label class="form-label">TelNo.</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="edittelno" disabled>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <label class="form-label">Vehicle Type</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="editvehicletype" disabled>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <label class="form-label">Model</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="editmodel" disabled>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <label class="form-label">Serial Number</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="editserialno" disabled>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <label class="form-label">Engine Number</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="editengineno" disabled>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <label class="form-label">Complaint/Request</label>
+                                                                    <textarea class="form-control form-select-sm" rows="3" cols="4" id="editcomplaint" disabled></textarea>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <label class="form-label">Component</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="editcomponent" disabled>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <label class="form-label">Type of Issue</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="edittypeofissue" disabled>
+                                                                </div>
+                                                                <div class="col-12 col-lg-4">
+                                                                    <label class="form-label">Promised Date/Time</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="editpromiseddate" disabled>
+                                                                </div>
+                                                                <div class="col-12 col-lg-4">
+                                                                    <label class="form-label">Resolved</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="editresolved" disabled>
+                                                                </div>
+                                                                <div class="col-12 col-lg-4">
+                                                                    <label class="form-label">Payment Terms</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="editpaymentterms" disabled>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <label class="form-label">Techician Name</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="edittechnicianname" disabled>
+                                                                </div>
+                                                                <div class="col-12 col-lg-6">
+                                                                    <label class="form-label">JCE Type</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="editjcetype" disabled>
+                                                                </div>
+                                                                <div class="col-12 col-lg-6">
+                                                                    <label class="form-label">JCE Type Parts</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="editjcetypeparts" disabled>
+                                                                </div>
+                                                                <div class="col-12 col-lg-6">
+                                                                    <label class="form-label">Charge To</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="editjcechargeto" disabled>
+                                                                </div>
+                                                                <div class="col-12 col-lg-6" style="padding-bottom: 2.4em;">
+                                                                    <label class="form-label">Charge To Parts</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="editchargetoparts" disabled>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-lg-4">
+                                                    <div class="card shadow-none bg-light border">
+                                                        <div class="card-body">
+                                                            <div class="row g-3">
+                                                                <div class="col-12">
+                                                                    <label class="form-label">Dispatch Date</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="editdispatchdate" disabled>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <label class="form-label">Work Area</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="editworkarea" disabled>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <label class="form-label">Labor Amount</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="editlaboramount" disabled>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <label class="form-label">SRT</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="editsrt" disabled>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <label class="form-label">Parts Amount</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="editpartsamount" disabled>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <label class="form-label">Job Type</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="editjobtype" disabled>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <label class="form-label">Dealer</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="editdealer" disabled>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <label class="form-label">Job Site</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="editjobsite" disabled>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <label class="form-label">Unit Status</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="editunitstatus" disabled>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <label class="form-label">SalesType</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="editsalestype" disabled>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <label class="form-label">Mode of Payment</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="editmodeofpayment" disabled>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <label class="form-label">PO Number</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="editpono" disabled>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <label class="form-label">Engine Hours</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="editenginehours" disabled>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <label class="form-label">Travel Days</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="edittraveldays" disabled>
+                                                                </div>
+                                                            </div>
+                                                            <!--end row-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-12">
+                                                <div class="card shadow-none bg-light border">
+                                                    <div class="card-body">
+                                                        <div class="row g-3">
+                                                            <div class="col-12">
+                                                                <label class="form-label"><strong>SRT Code</strong></label>
+                                                                <div class="table-responsive mt-3 ">
+                                                                    <table class="table align-middle table-sm">
+                                                                        <thead class="table-secondary">
+                                                                            <tr>
+                                                                                <th>SRT</th>
+                                                                                <th>Description</th>
+                                                                                <th class="text-center">Work Unit</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody id="editsrtcodetbl">
+
+                                                                        </tbody>
+                                                                        <tfoot>
+                                                                            <tr>
+                                                                                <td colspan="2" style="text-align: right;"><strong>SRT (Total Hours)</strong></td>
+                                                                                <td><strong><span id=""></span> <input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="edittotalsrtcode" disabled></strong></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                        </tfoot>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-12">
+                                                                <label class="form-label "><strong>Labor Cost</strong></label>
+                                                                <div class="table-responsive mt-3">
+                                                                    <table class="table align-middle table-sm">
+                                                                        <thead class="table-secondary">
+                                                                            <tr>
+                                                                                <th>Description</th>
+                                                                                <th>Rate</th>
+                                                                                <th>Quantity</th>
+                                                                                <th>Amount</th>
+                                                                                <th>Action</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody id="editlaborcostbodytbl">
+                                                                        </tbody>
+                                                                        <tfoot>
+                                                                            <tr>
+                                                                                <td colspan="3" style="text-align: right;"><strong>JCE Amount</strong></td>
+                                                                                <td><strong><span id=""></span> <input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="edittotallaborcostamt" disabled></strong></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                        </tfoot>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-12">
+                                                                <label class="form-label"><strong>Parts</strong></label>
+                                                                <div class="table-responsive mt-3">
+                                                                    <table class="table align-middle table-sm">
+                                                                        <thead class="table-secondary">
+                                                                            <tr>
+                                                                                <th>Parts Number</th>
+                                                                                <th>Description</th>
+                                                                                <th>Availability</th>
+                                                                                <th>Quantity</th>
+                                                                                <th>Price</th>
+                                                                                <th>Disc %</th>
+                                                                                <th>Disc Amount</th>
+                                                                                <th>Total</th>
+                                                                                <th>Action</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody id="editpartbodytbl">
+                                                                            <tr>
+                                                                                <td class="col-md-2">
+                                                                                    <select class="form-select form-select-sm selectpart" id="partsno" style="min-height: 0rem; padding:0rem; padding-left:.5rem;" aria-label=".form-select-sm example">
+                                                                                        <option value=""></option>
+                                                                                        @foreach($parts as $data)
+                                                                                        <option value="{{ $data->id }}">{{ $data->part_number }}</option>
+                                                                                        @endforeach
+                                                                                    </select>
+                                                                                </td>
+                                                                                <td class="col-md-3"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id="partdes" disabled></td>
+                                                                                <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="partavail" disabled></td>
+                                                                                <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="partqty"></td>
+                                                                                <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:right;" id="partprice" disabled></td>
+                                                                                <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="partdiscpercent" disabled></td>
+                                                                                <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:right;" id="partdiscamt" disabled></td>
+                                                                                <td class="col-md-2"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:right;" id="parttotal" disabled></td>
+                                                                                <td><strong><a href="javascript:;" id="addparts" class="text-success" style="font-size: 20px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add"><i class="bi bi-plus-square-fill"></i></a></strong></td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12 col-lg-8">
+                                                                <label class="form-label">Remarks</label>
+                                                                <textarea class="form-control form-select-sm" rows="3" cols="4" id="editremarks"></textarea>
+                                                            </div>
+                                                            <div class="col-12 col-lg-4">
+                                                                <label class="form-label">Total Parts Amount</label>
+                                                                <input type="text" class="form-control form-select-sm" id="edittotalpartsamt" disabled>
+                                                            </div>
+                                                            <div class="col-12 col-lg-8">
+                                                            </div>
+                                                            <div class="col-12 col-lg-4">
+                                                                <label class="form-label">Freight Cost</label>
+                                                                <input type="text" class="form-control form-select-sm" id="editfreightcost" disabled>
+                                                            </div>
+                                                            <div class="col-12 col-lg-8">
+                                                                <label class="form-label">Validity Date</label>
+                                                                <input type="text" class="form-control form-select-sm" id="editvaliditydate" disabled>
+                                                            </div>
+                                                            <div class="col-12 col-lg-4">
+                                                                <label class="form-label">Amount Due</label>
+                                                                <input type="text" class="form-control form-select-sm" id="editamountdue" disabled>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--end row-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end row-->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </main>
@@ -345,6 +644,109 @@
 <script>
     $(document).ready(function() {
 
+        //view edit modal
+
+        $(document).on("click", "#viewedit", function(e) {
+            var url = "{{ url('FAS/viewjcedetails') }}" + "/" + $(e.currentTarget).data("viewid");
+
+            $.ajax({
+                type: "GET",
+                url: url,
+                dataType: "json",
+                success: function(response) {
+                    //console.log(response.viewequipment);
+                    $('#editjcenumber').val(response.viewjce.jce_number);
+                    $('#editcustomername').val(response.viewcustomer.customername);
+                    $('#editcontactperson').val(response.viewcustomer.contact);
+                    $('#edittelno').val(response.viewjce.contact_no);
+                    $('#editvehicletype').val(response.viewequipment.type);
+                    $('#editmodel').val(response.viewequipment.vehiclemodel);
+                    $('#editserialno').val(response.viewequipment.serialnumber);
+                    $('#editengineno').val(response.viewequipment.engineno);
+                    $('#editcomplaint').val(response.viewjce.complaint_request);
+                    $('#editcomponent').val(response.viewjce.component);
+                    $('#edittypeofissue').val(response.viewjce.typeofissue);
+                    $('#editpromiseddate').val(response.viewjce.promised_datetime);
+                    $('#editresolved').val(response.viewjce.resolved);
+                    $('#editpaymentterms').val(response.viewjce.paymentterms);
+                    $('#editjcetype').val(response.viewjce.jce_type);
+                    $('#editjcetypeparts').val(response.viewjce.jcetypeparts);
+                    $('#editjcechargeto').val(response.viewjce.charge_to);
+                    $('#editchargetoparts').val(response.viewjce.chargetoparts);
+                    $('#editdispatchdate').val(response.viewjce.dispatch_date);
+                    $('#editworkarea').val(response.viewjce.work_area);
+                    $('#editlaboramount').val(response.viewjce.labor_amt);
+                    $('#editsrt').val(response.viewjce.srt_amt);
+                    $('#editpartsamount').val(response.viewjce.parts_amt);
+                    $('#editjobtype').val(response.viewjce.job_type);
+                    $('#editdealer').val(response.viewjce.dealer);
+                    $('#editjobsite').val(response.viewjce.job_site);
+                    $('#editsalestype').val(response.viewjce.salestype);
+                    $('#editmodeofpayment').val(response.viewjce.modeofpayment);
+                    $('#editpono').val(response.viewjce.po_number);
+                    $('#editenginehours').val(response.viewjce.engine_hours);
+                    $('#edittraveldays').val(response.viewjce.travel_days);
+                    $('#edittotalsrtcode').val(response.viewjce.srtcode_total);
+                    $('#edittotallaborcostamt').val(response.viewjce.laborcost_total);
+                    $('#edittotalpartsamt').val(response.viewjce.parts_total);
+
+                    $(".edittbl").remove();
+
+                    var tech = []
+                    $.each(response.viewtech, function(key, item) {
+                        tech.push(item.name);
+                    });
+                    $('#edittechnicianname').val(tech);
+
+                    $.each(response.viewjcenumber, function(key, item) {
+                        var row = "<tr class='edittbl' ><td class='col-md-2'>" + item.srt_code +
+                            "</td><td class='col-md-7'>" + item.description +
+                            "</td><td class='text-center'>" + item.working_unit +
+                            "</tr>";
+
+                        $("#editsrtcodetbl").append(row);
+                    });
+
+                    $.each(response.viewlaborcost, function(key, item) {
+                        var row = "<tr class='edittbl' ><td class='col-md-6'>" + item.description +
+                            "</td><td class='text-center'>" + item.rate +
+                            "</td><td class='text-center'>" + item.quantity +
+                            "</td><td class='text-center'>" + item.amount +
+                            "</tr>";
+
+                        $("#editlaborcostbodytbl").append(row);
+                    });
+
+                    $.each(response.viewparts, function(key, item) {
+                        var row = "<tr class='edittbl' ><td class='col-md-6'>" + item.part_number +
+                            "</td><td class=''>" + item.description +
+                            "</td><td class='text-center'>" + item.stocks +
+                            "</td><td class='text-center'>" + item.quantity +
+                            "</td><td class='text-center'>" + item.price +
+                            "</td><td class='text-center'>" + item.disc_percent +
+                            "</td><td class='text-center'>" + item.disc_amt +
+                            "</td><td class='text-center'>" + item.total_amt +
+                            "</tr>";
+
+                        $("#editpartbodytbl").append(row);
+                    });
+
+                    $('#editremarks').val(response.viewjce.remarks);
+                    $('#editfreightcost').val(response.viewjce.freight_cost);
+                    $('#editvaliditydate').val(response.viewjce.validity_date);
+                    $('#editamountdue').val(response.viewjce.amount_due);
+
+                    $("#editModal").modal('show');
+
+                },
+                error: function(data, textStatus, errorThrown) {
+                    console.log(data);
+
+                },
+            });
+        })
+
+        //view modal 
         $(document).on("click", ".view", function(e) {
             var url = "{{ url('FAS/viewjcedetails') }}" + "/" + $(e.currentTarget).data("viewid");
 
@@ -388,7 +790,7 @@
                     $('#viewtotalsrtcode').val(response.viewjce.srtcode_total);
                     $('#viewtotallaborcostamt').val(response.viewjce.laborcost_total);
                     $('#viewtotalpartsamt').val(response.viewjce.parts_total);
-                    
+
                     $(".viewtbl").remove();
 
                     var tech = []
@@ -415,7 +817,7 @@
 
                         $("#laborcostbodytbl").append(row);
                     });
-                    
+
                     $.each(response.viewparts, function(key, item) {
                         var row = "<tr class='viewtbl' ><td class='col-md-6'>" + item.part_number +
                             "</td><td class=''>" + item.description +

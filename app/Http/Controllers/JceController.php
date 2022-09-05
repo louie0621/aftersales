@@ -47,7 +47,8 @@ class JceController extends Controller
             ->join('customers', 'jce.customer_id', '=', 'customers.id') // joining the contacts table , where user_id and contact_user_id are same
             ->select('jce.*', 'customers.customername', 'customers.contact')
             ->get();
-        return view('fas.jce', ['jcedata' => $showjce]);
+        $parts = Parts::all();
+        return view('fas.jce', ['jcedata' => $showjce,'parts' => $parts]);
     }
     public function contactperson($id)
     {
@@ -288,7 +289,7 @@ class JceController extends Controller
             ->join('config_parts', 'jce_partsentry.parts_id', '=', 'config_parts.id')
             ->get();
 
-        return response()->json(['viewparts' => $viewparts,'viewlaborcost' => $viewlaborcost, 'viewjcenumber' => $viewjcenumber, 'viewtech' => $viewtech, 'viewjce' => $viewjce, 'viewcustomer' => $viewcustomer, 'viewequipment' => $viewequipment, 'viewtech' => $viewtech]);
+        return response()->json(['viewparts' => $viewparts, 'viewlaborcost' => $viewlaborcost, 'viewjcenumber' => $viewjcenumber, 'viewtech' => $viewtech, 'viewjce' => $viewjce, 'viewcustomer' => $viewcustomer, 'viewequipment' => $viewequipment, 'viewtech' => $viewtech]);
     }
 
     /**
