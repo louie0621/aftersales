@@ -48,7 +48,11 @@ class JceController extends Controller
             ->select('jce.*', 'customers.customername', 'customers.contact')
             ->get();
         $parts = Parts::all();
-        return view('fas.jce', ['jcedata' => $showjce,'parts' => $parts]);
+        $jobtype = Sysconfig::all();
+        $components = Component::all();
+        $typeofissue = Typeofissue::all();
+        $dealer = Dealer::all();
+        return view('fas.jce', ['dealer'=>$dealer,'typeofissue'=>$typeofissue,'components'=>$components,'jobtype'=>$jobtype,'jcedata' => $showjce, 'parts' => $parts]);
     }
     public function contactperson($id)
     {
@@ -289,7 +293,8 @@ class JceController extends Controller
             ->join('config_parts', 'jce_partsentry.parts_id', '=', 'config_parts.id')
             ->get();
 
-        return response()->json(['viewparts' => $viewparts, 'viewlaborcost' => $viewlaborcost, 'viewjcenumber' => $viewjcenumber, 'viewtech' => $viewtech, 'viewjce' => $viewjce, 'viewcustomer' => $viewcustomer, 'viewequipment' => $viewequipment, 'viewtech' => $viewtech]);
+        $customer = Customer::all();        
+        return response()->json(['customer'=> $customer,'viewparts' => $viewparts, 'viewlaborcost' => $viewlaborcost, 'viewjcenumber' => $viewjcenumber, 'viewtech' => $viewtech, 'viewjce' => $viewjce, 'viewcustomer' => $viewcustomer, 'viewequipment' => $viewequipment, 'viewtech' => $viewtech]);
     }
 
     /**
