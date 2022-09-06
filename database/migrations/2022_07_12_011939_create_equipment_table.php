@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('type')->nullable();
             $table->string('branch')->nullable();
+            $table->string('unit_status')->nullable();
             $table->date('warrantystart')->nullable();
             $table->date('warrantyend')->nullable();
             $table->string('endcustomer')->nullable();

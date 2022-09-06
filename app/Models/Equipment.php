@@ -19,6 +19,7 @@ class Equipment extends Model
         'description',
         'type',
         'branch',
+        'unit_status',
         'warrantystart',
         'warrantyend',
         'endcustomer',
