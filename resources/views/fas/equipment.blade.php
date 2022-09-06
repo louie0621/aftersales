@@ -79,6 +79,10 @@
                                                 <input type="text" class="form-control form-control-sm @error('brand') is-invalid @enderror" value="{{ old('brand') }}" name="brand" id="viewbrand" disabled>
                                             </div>
                                             <div class="col-mb-3">
+                                                <label for="validationCustomUsername" class="form-label">Unit Status</label>
+                                                <input type="text" class="form-control form-control-sm @error('unit_status') is-invalid @enderror" value="{{ old('unit_status') }}" name="unit_status" id="viewunitstatus" disabled>
+                                            </div>
+                                            <div class="col-mb-3">
                                                 <label for="validationCustom02" class="form-label">Description</label>
                                                 <input type="text" class="form-control form-control-sm @error('description') is-invalid @enderror" value="{{ old('description') }}" name="description" id="viewdescription" disabled>
                                             </div>
@@ -89,7 +93,6 @@
                                             <div class="col-mb-3">
                                                 <label for="validationCustomUsername" class="form-label">Branch</label>
                                                 <input type="text" class="form-control form-control-sm @error('branch') is-invalid @enderror" value="{{ old('branch') }}" name="editbranch" id="viewbranch" disabled>
-
                                             </div>
                                             <div class="col-mb-3">
                                                 <label for="validationCustom03" class="form-label">Warranty Start</label>
@@ -99,7 +102,6 @@
                                             <div class="col-mb-3">
                                                 <label for="validationCustom03" class="form-label">Warranty End</label>
                                                 <input type="date" class="form-control form-control-sm @error('warrantyend') is-invalid @enderror" value="{{ old('warrantyend') }}" name="warrantyend" id="viewwarrantyend" disabled>
-
                                             </div>
                                             <div class="col-mb-3">
                                                 <label for="validationCustom05" class="form-label">End Customer</label>
@@ -195,6 +197,15 @@
                                                 <label for="validationCustomUsername" class="form-label">Brand Model</label>
                                                 <input type="text" class="form-control form-control-sm @error('brand') is-invalid @enderror" value="{{ old('brand') }}" name="brand" id="editbrand">
                                                 @error('brand')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
+                                            </div>
+                                            <div class="col-mb-3">
+                                                <label for="validationCustomUsername" class="form-label">Unit Status</label>
+                                                <input type="text" class="form-control form-control-sm @error('unit_status') is-invalid @enderror" value="{{ old('unit_status') }}" name="unit_status" id="editunitstatus">
+                                                @error('unit_status')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -386,6 +397,7 @@
                     $('#viewserialnumber').val(response.viewequipment.serialnumber);
                     $('#viewvehiclemodel').val(response.viewequipment.vehiclemodel);
                     $('#viewbrand').val(response.viewequipment.brand);
+                    $('#viewunitstatus').val(response.viewequipment.unit_status);
                     $('#viewengineno').val(response.viewequipment.engineno);
                     $('#viewdescription').val(response.viewequipment.description);
                     $('#viewtype').val(response.viewequipment.type);
@@ -431,6 +443,7 @@
                     $('#editserialnumber').val(response.editequipment.serialnumber);
                     $('#editvehiclemodel').val(response.editequipment.vehiclemodel);
                     $('#editbrand').val(response.editequipment.brand);
+                    $('#editunitstatus').val(response.editequipment.unit_status);
                     $('#editengineno').val(response.editequipment.engineno);
                     $('#editdescription').val(response.editequipment.description);
                     $('#edittype').val(response.editequipment.type);
@@ -470,6 +483,7 @@
                     serialnumber: $('#editserialnumber').val(),
                     vehiclemodel: $('#editvehiclemodel').val(),
                     brand: $('#editbrand').val(),
+                    unitstatus: $('#editunitstatus').val(),
                     engineno: $('#editengineno').val(),
                     description: $('#editdescription').val(),
                     type: $('#edittype').val(),

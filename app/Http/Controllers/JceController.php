@@ -7,6 +7,7 @@ use App\Http\Requests\JceTechnicianentryrequest;
 use App\Http\Requests\JceSrtcodeentryrequest;
 use App\Http\Requests\JceLaborcostentryrequest;
 use App\Http\Requests\JcePartsentryrequest;
+use App\Http\Requests\Equipmentrequest;
 use App\Models\Component;
 use App\Models\Customer;
 use App\Models\Dealer;
@@ -52,7 +53,7 @@ class JceController extends Controller
         $components = Component::all();
         $typeofissue = Typeofissue::all();
         $dealer = Dealer::all();
-        return view('fas.jce', ['dealer'=>$dealer,'typeofissue'=>$typeofissue,'components'=>$components,'jobtype'=>$jobtype,'jcedata' => $showjce, 'parts' => $parts]);
+        return view('fas.jce', ['dealer' => $dealer, 'typeofissue' => $typeofissue, 'components' => $components, 'jobtype' => $jobtype, 'jcedata' => $showjce, 'parts' => $parts]);
     }
     public function contactperson($id)
     {
@@ -84,6 +85,13 @@ class JceController extends Controller
             ->get();
 
         return response()->json(['showengineno' => $showengine]);
+    }
+    public function unitstatus($unitstatus)
+    {
+        //
+        $showunitstatus = Equipment::find($unitstatus);
+
+        return response()->json(['showunitstatus' => $showunitstatus]);
     }
     public function selectlaborcost($id)
     {
@@ -293,8 +301,8 @@ class JceController extends Controller
             ->join('config_parts', 'jce_partsentry.parts_id', '=', 'config_parts.id')
             ->get();
 
-        $customer = Customer::all();        
-        return response()->json(['customer'=> $customer,'viewparts' => $viewparts, 'viewlaborcost' => $viewlaborcost, 'viewjcenumber' => $viewjcenumber, 'viewtech' => $viewtech, 'viewjce' => $viewjce, 'viewcustomer' => $viewcustomer, 'viewequipment' => $viewequipment, 'viewtech' => $viewtech]);
+        $customer = Customer::all();
+        return response()->json(['customer' => $customer, 'viewparts' => $viewparts, 'viewlaborcost' => $viewlaborcost, 'viewjcenumber' => $viewjcenumber, 'viewtech' => $viewtech, 'viewjce' => $viewjce, 'viewcustomer' => $viewcustomer, 'viewequipment' => $viewequipment, 'viewtech' => $viewtech]);
     }
 
     /**

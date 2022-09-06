@@ -60,6 +60,15 @@
 								@enderror
 							</div>
 							<div class="col-mb-3">
+								<label for="validationCustomUsername" class="form-label">Unit Status</label>
+								<input type="text" class="form-control form-control-sm @error('unit_status') is-invalid @enderror" value="{{ old('unit_status') }}" name="unit_status" id="unit_status">
+								@error('unit_status')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
+							<div class="col-mb-3">
 								<label for="validationCustom02" class="form-label">Description</label>
 								<input type="text" class="form-control form-control-sm @error('description') is-invalid @enderror" value="{{ old('description') }}" name="description" id="description">
 								@error('description')
@@ -71,9 +80,9 @@
 							<div class="col-mb-3">
 								<label for="validationCustom02" class="form-label">Vehicle Type</label>
 								<select class="form-select form-select-sm" aria-label=".form-select-sm example" name="type">
-                                    <option value="Agriculture Equipment">Agriculture Equipment</option>
+									<option value="Agriculture Equipment">Agriculture Equipment</option>
 									<option value="Construction Equipment">Construction Equipment</option>
-                                </select>
+								</select>
 							</div>
 							<div class="col-mb-3">
 								<label for="validationCustomUsername" class="form-label">Branch Located</label>

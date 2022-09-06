@@ -61,7 +61,6 @@
                                             <td>{{ $data->name }}</td>
                                             <td>
                                                 <div class="d-flex align-items-center gap-3 fs-6">
-                                                    <a href="javascript:;" class="text-primary" id="view" data-toggle="modal" data-name="{{ $data->name }}" data-position="{{ $data->position }}" data-target="#viewModal" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="View detail" aria-label="Views"><i class="bi bi-eye-fill"></i></a>
                                                     <a href="javascript:;" id="edit" data-toggle="modal" data-eid="{{ $data->id }}" data-ename="{{ $data->name }}" data-eposition="{{ $data->position }}" data-target="#editModal" class="text-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" aria-label="Edit"><i class="bi bi-pencil-fill"></i></a>
                                                     <form action="{{ url('/FAS/delete-technician/'.$data->id) }}" method="POST">
                                                         @csrf
@@ -78,30 +77,6 @@
                         </div>
                     </div>
                 </div>
-
-
-                <!-- View Modal -->
-                <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="viewModalLabel"> Technician Details</h5>
-                                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="col-12">
-                                    <label class="form-label">Name</label>
-                                    <label class="form-control" id="nm"></label>
-                                </div>
-                                
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
 
                 <!-- Edit Modal -->
                 <div class="modal fade" id="editModal" role="dialog" tabindex="-1" aria-hidden="true">
@@ -144,15 +119,6 @@
 
 <script>
     $(document).ready(function() {
-
-        $(document).on("click", "#view", function(e) {
-            var getnameFromRow = $(e.currentTarget).data("name");
-            var getpositionFromRow = $(e.currentTarget).data("position");
-            document.getElementById('nm').innerHTML = getnameFromRow;
-            document.getElementById('pos').innerHTML = getpositionFromRow;
-
-        })
-
 
         $(document).on("click", "#edit", function(e) {
             var getidFromRow = $(e.currentTarget).data("eid");

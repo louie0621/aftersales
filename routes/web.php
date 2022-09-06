@@ -81,6 +81,7 @@ Route::controller(App\Http\Controllers\JceController::class)->group(function () 
     Route::get('/FAS/show-vehicletype/{type}', 'vehicletype');
     Route::get('/FAS/show-serialno/{serial}', 'serialno');
     Route::get('/FAS/show-engineno/{engine}', 'engineno');
+    Route::get('/FAS/show-unitstatus/{unitstatus}', 'unitstatus');
     Route::get('/FAS/selectlaborcost/{id}', 'selectlaborcost');
     Route::get('/FAS/selectpartno/{id}', 'selectpartno');
 });

@@ -29,6 +29,7 @@
                             <th>Contact Person</th>
                             <th>Tel No.</th>
                             <th>PO No.</th>
+                            <th>Incident datetime</th>
                             <th>Validity Date</th>
                         </tr>
                     </thead>
@@ -41,6 +42,7 @@
                             <td class="view" data-viewid="{{ $data->id }}" style="cursor: default;">{{ $data->contact }}</td>
                             <td class="view" data-viewid="{{ $data->id }}" style="cursor: default;">{{ $data->contact_no }}</td>
                             <td class="view" data-viewid="{{ $data->id }}" style="cursor: default;">{{ $data->po_number }}</td>
+                            <td class="view" data-viewid="{{ $data->id }}" style="cursor: default;">{{ $data->incidentdatetime}}</td>
                             <td class="view" data-viewid="{{ $data->id }}" style="cursor: default;">{{ $data->validity_date }}</td>
                         </tr>
                         @endforeach
@@ -67,9 +69,13 @@
                                                     <div class="card shadow-none bg-light border">
                                                         <div class="card-body">
                                                             <div class="row g-3">
-                                                                <div class="col-12">
+                                                                <div class="col-12 col-lg-6">
                                                                     <label class="form-label">JCE Number</label>
                                                                     <input type="text" class="form-control form-select-sm" id="viewjcenumber" disabled>
+                                                                </div>
+                                                                <div class="col-12 col-lg-6">
+                                                                    <label class="form-label">Incident Datetime</label>
+                                                                    <input type="text" class="form-control form-select-sm" id="viewincidentdatetime" disabled>
                                                                 </div>
                                                                 <div class="col-12 col-lg-4">
                                                                     <label class="form-label">Customer Name</label>
@@ -350,6 +356,7 @@
                 success: function(response) {
                     //console.log(response.viewequipment);
                     $('#viewjcenumber').val(response.viewjce.jce_number);
+                    $('#viewincidentdatetime').val(response.viewjce.incidentdatetime);
                     $('#viewcustomername').val(response.viewcustomer.customername);
                     $('#viewcontactperson').val(response.viewcustomer.contact);
                     $('#viewtelno').val(response.viewjce.contact_no);

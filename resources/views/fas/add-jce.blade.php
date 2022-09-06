@@ -113,7 +113,7 @@
                             </div>
                             <div class="col-md-4">
                                 <label class="form-label">Unit Status</label>
-                                <input type="text" class="form-control form-control-sm" id="unitstatus">
+                                <input type="text" class="form-control form-control-sm" id="unitstatus" disabled>
                             </div>
                             <div class="col-md-8">
                                 <label class="form-label">Engine Number</label>
@@ -783,7 +783,7 @@
                     }
                 });
             } else {
-                
+
             }
 
 
@@ -1114,6 +1114,7 @@
                         $('#engineno').empty();
                         $('#engineno').append(`<option value="">
                                   </option>`);
+                        $("#unitstatus").val('');
                         $.each(response.showmodel, function(key, item) {
                             $('#model').append(`<option value="${item.vehiclemodel}">
                                        ${item.vehiclemodel}
@@ -1132,13 +1133,15 @@
                 $('#engineno').empty();
                 $('#engineno').append(`<option value="">
                                   </option>`);
+                $("#unitstatus").val('');
             }
         });
 
         //model
         $("#model").change(function() {
             var url = "{{ url('/FAS/show-serialno') }}" + "/" + $(this).children("option:selected").val();
-
+            
+            
             $.ajax({
                 type: "GET",
                 url: url,
@@ -1157,6 +1160,7 @@
                                        ${item.serialnumber}
                                   </option>`);
                     })
+                    $("#unitstatus").val('');
                 }
             })
 
@@ -1180,6 +1184,21 @@
                                        ${item.engineno}
                                   </option>`);
                     })
+                    $("#unitstatus").val('');
+                }
+            })
+        });
+
+        //Engine Number
+        $("#engineno").change(function() {
+            var url = "{{ url('/FAS/show-unitstatus') }}" + "/" + $(this).children("option:selected").val();
+
+            $.ajax({
+                type: "GET",
+                url: url,
+                dataType: "json",
+                success: function(response) {
+                    $("#unitstatus").val(response.showunitstatus.unit_status);
                 }
             })
         });
