@@ -336,6 +336,7 @@
                             <a href="{{ url('/FAS/labor-cost')}}" class="list-group-item"><i class="bi bi-wrench"></i>Labor Cost</a>
                             <a href="{{ url('/FAS/parts')}}" class="list-group-item"><i class="bi bi-wrench"></i>Parts</a>
                             <label class="list-group-item" for=""><Strong>Work Order</Strong></label>
+                            <a href="{{ url('/FAS/work-order-status')}}" class="list-group-item"><i class="bi bi-wrench"></i>Work Order Status</a>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="pills-user">

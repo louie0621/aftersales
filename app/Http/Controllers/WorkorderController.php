@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
+use App\Models\Equipment;
+use App\Models\Jce;
+use App\Models\JceTechnicianentry;
 use App\Models\Workorder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class WorkorderController extends Controller
 {
@@ -35,8 +40,23 @@ class WorkorderController extends Controller
     public function create()
     {
         //
-        return view('fas.add-workorder');
+        $jceno = Jce::all();
+        return view('fas.add-workorder',['jceno' => $jceno]);
     }
+    public function workorderjceno($id)
+    {
+        //
+        $jceno = Jce::find($id);
+        $viewcustomer = Customer::find($jceno->customer_id);
+        $viewequipment = Equipment::find($jceno->equipment_id);
+        $viewtech = DB::table('jce_techicianentry')
+            ->where('techentry_no', $jceno->techentry_no)
+            ->join('technician', 'jce_techicianentry.tech_id', '=', 'technician.id')
+            ->get();
+
+        return response()->json(['viewtech'=>$viewtech,'jceno'=>$jceno, 'viewcustomer'=>$viewcustomer,'viewequipment'=> $viewequipment]);
+    }
+    
 
     /**
      * Store a newly created resource in storage.

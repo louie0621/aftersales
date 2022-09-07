@@ -9,7 +9,7 @@
         <div class="ps-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
-                    <li class="breadcrumb-item active" aria-current="page">Technicians List</li>
+                    <li class="breadcrumb-item active" aria-current="page">Work Order Status</li>
                 </ol>
             </nav>
         </div>
@@ -22,12 +22,12 @@
                 <div class="col-12 col-lg-4 d-flex">
                     <div class="card border shadow-none w-100">
                         <div class="card-body">
-                            <form class="row g-3" method="POST" action="{{ url('/FAS/addtechnician') }}">
+                            <form class="row g-3" method="POST" action="{{ url('/FAS/add-work-order-status') }}">
                                 @csrf
                                 <div class="col-12">
-                                    <label class="form-label">Name</label>
-                                    <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Fullname" autofocus>
-                                    @error('name')
+                                    <label class="form-label">Work Order Status</label>
+                                    <input type="text" class="form-control @error('workorderstatus') is-invalid @enderror" name="workorderstatus" value="{{ old('workorderstatus') }}" autofocus>
+                                    @error('workorderstatus')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -55,14 +55,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($technician as $data)
+                                        @foreach($wos as $data)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $data->name }}</td>
+                                            <td>{{ $data->workorderstatus }}</td>
                                             <td>
                                                 <div class="d-flex align-items-center gap-3 fs-6">
-                                                    <a href="javascript:;" id="edit" data-toggle="modal" data-eid="{{ $data->id }}" data-ename="{{ $data->name }}" data-eposition="{{ $data->position }}" data-target="#editModal" class="text-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" aria-label="Edit"><i class="bi bi-pencil-fill"></i></a>
-                                                    <form action="{{ url('/FAS/delete-technician/'.$data->id) }}" method="POST">
+                                                    <a href="javascript:;" id="edit" data-toggle="modal" data-eid="{{ $data->id }}" data-wos="{{ $data->workorderstatus }}" data-target="#editModal" class="text-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" aria-label="Edit"><i class="bi bi-pencil-fill"></i></a>
+                                                    <form action="{{ url('/FAS/deletewos/'.$data->id) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" style="outline: none; border-color: white; border-style: none; background-color: white;" class="text-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete"><i class="bi bi-trash-fill"></i></button>
@@ -83,14 +83,14 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title"> Update Technician</h5>
+                                <h5 class="modal-title"> Work Order Status</h5>
                                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <form id="myForm">
                                 <div class="modal-body">
                                     <input type="text" id="eid" hidden>
                                     <div class="col-12">
-                                        <label class="form-label">Name</label>
+                                        <label class="form-label">Work Order Status</label>
                                         <input type="text" class="form-control" id="enm">
                                     </div>
                                     <br>
@@ -122,16 +122,15 @@
 
         $(document).on("click", "#edit", function(e) {
             var getidFromRow = $(e.currentTarget).data("eid");
-            var getnameFromRow = $(e.currentTarget).data("ename");
-            var getpositionFromRow = $(e.currentTarget).data("eposition");
+            var getnameFromRow = $(e.currentTarget).data("wos");
             $('#eid').val(getidFromRow);
             $('#enm').val(getnameFromRow);
-            $('#position').val(getpositionFromRow);
         })
 
         $('#editsave').click(function(e) {
             e.preventDefault();
-            var url = "{{ url('/FAS/update-technician') }}" + "/" + $('#eid').val();
+            var url = "{{ url('/FAS/work-order-status') }}" + "/" + $('#eid').val();
+            
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -141,8 +140,7 @@
                 url: url,
                 method: 'put',
                 data: {
-                    name: $('#enm').val(),
-                    position: $('#position').val(),
+                    workorderstatus: $('#enm').val(),
                     _token: '{!! csrf_token() !!}'
                 },
                 success: function(result) {

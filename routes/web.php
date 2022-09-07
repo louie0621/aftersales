@@ -90,6 +90,7 @@ Route::controller(App\Http\Controllers\WorkorderController::class)->group(functi
 
     Route::get('/FAS/work-order', 'index');
     Route::get('/FAS/add-work-order', 'create');
+    Route::get('/FAS/workorderjceno/{id}', 'workorderjceno');
     
 });
 
@@ -163,6 +164,11 @@ Route::controller(App\Http\Controllers\SysconfigController::class)->group(functi
     Route::post('/FAS/add-parts', 'storeparts');
     Route::put('/FAS/parts/{id}', 'updateparts');
     Route::delete('/FAS/deleteparts/{id}', 'destroyparts');
+
+    Route::get('/FAS/work-order-status', 'indexwos');
+    Route::post('/FAS/add-work-order-status', 'storewos');
+    Route::put('/FAS/work-order-status/{id}', 'updatewos');
+    Route::delete('/FAS/deletewos/{id}', 'destroywos');
 });
 
 Route::controller(App\Http\Controllers\userController::class)->group(function () {

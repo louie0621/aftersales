@@ -13,8 +13,10 @@ use App\Http\Requests\Laborcostrequest;
 use App\Http\Requests\Partsrequest;
 use App\Models\Typeofissue;
 use App\Http\Requests\Typeofissuerequest;
+use App\Http\Requests\Workorderstatusrequest;
 use App\Models\Laborcost;
 use App\Models\Parts;
+use App\Models\Workorderstatus;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class SysconfigController extends Controller
@@ -290,5 +292,47 @@ class SysconfigController extends Controller
         Alert::toast('You\'ve Successfully delete', 'info');
         
         return response()->json();
+    }
+
+    //Work order status
+
+    public function indexwos()
+    {
+        //
+        $wos= Workorderstatus::all();
+        return view('fas.configworkorderstatus', ['wos' => $wos]);
+    }
+
+    public function storewos(Workorderstatusrequest $request)
+    {
+        //
+        $data = $request->validated();
+
+        Workorderstatus::create([
+            'workorderstatus' => $data['workorderstatus']
+        ]);
+        
+        Alert::toast('You\'ve Successfully Added', 'success');
+
+        return redirect('FAS/work-order-status');
+    }
+
+    public function updatewos(Workorderstatusrequest $request,$id)
+    {
+        //
+        $edit = Workorderstatus::find($id);
+        $edit->workorderstatus = $request->workorderstatus;
+        $edit->save();
+        return response()->json();
+    }
+
+    public function destroywos($id)
+    {
+        //
+        Workorderstatus::find($id)->delete();
+
+        Alert::toast('You\'ve Successfully delete', 'info');
+        
+        return redirect('/FAS/work-order-status');
     }
 }
