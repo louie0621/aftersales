@@ -19,8 +19,8 @@
     <!--end breadcrumb-->
     <div class="card">
         <div class="card-body">
-            <div class="table-responsive mt-3">
-                <table class="table align-middle" id="mytbl">
+            <div class="table-responsive mt-3 ">
+                <table class="table align-middle " id="mytbl">
                     <thead class="table-secondary">
                         <tr>
                             <th>#</th>

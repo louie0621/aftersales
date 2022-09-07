@@ -54,7 +54,7 @@
                             </div>
                             <div class="col-md-4">
                                 <label class="form-label">SRT</label>
-                                <input type="text" class="form-control form-control-sm" id="srt">
+                                <input type="text" class="form-control form-control-sm numberonly" id="srt">
                             </div>
                             <div class="col-md-8">
                                 <label class="form-label">Contact Person </label>
@@ -62,7 +62,7 @@
                             </div>
                             <div class="col-md-4">
                                 <label class="form-label">Parts Amount</label>
-                                <input type="text" class="form-control form-control-sm" id="partsamt">
+                                <input type="text" class="form-control form-control-sm numberonly" id="partsamt">
                             </div>
                             <div class="col-md-8">
                                 <label class="form-label">TelNo.</label>
@@ -181,11 +181,11 @@
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label">Engine Hours</label>
-                                <input type="text" class="form-control form-control-sm" id="enginehours">
+                                <input type="text" class="form-control form-control-sm numberonly" id="enginehours">
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label">Travel Days</label>
-                                <input type="text" class="form-control form-control-sm" id="traveldays">
+                                <input type="text" class="form-control form-control-sm numberonly" id="traveldays">
                             </div>
                             <div class="col-md-12">
                                 <label class="form-label">Techician Name</label>
@@ -264,7 +264,7 @@
                                         <tr>
                                             <td class="col-md-3"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; padding-left:.5rem;" id="srtcodeentry"></td>
                                             <td class="col-md-6"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; padding-left:.5rem;" id="srtdesentry"></td>
-                                            <td><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center; padding-right:.5rem;" id="srtworkunitentry"></td>
+                                            <td><input type="text" class="form-control form-control-sm numberonly" style="min-height: 0rem; padding:0rem; text-align:center; padding-right:.5rem; " id="srtworkunitentry"></td>
                                             <td><strong><a href="javascript:;" id="addsrtcode" class="text-success" style="font-size: 20px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add"><i class="bi bi-plus-square-fill"></i></a></strong></td>
                                         </tr>
                                     </tbody>
@@ -302,7 +302,7 @@
                                                 </select>
                                             </td>
                                             <td class="col-md-2"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="laborcostrate" disabled></td>
-                                            <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="laborcostqty"></td>
+                                            <td class="col-md-1"><input type="text" class="form-control form-control-sm numberonly" style="min-height: 0rem; padding:0rem; text-align:center;" id="laborcostqty"></td>
                                             <td><input type="text" class="form-control form-control-sm " style="min-height: 0rem; padding:0rem; text-align:right; padding-right:.5rem;" id="laborcostamt" disabled></td>
                                             <td><strong><a href="javascript:;" id="addlaborcost" class="text-success" style="font-size: 20px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add"><i class="bi bi-plus-square-fill"></i></a></strong></td>
                                         </tr>
@@ -346,10 +346,10 @@
                                             </td>
                                             <td class="col-md-3"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id="partdes" disabled></td>
                                             <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="partavail" disabled></td>
-                                            <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="partqty"></td>
+                                            <td class="col-md-1"><input type="text" class="form-control form-control-sm numberonly" style="min-height: 0rem; padding:0rem; text-align:center;" id="partqty"></td>
                                             <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:right;" id="partprice" disabled></td>
-                                            <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="partdiscpercent" disabled></td>
-                                            <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:right;" id="partdiscamt" disabled></td>
+                                            <td class="col-md-1"><input type="text" class="form-control form-control-sm numberonly" style="min-height: 0rem; padding:0rem; text-align:center;" id="partdiscpercent" disabled></td>
+                                            <td class="col-md-1"><input type="text" class="form-control form-control-sm numberonly" style="min-height: 0rem; padding:0rem; text-align:right;" id="partdiscamt" disabled></td>
                                             <td class="col-md-2"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:right;" id="parttotal" disabled></td>
                                             <td><strong><a href="javascript:;" id="addparts" class="text-success" style="font-size: 20px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add"><i class="bi bi-plus-square-fill"></i></a></strong></td>
                                         </tr>
@@ -368,7 +368,7 @@
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label">Freight Cost</label>
-                                <input type="text" class="form-control form-control-sm" id="freightcost">
+                                <input type="text" class="form-control form-control-sm numberonly" style="text-align: right;" id="freightcost">
                             </div>
                             <div class="col-md-8">
                                 <label class="form-label">Validity Date</label>
@@ -376,9 +376,8 @@
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label">Amount Due</label>
-                                <input type="text" class="form-control form-control-sm" id="amtdue">
+                                <input type="text" class="form-control form-control-sm numberonly" id="amtdue" style="text-align: right;" disabled>
                             </div>
-
                             <div class="col-12">
                                 <button class="btn btn-primary" type="button" id="submitjceform">Save</button>
                                 <button class="btn btn-danger">Cancel</button>
@@ -822,7 +821,7 @@
                 return parseFloat(a) + parseFloat(b);
             }, 0);
 
-            $("#totalpartsamt").val(sum);
+            $("#totalpartsamt").val(sum.toLocaleString());
             $("#partsno").find('option:eq(0)').prop('selected', true);
             $("#partdes").val('');
             $("#partavail").val('');
@@ -960,8 +959,8 @@
             var sum = arr.reduce(function(a, b) {
                 return parseFloat(a) + parseFloat(b);
             }, 0);
-
-            $("#totallaborcostamt").val(sum);
+            var ttl = sum.toLocaleString();
+            $("#totallaborcostamt").val(ttl);
             $("#labordescription").find('option:eq(0)').prop('selected', true);
             $("#laborcostamt").val('');
             $("#laborcostqty").val('');
@@ -1011,8 +1010,20 @@
 
         });
 
+        //Amount Due 
+        $("#freightcost").keyup(function(e) {
+            var totalparts = $("#totalpartsamt").val();
+            var freightcost = $("#freightcost").val();
+            var total = parseFloat(totalparts.replace(/,/g, '')) + parseFloat(freightcost);
+            if ($("#freightcost").val().length || $("#totalpartsamt").val().length) {
+                $("#amtdue").val(total.toLocaleString());
+            } else {
+                $("#amtdue").val('');
+            }
+        });
+
         //Work unit number only
-        $("#srtworkunitentry").keypress(function(e) {
+        $(".numberonly").keypress(function(e) {
             //if the letter is not digit then display error and don't type anything
             if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
                 return false;
@@ -1140,8 +1151,8 @@
         //model
         $("#model").change(function() {
             var url = "{{ url('/FAS/show-serialno') }}" + "/" + $(this).children("option:selected").val();
-            
-            
+
+
             $.ajax({
                 type: "GET",
                 url: url,
@@ -1257,7 +1268,7 @@
 
         var arr = [];
         $(".parttr").each(function() {
-            arr.push($(this).find("td:nth-child(8)").text()); //put elements into array
+            arr.push($(this).find("td:nth-child(9)").text()); //put elements into array
         });
 
         var sum = arr.reduce(function(a, b) {
@@ -1265,7 +1276,7 @@
         }, 0);
 
 
-        $("#totalpartsamt").val(sum);
+        $("#totalpartsamt").val(sum.toLocaleString());
     }
 
     //delete Labor Cost Table Code
@@ -1274,14 +1285,14 @@
 
         var arr = [];
         $(".laborcosttr").each(function() {
-            arr.push($(this).find("td:nth-child(4)").text()); //put elements into array
+            arr.push($(this).find("td:nth-child(5)").text()); //put elements into array
         });
 
         var sum = arr.reduce(function(a, b) {
             return parseFloat(a) + parseFloat(b);
         }, 0);
 
-        $("#totallaborcostamt").val(sum);
+        $("#totallaborcostamt").val(sum.toLocaleString());
     }
 </script>
 
