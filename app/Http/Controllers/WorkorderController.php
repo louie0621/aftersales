@@ -7,6 +7,7 @@ use App\Models\Equipment;
 use App\Models\Jce;
 use App\Models\JceTechnicianentry;
 use App\Models\Workorder;
+use App\Models\Workorderstatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -41,7 +42,8 @@ class WorkorderController extends Controller
     {
         //
         $jceno = Jce::all();
-        return view('fas.add-workorder',['jceno' => $jceno]);
+        $jcewos = Workorderstatus::all();
+        return view('fas.add-workorder',['jceno' => $jceno, 'jcewos' => $jcewos]);
     }
     public function workorderjceno($id)
     {

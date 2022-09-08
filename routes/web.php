@@ -169,6 +169,16 @@ Route::controller(App\Http\Controllers\SysconfigController::class)->group(functi
     Route::post('/FAS/add-work-order-status', 'storewos');
     Route::put('/FAS/work-order-status/{id}', 'updatewos');
     Route::delete('/FAS/deletewos/{id}', 'destroywos');
+
+    Route::get('/FAS/defect-code', 'indexdc');
+    Route::post('/FAS/add-defect-code', 'storedc');
+    Route::put('/FAS/defect-code/{id}', 'updatedc');
+    Route::delete('/FAS/deletedc/{id}', 'destroydc');
+
+    Route::get('/FAS/failure-code', 'indexfc');
+    Route::post('/FAS/add-failure-code', 'storefc');
+    Route::put('/FAS/failure-code/{id}', 'updatefc');
+    Route::delete('/FAS/deletefc/{id}', 'destroyfc');
 });
 
 Route::controller(App\Http\Controllers\userController::class)->group(function () {

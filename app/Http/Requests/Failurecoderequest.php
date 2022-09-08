@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Workorderstatusrequest extends FormRequest
+class Failurecoderequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,14 +25,14 @@ class Workorderstatusrequest extends FormRequest
     {
         return [
             //
-            'workorderstatus' => ['required', 'string', 'max:255','unique:config_workorderstatus']
-            
+            'failure_code' => ['required', 'string', 'max:255', 'unique:config_failure_code']
+
         ];
     }
     protected function prepareForValidation()
     {
         $this->merge([
-            'workorderstatus' => strip_tags($this->workorderstatus)
+            'failure_code' => strip_tags($this->failure_code)
         ]);
     }
 }

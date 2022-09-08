@@ -60,7 +60,7 @@
                                             </div>
                                             <div class="col-12" style="padding-bottom: .4em;">
                                                 <label class="form-label">Complaint</label>
-                                                <textarea class="form-control form-select-sm" rows="4" cols="4" id="complaint"></textarea>
+                                                <textarea class="form-control form-select-sm" rows="4" cols="4" id="complaint" disabled></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -72,7 +72,12 @@
                                         <div class="row g-3">
                                             <div class="col-12">
                                                 <label class="form-label">Work Order Status</label>
-                                                <input type="text" class="form-control form-select-sm" id="workorderstatus">
+                                                <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="workorderstatus">
+                                                    <option selected></option>
+                                                    @foreach($jcewos as $data)
+                                                    <option value="{{ $data->id }}">{{ $data->workorderstatus }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                             <div class="col-12">
                                                 <label class="form-label">Incident Date</label>
@@ -147,7 +152,7 @@
                                             </div>
                                             <div class="col-12 col-lg-4">
                                                 <label class="form-label">Arrived Date/Time</label>
-                                                <input type="text" class="form-control form-select-sm" id="arrived">
+                                                <input type="datetime-local" class="form-control form-select-sm" id="arrived">
                                             </div>
                                             <div class="col-12 col-lg-4">
                                                 <label class="form-label">Plate No.</label>

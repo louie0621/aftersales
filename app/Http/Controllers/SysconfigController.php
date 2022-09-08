@@ -9,11 +9,15 @@ use App\Models\Dealer;
 use App\Http\Requests\Dealerrequest;
 use App\Models\Component;
 use App\Http\Requests\Componentrequest;
+use App\Http\Requests\Defectcoderequest;
+use App\Http\Requests\Failurecoderequest;
 use App\Http\Requests\Laborcostrequest;
 use App\Http\Requests\Partsrequest;
 use App\Models\Typeofissue;
 use App\Http\Requests\Typeofissuerequest;
 use App\Http\Requests\Workorderstatusrequest;
+use App\Models\Defectcode;
+use App\Models\Failurecode;
 use App\Models\Laborcost;
 use App\Models\Parts;
 use App\Models\Workorderstatus;
@@ -334,5 +338,89 @@ class SysconfigController extends Controller
         Alert::toast('You\'ve Successfully delete', 'info');
         
         return redirect('/FAS/work-order-status');
+    }
+
+    //Defect Code
+
+    public function indexdc()
+    {
+        //
+        $dc= Defectcode::all();
+        return view('fas.configdefectcode', ['dc' => $dc]);
+    }
+
+    public function storedc(Defectcoderequest $request)
+    {
+        //
+        $data = $request->validated();
+
+        Defectcode::create([
+            'defect_code' => $data['defect_code']
+        ]);
+        
+        Alert::toast('You\'ve Successfully Added', 'success');
+
+        return redirect('FAS/defect-code');
+    }
+
+    public function updatedc(Defectcoderequest $request,$id)
+    {
+        //
+        $edit = Defectcode::find($id);
+        $edit->defect_code = $request->defect_code;
+        $edit->save();
+        return response()->json();
+    }
+
+    public function destroydc($id)
+    {
+        //
+        Defectcode::find($id)->delete();
+
+        Alert::toast('You\'ve Successfully delete', 'info');
+        
+        return response()->json();
+    }
+
+    //Failure Code
+
+    public function indexfc()
+    {
+        //
+        $fc= Failurecode::all();
+        return view('fas.configfailurecode', ['fc' => $fc]);
+    }
+
+    public function storefc(Failurecoderequest $request)
+    {
+        //
+        $data = $request->validated();
+
+        Failurecode::create([
+            'failure_code' => $data['failure_code']
+        ]);
+        
+        Alert::toast('You\'ve Successfully Added', 'success');
+
+        return redirect('FAS/failure-code');
+    }
+
+    public function updatefc(Failurecoderequest $request,$id)
+    {
+        //
+        $edit = Failurecode::find($id);
+        $edit->failure_code = $request->failure_code;
+        $edit->save();
+        return response()->json();
+    }
+
+    public function destroyfc($id)
+    {
+        //
+        Failurecode::find($id)->delete();
+
+        Alert::toast('You\'ve Successfully delete', 'info');
+        
+        return response()->json();
     }
 }
