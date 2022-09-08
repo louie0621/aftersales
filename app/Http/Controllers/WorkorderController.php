@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Defectcode;
 use App\Models\Equipment;
+use App\Models\Failurecode;
 use App\Models\Jce;
 use App\Models\JceTechnicianentry;
+use App\Models\Parts;
 use App\Models\Workorder;
 use App\Models\Workorderstatus;
 use Illuminate\Http\Request;
@@ -43,7 +46,10 @@ class WorkorderController extends Controller
         //
         $jceno = Jce::all();
         $jcewos = Workorderstatus::all();
-        return view('fas.add-workorder',['jceno' => $jceno, 'jcewos' => $jcewos]);
+        $dc = Defectcode::all();
+        $fc = Failurecode::all();
+        $parts= Parts::all();
+        return view('fas.add-workorder',['parts'=>$parts,'fc' => $fc,'dc' => $dc,'jceno' => $jceno, 'jcewos' => $jcewos]);
     }
     public function workorderjceno($id)
     {
@@ -57,6 +63,14 @@ class WorkorderController extends Controller
             ->get();
 
         return response()->json(['viewtech'=>$viewtech,'jceno'=>$jceno, 'viewcustomer'=>$viewcustomer,'viewequipment'=> $viewequipment]);
+    }
+
+    public function workorderpartscode($id)
+    {
+        //
+        $parts = Parts::find($id);
+
+        return response()->json(['parts'=>$parts]);
     }
     
 

@@ -78,14 +78,14 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title"> Update Defect Code</h5>
+                                <h5 class="modal-title"> Update Failure Code</h5>
                                 <button type="button" class="btn-close closemodal" data-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <form id="myForm">
                                 <div class="modal-body">
                                     <input type="text" id="eid" hidden>
                                     <div class="col-12">
-                                        <label class="form-label">Defect Code</label>
+                                        <label class="form-label">Failure Code</label>
                                         <input type="text" class="form-control" id="enm">
                                     </div>
                                     <br>
@@ -130,7 +130,7 @@
 
         $('#editsave').click(function(e) {
             e.preventDefault();
-            var url = "{{ url('FAS/add-failure-code') }}" + "/" + $('#eid').val();
+            var url = "{{ url('FAS/failure-code') }}" + "/" + $('#eid').val();
             
             $.ajaxSetup({
                 headers: {
@@ -142,7 +142,7 @@
                 url: url,
                 method: 'PUT',
                 data: {
-                    defect_code:$('#enm').val(),
+                    failure_code:$('#enm').val(),
                     _token: '{!! csrf_token() !!}'
                 },
                 success: function(result) {
@@ -159,7 +159,7 @@
 
         //delete
         $(document).on("click", "#delete", function(e) {
-            var url = "{{ url('/FAS/deletedc') }}" + "/" + $(e.currentTarget).data("deleteid");
+            var url = "{{ url('/FAS/deletefc') }}" + "/" + $(e.currentTarget).data("deleteid");
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')

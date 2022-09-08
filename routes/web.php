@@ -91,6 +91,7 @@ Route::controller(App\Http\Controllers\WorkorderController::class)->group(functi
     Route::get('/FAS/work-order', 'index');
     Route::get('/FAS/add-work-order', 'create');
     Route::get('/FAS/workorderjceno/{id}', 'workorderjceno');
+    Route::get('/FAS/workorderpartscode/{id}', 'workorderpartscode');
     
 });
 

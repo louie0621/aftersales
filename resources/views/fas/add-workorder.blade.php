@@ -202,27 +202,37 @@
                                                                 <div class="row g-3">
                                                                     <div class="col-12 col-lg-6">
                                                                         <label class="form-label">Defect Code</label>
-                                                                        <input type="text" class="form-control form-select-sm" id="viewjcenumber">
+                                                                        <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="defectcode">
+                                                                            <option selected></option>
+                                                                            @foreach($dc as $data)
+                                                                            <option value="{{ $data->id }}">{{ $data->defect_code }}</option>
+                                                                            @endforeach
+                                                                        </select>
                                                                     </div>
                                                                     <div class="col-12 col-lg-6">
                                                                         <label class="form-label">Failure Code</label>
-                                                                        <input type="text" class="form-control form-select-sm" id="viewincidentdatetime">
+                                                                        <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="failurecode">
+                                                                            <option selected></option>
+                                                                            @foreach($fc as $data)
+                                                                            <option value="{{ $data->id }}">{{ $data->failure_code }}</option>
+                                                                            @endforeach
+                                                                        </select>
                                                                     </div>
                                                                     <div class="col-12">
                                                                         <label class="form-label">Customer Request / Complaint</label>
-                                                                        <input type="text" class="form-control form-select-sm " id="viewcustomername">
+                                                                        <input type="text" class="form-control form-select-sm " id="customerrequest">
                                                                     </div>
                                                                     <div class="col-12">
                                                                         <label class="form-label">Cause / Findings</label>
-                                                                        <input type="text" class="form-control form-select-sm t" id="viewcustomername">
+                                                                        <input type="text" class="form-control form-select-sm t" id="cause">
                                                                     </div>
                                                                     <div class="col-12">
                                                                         <label class="form-label">Service Repair / Job Done</label>
-                                                                        <input type="text" class="form-control form-select-sm " id="viewcustomername">
+                                                                        <input type="text" class="form-control form-select-sm " id="servicerepair">
                                                                     </div>
                                                                     <div class="col-12">
                                                                         <label class="form-label">Recommendation</label>
-                                                                        <input type="text" class="form-control form-select-sm" id="viewcustomername">
+                                                                        <input type="text" class="form-control form-select-sm" id="recommendation">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -243,10 +253,13 @@
                                                                             <tr>
                                                                                 <td class="col-md-3">
                                                                                     <select class="form-select form-select-sm selectpart" id="partscode" style="min-height: 0rem; padding:0rem; padding-left:.5rem;" aria-label=".form-select-sm example">
-                                                                                        <option value=""></option>
+                                                                                        <option selected></option>
+                                                                                        @foreach($parts as $data)
+                                                                                        <option value="{{ $data->id }}">{{ $data->part_number }}</option>
+                                                                                        @endforeach
                                                                                     </select>
                                                                                 </td>
-                                                                                <td class="col-md-4"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id="partsdes"></td>
+                                                                                <td class="col-md-4"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id="partsdes" disabled></td>
                                                                                 <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="partsqty"></td>
                                                                                 <td class="col-md-1"><input type="text" class="form-control form-control-sm numberonly" style="min-height: 0rem; padding:0rem; text-align:center;" id="partsprice" disabled></td>
                                                                                 <td class="col-md-2"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:right;" id="partstotal" disabled></td>
@@ -352,6 +365,31 @@
         //     });
         // })
 
+
+        //Parts Code 
+        $("#partscode").change(function() {
+            var url = "{{ url('/FAS/workorderpartscode') }}" + "/" + $(this).children("option:selected").val();
+
+            if ($(this).children("option:selected").val().length > 0) {
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    dataType: "json",
+                    success: function(response) {
+                        $("#partsdes").val(response.parts.description);
+                        $("#partsprice").val(response.parts.price);
+
+                    }
+                })
+            } else {
+                $("#partsdes").val('');
+                $("#partsprice").val('');
+                $("#partsqty").val('');
+            }
+
+        });
+
+        //JCE Number
         $("#jceno").change(function() {
             var url = "{{ url('/FAS/workorderjceno') }}" + "/" + $(this).children("option:selected").val();
 
