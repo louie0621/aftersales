@@ -44,7 +44,7 @@
                                             </div>
                                             <div class="col-12">
                                                 <label class="form-label">Technician Name</label>
-                                                <input type="text" class="form-control form-select-sm" id="techname">
+                                                <input type="text" class="form-control form-select-sm" id="techname" disabled>
                                             </div>
                                             <div class="col-12">
                                                 <label class="form-label">Model</label>
@@ -144,11 +144,11 @@
                                             </div>
                                             <div class="col-12 col-lg-4">
                                                 <label class="form-label">Machine Status</label>
-                                                <input type="text" class="form-control form-select-sm" id="repairend">
+                                                <input type="text" class="form-control form-select-sm" id="machinestatus">
                                             </div>
                                             <div class="col-12 col-lg-4">
                                                 <label class="form-label">Service Model</label>
-                                                <input type="text" class="form-control form-select-sm" id="serviceno">
+                                                <input type="text" class="form-control form-select-sm" id="servicemodel">
                                             </div>
                                             <div class="col-12 col-lg-4">
                                                 <label class="form-label">Arrived Date/Time</label>
@@ -260,12 +260,18 @@
                                                                                     </select>
                                                                                 </td>
                                                                                 <td class="col-md-4"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id="partsdes" disabled></td>
-                                                                                <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="partsqty"></td>
+                                                                                <td class="col-md-1"><input type="text" class="form-control form-control-sm numberonly" style="min-height: 0rem; padding:0rem; text-align:center;" id="partsqty"></td>
                                                                                 <td class="col-md-1"><input type="text" class="form-control form-control-sm numberonly" style="min-height: 0rem; padding:0rem; text-align:center;" id="partsprice" disabled></td>
                                                                                 <td class="col-md-2"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:right;" id="partstotal" disabled></td>
                                                                                 <td><strong><a href="javascript:;" id="addparts" class="text-success" style="font-size: 20px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add"><i class="bi bi-plus-square-fill"></i></a></strong></td>
                                                                             </tr>
                                                                         </tbody>
+                                                                        <tfoot>
+                                                                            <tr>
+                                                                                <td colspan="4" style="text-align: right;"><strong>Total</strong></td>
+                                                                                <td><strong><span id=""></span> <input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="totalpac" disabled></strong></td>
+                                                                            </tr>
+                                                                        </tfoot>
                                                                     </table>
                                                                 </div>
                                                             </div>
@@ -287,23 +293,26 @@
                                                                                 <th>Action</th>
                                                                             </tr>
                                                                         </thead>
-                                                                        <tbody id="partbody">
+                                                                        <tbody id="techactivitybody">
                                                                             <tr>
                                                                                 <td class="col-md-4"><input type="date" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id="activitydate"></td>
                                                                                 <td class="col-md-3">
-                                                                                    <select class="form-select form-select-sm selectpart" id="decription" style="min-height: 0rem; padding:0rem; padding-left:.5rem;" aria-label=".form-select-sm example">
-                                                                                        <option value=""></option>
+                                                                                    <select class="form-select form-select-sm selectpart" id="tadecription" style="min-height: 0rem; padding:0rem; padding-left:.5rem;" aria-label=".form-select-sm example">
+                                                                                        <option selected></option>
+                                                                                        @foreach($techactivity as $data)
+                                                                                        <option value="{{ $data->id }}">{{ $data->tech_activity }}</option>
+                                                                                        @endforeach
                                                                                     </select>
                                                                                 </td>
                                                                                 <td class="col-md-4"><input type="time" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id="starttime"></td>
                                                                                 <td class="col-md-4"><input type="time" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id="endtime"></td>
-                                                                                <td class="col-md-4"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id="manhour"></td>
+                                                                                <td class="col-md-4"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id="manhour" disabled></td>
                                                                                 <td class="col-md-4"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id="locfrom"></td>
                                                                                 <td class="col-md-4"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem;" id="locto"></td>
-                                                                                <td class="col-md-1"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:center;" id="odostart"></td>
+                                                                                <td class="col-md-1"><input type="text" class="form-control form-control-sm numberonly" style="min-height: 0rem; padding:0rem; text-align:center;" id="odostart"></td>
                                                                                 <td class="col-md-1"><input type="text" class="form-control form-control-sm numberonly" style="min-height: 0rem; padding:0rem; text-align:center;" id="odoend"></td>
-                                                                                <td class="col-md-2"><input type="text" class="form-control form-control-sm" style="min-height: 0rem; padding:0rem; text-align:right;" id="kmused" disabled></td>
-                                                                                <td><strong><a href="javascript:;" id="addparts" class="text-success" style="font-size: 20px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add"><i class="bi bi-plus-square-fill"></i></a></strong></td>
+                                                                                <td class="col-md-2"><input type="text" class="form-control form-control-sm text-center" style="min-height: 0rem; padding:0rem; text-align:right;" id="kmused" disabled></td>
+                                                                                <td><strong><a href="javascript:;" id="addtechact" class="text-success" style="font-size: 20px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add"><i class="bi bi-plus-square-fill"></i></a></strong></td>
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
@@ -337,36 +346,246 @@
 <script>
     $(document).ready(function() {
 
-        // $('#submitworkorder').click(function(e) {
-        //     e.preventDefault();
-        //     var url = "{{ url('FAS/add-work-order') }}";
+        //Add Technician Activity
+        function tConv24(time24) {
+            var ts = time24;
+            var H = +ts.substr(0, 2);
+            var h = (H % 12) || 12;
+            h = (h < 10) ? ("0" + h) : h; // leading 0 at the left for 1 digit hours
+            var ampm = H < 12 ? " AM" : " PM";
+            ts = h + ts.substr(2, 3) + ampm;
+            return ts;
+        };
+        $("#addtechact").click(function() {
 
-        //     $.ajaxSetup({
-        //         headers: {
-        //             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-        //         }
-        //     });
+            var activitydate = $("#activitydate").val();
+            var tadecription = $("#tadecription option:selected").text();
+            var tadecriptionid = $("#tadecription option:selected").val();
+            var starttime = $("#starttime").val();
+            var endtime = $("#endtime").val();
+            var manhour = $("#manhour").val();
+            var locfrom = $("#locfrom").val();
+            var locto = $("#locto").val();
+            var odostart = $("#odostart").val();
+            var odoend = $("#odoend").val();
+            var kmused = $("#kmused").val();
 
-        //     $.ajax({
-        //         url: url,
-        //         method: 'POST',
-        //         data: {
-        //             workorderdate: $('#workorderdate').val(),
-        //             jce_no: $('#jce_no').val(),
-        //             _token: '{!! csrf_token() !!}'
-        //         },
-        //         success: function(result) {
-        //             window.location.reload();
-        //         },
-        //         error: function(data, textStatus, errorThrown) {
-        //             console.log(data);
+            if ($("#activitydate").val().length > 0) {
+                $("#activitydate").removeClass("is-invalid");
+            } else {
+                $("#activitydate").addClass("is-invalid");
+            }
+            if ($("#tadecription").val().length > 0) {
+                $("#tadecription").removeClass("is-invalid");
+            } else {
+                $("#tadecription").addClass("is-invalid");
+            }
+            if ($("#starttime").val().length > 0) {
+                $("#starttime").removeClass("is-invalid");
+            } else {
+                $("#starttime").addClass("is-invalid");
+            }
+            if ($("#endtime").val().length > 0) {
+                $("#endtime").removeClass("is-invalid");
+            } else {
+                $("#endtime").addClass("is-invalid");
+            }
+            if ($("#manhour").val().length > 0) {
+                $("#manhour").removeClass("is-invalid");
+            } else {
+                $("#manhour").addClass("is-invalid");
+            }
+            if ($("#locfrom").val().length > 0) {
+                $("#locfrom").removeClass("is-invalid");
+            } else {
+                $("#locfrom").addClass("is-invalid");
+            }
+            if ($("#locto").val().length > 0) {
+                $("#locto").removeClass("is-invalid");
+            } else {
+                $("#locto").addClass("is-invalid");
+            }
+            if ($("#odostart").val().length > 0) {
+                $("#odostart").removeClass("is-invalid");
+            } else {
+                $("#odostart").addClass("is-invalid");
+            }
+            if ($("#odoend").val().length > 0) {
+                $("#odoend").removeClass("is-invalid");
+            } else {
+                $("#odoend").addClass("is-invalid");
+            }
+            if ($("#kmused").val().length > 0) {
+                $("#kmused").removeClass("is-invalid");
+            } else {
+                $("#kmused").addClass("is-invalid");
+            }
 
-        //         }
-        //     });
-        // })
+            if ($("#activitydate").val().length > 0 && $("#tadecription").val().length > 0 && $("#starttime").val().length > 0 && $("#endtime").val().length > 0 && $("#manhour").val().length > 0 && $("#locfrom").val().length > 0 && $("#locto").val().length > 0 && $("#odostart").val().length > 0 && $("#odoend").val().length > 0 && $("#kmused").val().length > 0) {
 
+                var row = "<tr class='parttr'><td class='tddesnumber' hidden>" + tadecriptionid + "</td><td class='clss'>" + activitydate +
+                    "</td><td class='clss'>" + tadecription +
+                    "</td><td class='clss'>" + tConv24(starttime) +
+                    "</td><td class='clss'>" + tConv24(endtime) +
+                    "</td><td class='clss'>" + manhour +
+                    "</td><td class='clss'>" + locfrom +
+                    "</td><td class='clss'>" + locto +
+                    "</td><td class='clss text-center'>" + odostart +
+                    "</td><td class='clss text-center'>" + odoend +
+                    "</td><td class='clss text-center'>" + kmused +
+                    "</td><td><a href='javascript:;' onclick='tatblDelete(this);' class='text-danger' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Delete'><i class='bi bi-trash-fill'></i></a></td></tr>";
 
-        //Parts Code 
+                $("#techactivitybody").append(row);
+
+                $("#activitydate").val('');
+                $("#starttime").val('');
+                $("#endtime").val('');
+                $("#manhour").val('');
+                $("#locfrom").val('');
+                $("#locto").val('');
+                $("#odostart").val('');
+                $("#odoend").val('');
+                $("#kmused").val('');
+                $("#tadecription").find('option:eq(0)').prop('selected', true);
+            }
+
+        });
+
+        //odo start
+        $("#odostart").keyup(function(e) {
+            if ($("#odoend").val().length > 0 && $("#odostart").val().length > 0) {
+                var a = $("#odoend").val();
+                var b = $("#odostart").val();
+                var totalodo = parseFloat(a) - parseFloat(b);
+                $("#kmused").val(totalodo)
+            } else {
+                $("#kmused").val('0')
+            }
+        });
+        //odo end
+        $("#odoend").keyup(function(e) {
+            if ($("#odoend").val().length > 0 && $("#odostart").val().length > 0) {
+                var a = $("#odoend").val();
+                var b = $("#odostart").val();
+                var totalodo = parseFloat(a) - parseFloat(b);
+                $("#kmused").val(totalodo)
+            } else {
+                $("#kmused").val('0')
+            }
+        });
+
+        // Calculate man hour
+        function diff(start, end) {
+            start = start.split(":");
+            end = end.split(":");
+            var startDate = new Date(0, 0, 0, start[0], start[1], 0);
+            var endDate = new Date(0, 0, 0, end[0], end[1], 0);
+            var diff = endDate.getTime() - startDate.getTime();
+            var hours = Math.floor(diff / 1000 / 60 / 60);
+            diff -= hours * (1000 * 60 * 60);
+            var minutes = Math.floor(diff / 1000 / 60);
+            diff -= minutes * (1000 * 60);
+            var seconds = Math.floor(diff / 1000);
+
+            // If using time pickers with 24 hours format, add the below line get exact hours
+            if (hours < 0)
+                hours = hours + 24;
+
+            return (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes;
+        }
+
+        //Man Hour
+        $("#endtime").mouseleave(function(e) {
+            if ($("#endtime").val().length > 0 && $("#starttime").val().length > 0) {
+                var totalhour = diff($("#starttime").val(), $("#endtime").val());
+                $("#manhour").val(totalhour)
+            } else {
+                $("#manhour").val('00:00')
+            }
+        });
+        $("#starttime").mouseleave(function(e) {
+            if ($("#endtime").val().length > 0 && $("#starttime").val().length > 0) {
+                var totalhour = diff($("#starttime").val(), $("#endtime").val());
+                $("#manhour").val(totalhour)
+            } else {
+                $("#manhour").val('00:00')
+            }
+        });
+        $("#endtime").keyup(function(e) {
+            var totalhour = diff($("#starttime").val(), $("#endtime").val());
+            $("#manhour").val(totalhour)
+        });
+        $("#starttime").keyup(function(e) {
+            var totalhour = diff($("#starttime").val(), $("#endtime").val());
+            $("#manhour").val(totalhour)
+        });
+
+        //number only
+        $(".numberonly").keypress(function(e) {
+            //if the letter is not digit then display error and don't type anything
+            if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+                return false;
+            }
+        });
+
+        //Add Part Code
+        $("#addparts").click(function() {
+            var partno = $("#partscode option:selected").text();
+            var partid = $("#partscode option:selected").val();
+            var partdes = $("#partsdes").val();
+            var partqty = $("#partsqty").val();
+            var partprice = $("#partsprice").val();
+            var parttotal = $("#partstotal").val();
+
+            if ($("#partscode").val().length > 0) {
+                $("#partscode").removeClass("is-invalid");
+            } else {
+                $("#partscode").addClass("is-invalid");
+            }
+            if ($("#partsqty").val().length > 0) {
+                $("#partsqty").removeClass("is-invalid");
+            } else {
+                $("#partsqty").addClass("is-invalid");
+            }
+            if ($("#partsqty").val().length > 0 && $("#partscode").val().length > 0) {
+
+                var row = "<tr class='parttr'><td class='tdpartsnumber' hidden>" + partid + "</td><td class='clss'>" + partno +
+                    "</td><td class='clss '>" + partdes +
+                    "</td><td class='clss text-center tdpartsquantity'>" + partqty +
+                    "</td><td class='clss' style='text-align: right;'>" + partprice +
+                    "</td><td class='clss tdpartstotal' style='text-align: right;'>" + parttotal +
+                    "</td><td><a href='javascript:;' onclick='partstblDelete(this);' class='text-danger' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Delete'><i class='bi bi-trash-fill'></i></a></td></tr>";
+
+                $("#partbody").append(row);
+
+                var arr = [];
+                $(".parttr").each(function() {
+                    arr.push($(this).find("td:nth-child(6)").text()); //put elements into array
+                });
+
+                var sum = arr.reduce(function(a, b) {
+                    return parseFloat(a) + parseFloat(b);
+                }, 0);
+                $("#totalpac").val(sum.toLocaleString());
+
+                $("#partsdes").val('');
+                $("#partsqty").val('');
+                $("#partsprice").val('');
+                $("#partstotal").val('');
+                $("#partscode").find('option:eq(0)').prop('selected', true);
+            }
+
+        });
+
+        //Part Code Quantity
+        $("#partsqty").keyup(function(e) {
+            var price = $("#partsprice").val();
+            var qty = $(this).val();
+            var subtotal = parseFloat(price) * parseFloat(qty);
+            $("#partstotal").val(subtotal);
+
+        });
+        //Select Parts Code 
         $("#partscode").change(function() {
             var url = "{{ url('/FAS/workorderpartscode') }}" + "/" + $(this).children("option:selected").val();
 
@@ -428,6 +647,40 @@
         });
 
     });
+
+    //delete Parts Code Table Code
+    function partstblDelete(ctl) {
+        $(ctl).parents("tr").remove();
+
+        var arr = [];
+        $(".parttr").each(function() {
+            arr.push($(this).find("td:nth-child(6)").text()); //put elements into array
+        });
+
+        var sum = arr.reduce(function(a, b) {
+            return parseFloat(a) + parseFloat(b);
+        }, 0);
+
+
+        $("#totalpac").val(sum.toLocaleString());
+    }
+
+    //delete Parts Code Table Code
+    function tatblDelete(ctl) {
+        $(ctl).parents("tr").remove();
+
+        var arr = [];
+        $(".parttr").each(function() {
+            arr.push($(this).find("td:nth-child(6)").text()); //put elements into array
+        });
+
+        var sum = arr.reduce(function(a, b) {
+            return parseFloat(a) + parseFloat(b);
+        }, 0);
+
+
+        $("#totalpac").val(sum.toLocaleString());
+    }
 </script>
 
 @endsection

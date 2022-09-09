@@ -180,6 +180,11 @@ Route::controller(App\Http\Controllers\SysconfigController::class)->group(functi
     Route::post('/FAS/add-failure-code', 'storefc');
     Route::put('/FAS/failure-code/{id}', 'updatefc');
     Route::delete('/FAS/deletefc/{id}', 'destroyfc');
+
+    Route::get('/FAS/technician-activity', 'indexta');
+    Route::post('/FAS/add-technician-activity', 'storeta');
+    Route::put('/FAS/technician-activity/{id}', 'updateta');
+    Route::delete('/FAS/deleteta/{id}', 'destroyta');
 });
 
 Route::controller(App\Http\Controllers\userController::class)->group(function () {

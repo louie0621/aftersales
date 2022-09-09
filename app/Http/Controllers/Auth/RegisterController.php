@@ -74,4 +74,14 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    public function showRegistrationForm()
+    {
+        $user = User::all();
+        if ($user->count() > 0) {
+            return view('auth.login');
+        } else {
+            return view('auth.register');
+        }
+    }
 }

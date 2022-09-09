@@ -339,6 +339,7 @@
                             <a href="{{ url('/FAS/work-order-status')}}" class="list-group-item"><i class="bi bi-wrench"></i>Work Order Status</a>
                             <a href="{{ url('/FAS/defect-code')}}" class="list-group-item"><i class="bi bi-wrench"></i>Defect Code</a>
                             <a href="{{ url('/FAS/failure-code')}}" class="list-group-item"><i class="bi bi-wrench"></i>Failure Code</a>
+                            <a href="{{ url('/FAS/technician-activity')}}" class="list-group-item"><i class="bi bi-wrench"></i>Technician Activity</a>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="pills-user">

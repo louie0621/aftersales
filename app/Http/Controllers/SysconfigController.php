@@ -13,13 +13,16 @@ use App\Http\Requests\Defectcoderequest;
 use App\Http\Requests\Failurecoderequest;
 use App\Http\Requests\Laborcostrequest;
 use App\Http\Requests\Partsrequest;
+use App\Http\Requests\Techactivityrequest;
 use App\Models\Typeofissue;
 use App\Http\Requests\Typeofissuerequest;
 use App\Http\Requests\Workorderstatusrequest;
 use App\Models\Defectcode;
 use App\Models\Failurecode;
+use App\Models\JceTechnicianentry;
 use App\Models\Laborcost;
 use App\Models\Parts;
+use App\Models\Techactivity;
 use App\Models\Workorderstatus;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -418,6 +421,48 @@ class SysconfigController extends Controller
     {
         //
         Failurecode::find($id)->delete();
+
+        Alert::toast('You\'ve Successfully delete', 'info');
+        
+        return response()->json();
+    }
+
+    //Technician Activity Description
+
+    public function indexta()
+    {
+        //
+        $ta= Techactivity::all();
+        return view('fas.configtechnicianactivity', ['ta' => $ta]);
+    }
+
+    public function storeta(Techactivityrequest $request)
+    {
+        //
+        $data = $request->validated();
+
+        Techactivity::create([
+            'tech_activity' => $data['tech_activity']
+        ]);
+        
+        Alert::toast('You\'ve Successfully Added', 'success');
+
+        return redirect('FAS/technician-activity');
+    }
+
+    public function updateta(Techactivityrequest $request,$id)
+    {
+        //
+        $edit = Techactivity::find($id);
+        $edit->tech_activity = $request->tech_activity;
+        $edit->save();
+        return response()->json();
+    }
+
+    public function destroyta($id)
+    {
+        //
+        Techactivity::find($id)->delete();
 
         Alert::toast('You\'ve Successfully delete', 'info');
         

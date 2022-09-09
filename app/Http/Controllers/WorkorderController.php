@@ -9,6 +9,7 @@ use App\Models\Failurecode;
 use App\Models\Jce;
 use App\Models\JceTechnicianentry;
 use App\Models\Parts;
+use App\Models\Techactivity;
 use App\Models\Workorder;
 use App\Models\Workorderstatus;
 use Illuminate\Http\Request;
@@ -49,7 +50,8 @@ class WorkorderController extends Controller
         $dc = Defectcode::all();
         $fc = Failurecode::all();
         $parts= Parts::all();
-        return view('fas.add-workorder',['parts'=>$parts,'fc' => $fc,'dc' => $dc,'jceno' => $jceno, 'jcewos' => $jcewos]);
+        $techactivity = Techactivity::all();
+        return view('fas.add-workorder',['techactivity' => $techactivity,'parts'=>$parts,'fc' => $fc,'dc' => $dc,'jceno' => $jceno, 'jcewos' => $jcewos]);
     }
     public function workorderjceno($id)
     {
@@ -61,7 +63,6 @@ class WorkorderController extends Controller
             ->where('techentry_no', $jceno->techentry_no)
             ->join('technician', 'jce_techicianentry.tech_id', '=', 'technician.id')
             ->get();
-
         return response()->json(['viewtech'=>$viewtech,'jceno'=>$jceno, 'viewcustomer'=>$viewcustomer,'viewequipment'=> $viewequipment]);
     }
 

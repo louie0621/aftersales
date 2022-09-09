@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -56,5 +57,15 @@ class LoginController extends Controller
         $this->username = filter_var($loginValue, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
         request()->merge([$this->username => $loginValue]);
         return property_exists($this, 'username') ? $this->username : 'email';
+    }
+
+    public function showLoginForm()
+    {
+        $user = User::all();
+        if ($user->count() > 0) {
+            return view('auth.login');
+        } else {
+            return view('auth.register');
+        }
     }
 }
