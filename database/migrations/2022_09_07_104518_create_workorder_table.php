@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('workorder_date')->nullable();
             $table->string('jce_no')->nullable();
             $table->string('workorder_no')->nullable();
+            $table->string('workorder_status')->nullable();
+            $table->string('job_summary')->nullable();
             $table->string('repairstart')->nullable();
             $table->string('repairend')->nullable();
             $table->string('service_report')->nullable();

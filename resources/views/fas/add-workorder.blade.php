@@ -39,8 +39,12 @@
                                                 </select>
                                             </div>
                                             <div class="col-12">
+                                                <label class="form-label">Work Order Number</label>
+                                                <input type="text" class="form-control form-select-sm" id="workorderno" disabled>
+                                            </div>
+                                            <div class="col-12">
                                                 <label class="form-label">Job Summary</label>
-                                                <textarea class="form-control form-select-sm" rows="5" cols="4" id="jobsummary"></textarea>
+                                                <textarea class="form-control form-select-sm" rows="3" cols="4" id="jobsummary"></textarea>
                                             </div>
                                             <div class="col-12">
                                                 <label class="form-label">Technician Name</label>
@@ -60,7 +64,7 @@
                                             </div>
                                             <div class="col-12" style="padding-bottom: .4em;">
                                                 <label class="form-label">Complaint</label>
-                                                <textarea class="form-control form-select-sm" rows="4" cols="4" id="complaint" disabled></textarea>
+                                                <textarea class="form-control form-select-sm" rows="2" cols="4" id="complaint" disabled></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -346,6 +350,57 @@
 <script>
     $(document).ready(function() {
 
+        $("#submitworkorder").click(function() {
+            var workorderno = $("#workorderno").val().slice(8, 15)
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "{{ url('/FAS/submit-work-order') }}",
+                method: 'POST',
+                data: {
+                    workorder_date: $("#workorderdate").val(),
+                    jce_no: $("#jceno").val(),
+                    workorder_no: $("#workorderno").val(),
+                    workorder_status: $("#workorderstatus option:selected").text(),
+                    job_summary: $("#jobsummary").val(),
+                    repairstart: $("#repairstart").val(),
+                    repairend: $("#repairend").val(),
+                    service_report: $("#serviceno").val(),
+                    smr: $("#smr").val(),
+                    machine_status: $("#machinestatus").val(),
+                    servicemodel: $("#servicemodel").val(),
+                    arrived_datetime: $("#arrived").val(),
+                    plateno: $("#plateno").val(),
+                    remarks: $("#remarks").val(),
+                    special_instruction: $("#specialins").val(),
+                    customer_name: $("#customername").val(),
+                    defect_code: $("#defectcode option:selected").val(),
+                    failure_code: $("#failurecode option:selected").val(),
+                    customer_request: $("#customerrequest").val(),
+                    cause: $("#cause").val(),
+                    service_repair: $("#servicerepair").val(),
+                    recommendation: $("#recommendation").val(),
+                    pac_no: workorderno,
+                    pac_total: $("#totalpac").val(),
+                    techact_no: workorderno,
+                    _token: '{!! csrf_token() !!}'
+                },
+                dataType: 'JSON',
+                success: function(data) {
+                    window.location.reload();
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+
+
+        });
+
         //Add Technician Activity
         function tConv24(time24) {
             var ts = time24;
@@ -356,11 +411,11 @@
             ts = h + ts.substr(2, 3) + ampm;
             return ts;
         };
+
         $("#addtechact").click(function() {
 
             var activitydate = $("#activitydate").val();
             var tadecription = $("#tadecription option:selected").text();
-            var tadecriptionid = $("#tadecription option:selected").val();
             var starttime = $("#starttime").val();
             var endtime = $("#endtime").val();
             var manhour = $("#manhour").val();
@@ -423,7 +478,7 @@
 
             if ($("#activitydate").val().length > 0 && $("#tadecription").val().length > 0 && $("#starttime").val().length > 0 && $("#endtime").val().length > 0 && $("#manhour").val().length > 0 && $("#locfrom").val().length > 0 && $("#locto").val().length > 0 && $("#odostart").val().length > 0 && $("#odoend").val().length > 0 && $("#kmused").val().length > 0) {
 
-                var row = "<tr class='parttr'><td class='tddesnumber' hidden>" + tadecriptionid + "</td><td class='clss'>" + activitydate +
+                var row = "<tr><td class='clss'>" + activitydate +
                     "</td><td class='clss'>" + tadecription +
                     "</td><td class='clss'>" + tConv24(starttime) +
                     "</td><td class='clss'>" + tConv24(endtime) +
@@ -608,6 +663,33 @@
 
         });
 
+        //Work order number
+        fetchworkorderno()
+
+        function fetchworkorderno() {
+            var url = "{{ url('/FAS/workordernumbers') }}";
+            var arr = []
+            $.ajax({
+                type: "GET",
+                url: url,
+                dataType: "json",
+                success: function(response) {
+                    if (response.wos.length > 0) {
+                        $.each(response.wos, function(key, item) {
+                            slice = item.workorder_no.slice(8, 15)
+                            arr.push(slice)
+                        })
+                        a = Math.max(...arr) + 1;
+                        b = "SWO-BAC-" + a;
+                        $("#workorderno").val(b)
+                    } else {
+                        $("#workorderno").val("SWO-BAC-1")
+                    }
+
+                }
+            })
+        }
+
         //JCE Number
         $("#jceno").change(function() {
             var url = "{{ url('/FAS/workorderjceno') }}" + "/" + $(this).children("option:selected").val();
@@ -668,18 +750,6 @@
     //delete Parts Code Table Code
     function tatblDelete(ctl) {
         $(ctl).parents("tr").remove();
-
-        var arr = [];
-        $(".parttr").each(function() {
-            arr.push($(this).find("td:nth-child(6)").text()); //put elements into array
-        });
-
-        var sum = arr.reduce(function(a, b) {
-            return parseFloat(a) + parseFloat(b);
-        }, 0);
-
-
-        $("#totalpac").val(sum.toLocaleString());
     }
 </script>
 
