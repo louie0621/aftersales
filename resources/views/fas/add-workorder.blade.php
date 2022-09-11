@@ -30,6 +30,10 @@
                                                 <input type="date" class="form-control form-select-sm" id="workorderdate">
                                             </div>
                                             <div class="col-12">
+                                                <label class="form-label">Work Order Number</label>
+                                                <input type="text" class="form-control form-select-sm" id="workorderno" disabled>
+                                            </div>
+                                            <div class="col-12">
                                                 <label class="form-label">JCE Number</label>
                                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="jceno">
                                                     <option selected></option>
@@ -37,10 +41,6 @@
                                                     <option value="{{ $data->id }}">{{ $data->jce_number }}</option>
                                                     @endforeach
                                                 </select>
-                                            </div>
-                                            <div class="col-12">
-                                                <label class="form-label">Work Order Number</label>
-                                                <input type="text" class="form-control form-select-sm" id="workorderno" disabled>
                                             </div>
                                             <div class="col-12">
                                                 <label class="form-label">Job Summary</label>

@@ -34,7 +34,8 @@ class WorkorderController extends Controller
     public function index()
     {
         //
-        return view('fas.work-order');
+        $woslist = Workorder::all();
+        return view('fas.work-order',['woslist' => $woslist]);
     }
 
     /**
