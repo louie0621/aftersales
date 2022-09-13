@@ -36,7 +36,7 @@
                         @foreach($woslist as $data)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $data->workorderdate }}</td>
+                            <td>{{ $data->workorder_date }}</td>
                             <td>{{ $data->workorder_no }}</td>
                             <td>{{ $data->jce_no }}</td>
                             <td>{{ $data->workorder_status }}</td>

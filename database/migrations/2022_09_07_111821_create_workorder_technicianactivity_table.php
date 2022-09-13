@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('workorder_technicianactivity', function (Blueprint $table) {
             $table->id();
+            $table->string('techact_no')->nullable();
             $table->string('activity_date')->nullable();
-            $table->string('description_no')->nullable();
+            $table->string('description')->nullable();
             $table->string('start_time')->nullable();
             $table->string('end_time')->nullable();
             $table->string('man_hour')->nullable();

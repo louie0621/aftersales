@@ -94,6 +94,8 @@ Route::controller(App\Http\Controllers\WorkorderController::class)->group(functi
     Route::get('/FAS/workordernumbers', 'workorderno');
     Route::get('/FAS/workorderjceno/{id}', 'workorderjceno');
     Route::get('/FAS/workorderpartscode/{id}', 'workorderpartscode');
+    Route::post('/FAS/storepac', 'storepac');
+    Route::post('/FAS/storeta', 'storeta');
     
 });
 

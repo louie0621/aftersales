@@ -333,6 +333,7 @@
                             <!--end row-->
                             <div class="col-12">
                                 <button class="btn btn-primary" type="button" id="submitworkorder">Save</button>
+                                <button class="btn btn-success" type="button" id="sample">sample</button>
                             </div>
                         </div>
                     </form>
@@ -350,8 +351,18 @@
 <script>
     $(document).ready(function() {
 
+        $("#sample").click(function() {
+            //Add Parts and consumables
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
+
+        })
+
         $("#submitworkorder").click(function() {
-            var workorderno = $("#workorderno").val().slice(8, 15)
+            var workorderno = $("#workorderno").val().slice(8, 15);
 
             $.ajaxSetup({
                 headers: {
@@ -363,7 +374,7 @@
                 method: 'POST',
                 data: {
                     workorder_date: $("#workorderdate").val(),
-                    jce_no: $("#jceno").val(),
+                    jce_no: $("#jceno option:selected").text(),
                     workorder_no: $("#workorderno").val(),
                     workorder_status: $("#workorderstatus option:selected").text(),
                     job_summary: $("#jobsummary").val(),
@@ -391,11 +402,104 @@
                 },
                 dataType: 'JSON',
                 success: function(data) {
-                    window.location.reload();
+                    console.log(data);
                 },
                 error: function(error) {
                     console.log(error);
                 }
+            });
+
+            var tdpartsnumber = [];
+            var tdpartsquantity = [];
+            var tdpartstotal = [];
+            $(".tdpartsnumbers").each(function() {
+                tdpartsnumber.push($(this).text());
+            });
+            $(".tdpartsquantitys").each(function() {
+                tdpartsquantity.push($(this).text());
+            });
+            $(".tdpartstotals").each(function() {
+                tdpartstotal.push($(this).text());
+            });
+
+            //Add parts and consumables entry
+            $.ajax({
+                method: "POST",
+                url: "{{ url('/FAS/storepac') }}",
+                data: {
+                    pac_no: workorderno,
+                    part_id: JSON.stringify(tdpartsnumber),
+                    quantity: JSON.stringify(tdpartsquantity),
+                    total: JSON.stringify(tdpartstotal),
+                    _token: '{!! csrf_token() !!}'
+                },
+                dataType: "json",
+                success: function(response) {}
+            });
+
+            //Add Technician Activity
+            
+            var tdtadate = [];
+            var tdtadescription = [];
+            var tdtastart = [];
+            var tdtaend = [];
+            var tdtamanhour = [];
+            var tdtalocfrom = [];
+            var tdtalocto = [];
+            var tdtaodostart = [];
+            var tdtaodoend = [];
+            var tdtakmused = [];
+
+            $(".tdtadate").each(function() {
+                tdtadate.push($(this).text());
+            });
+            $(".tdtadescription").each(function() {
+                tdtadescription.push($(this).text());
+            });
+            $(".tdtastart").each(function() {
+                tdtastart.push($(this).text());
+            });
+            $(".tdtaend").each(function() {
+                tdtaend.push($(this).text());
+            });
+            $(".tdtamanhour").each(function() {
+                tdtamanhour.push($(this).text());
+            });
+            $(".tdtalocfrom").each(function() {
+                tdtalocfrom.push($(this).text());
+            });
+            $(".tdtalocto").each(function() {
+                tdtalocto.push($(this).text());
+            });
+            $(".tdtaodostart").each(function() {
+                tdtaodostart.push($(this).text());
+            });
+            $(".tdtaodoend").each(function() {
+                tdtaodoend.push($(this).text());
+            });
+            $(".tdtakmused").each(function() {
+                tdtakmused.push($(this).text());
+            });
+
+            $.ajax({
+                method: "POST",
+                url: "{{ url('/FAS/storeta') }}",
+                data: {
+                    techact_no: workorderno,
+                    activity_date: JSON.stringify(tdtadate),
+                    description: JSON.stringify(tdtadescription),
+                    start_time: JSON.stringify(tdtastart),
+                    end_time: JSON.stringify(tdtaend),
+                    man_hour: JSON.stringify(tdtamanhour),
+                    location_from: JSON.stringify(tdtalocfrom),
+                    location_to: JSON.stringify(tdtalocto),
+                    odo_start: JSON.stringify(tdtaodostart),
+                    odo_end: JSON.stringify(tdtaodoend),
+                    km_used: JSON.stringify(tdtakmused),
+                    _token: '{!! csrf_token() !!}'
+                },
+                dataType: "json",
+                success: function(response) {}
             });
 
 
@@ -478,16 +582,16 @@
 
             if ($("#activitydate").val().length > 0 && $("#tadecription").val().length > 0 && $("#starttime").val().length > 0 && $("#endtime").val().length > 0 && $("#manhour").val().length > 0 && $("#locfrom").val().length > 0 && $("#locto").val().length > 0 && $("#odostart").val().length > 0 && $("#odoend").val().length > 0 && $("#kmused").val().length > 0) {
 
-                var row = "<tr><td class='clss'>" + activitydate +
-                    "</td><td class='clss'>" + tadecription +
-                    "</td><td class='clss'>" + tConv24(starttime) +
-                    "</td><td class='clss'>" + tConv24(endtime) +
-                    "</td><td class='clss'>" + manhour +
-                    "</td><td class='clss'>" + locfrom +
-                    "</td><td class='clss'>" + locto +
-                    "</td><td class='clss text-center'>" + odostart +
-                    "</td><td class='clss text-center'>" + odoend +
-                    "</td><td class='clss text-center'>" + kmused +
+                var row = "<tr><td class='clss tdtadate'>" + activitydate +
+                    "</td><td class='clss tdtadescription'>" + tadecription +
+                    "</td><td class='clss tdtastart'>" + tConv24(starttime) +
+                    "</td><td class='clss tdtaend'>" + tConv24(endtime) +
+                    "</td><td class='clss tdtamanhour'>" + manhour +
+                    "</td><td class='clss tdtalocfrom'>" + locfrom +
+                    "</td><td class='clss tdtalocto'>" + locto +
+                    "</td><td class='clss tdtaodostart text-center'>" + odostart +
+                    "</td><td class='clss tdtaodoend text-center'>" + odoend +
+                    "</td><td class='clss tdtakmused text-center'>" + kmused +
                     "</td><td><a href='javascript:;' onclick='tatblDelete(this);' class='text-danger' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Delete'><i class='bi bi-trash-fill'></i></a></td></tr>";
 
                 $("#techactivitybody").append(row);
@@ -566,6 +670,14 @@
                 $("#manhour").val('00:00')
             }
         });
+        $("#locfrom").keyup(function(e) {
+            if ($("#endtime").val().length > 0 && $("#starttime").val().length > 0) {
+                var totalhour = diff($("#starttime").val(), $("#endtime").val());
+                $("#manhour").val(totalhour)
+            } else {
+                $("#manhour").val('00:00')
+            }
+        });
         $("#endtime").keyup(function(e) {
             var totalhour = diff($("#starttime").val(), $("#endtime").val());
             $("#manhour").val(totalhour)
@@ -604,11 +716,11 @@
             }
             if ($("#partsqty").val().length > 0 && $("#partscode").val().length > 0) {
 
-                var row = "<tr class='parttr'><td class='tdpartsnumber' hidden>" + partid + "</td><td class='clss'>" + partno +
+                var row = "<tr class='parttr'><td class='tdpartsnumbers' hidden>" + partid + "</td><td class='clss'>" + partno +
                     "</td><td class='clss '>" + partdes +
-                    "</td><td class='clss text-center tdpartsquantity'>" + partqty +
+                    "</td><td class='clss text-center tdpartsquantitys'>" + partqty +
                     "</td><td class='clss' style='text-align: right;'>" + partprice +
-                    "</td><td class='clss tdpartstotal' style='text-align: right;'>" + parttotal +
+                    "</td><td class='clss tdpartstotals' style='text-align: right;'>" + parttotal +
                     "</td><td><a href='javascript:;' onclick='partstblDelete(this);' class='text-danger' data-bs-toggle='tooltip' data-bs-placement='bottom' title='Delete'><i class='bi bi-trash-fill'></i></a></td></tr>";
 
                 $("#partbody").append(row);

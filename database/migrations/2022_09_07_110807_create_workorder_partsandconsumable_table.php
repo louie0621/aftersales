@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('workorder_partsandconsumable', function (Blueprint $table) {
             $table->id();
             $table->string('pac_no')->nullable();
-            $table->integer('part_id')->nullable();
+            $table->string('part_id')->nullable();
             $table->string('quantity')->nullable();
             $table->string('total')->nullable();
             $table->timestamps();

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Partsandconsumablerequest;
+use App\Http\Requests\Technicianactivityrequest;
 use App\Models\Customer;
 use App\Models\Defectcode;
 use App\Models\Equipment;
@@ -9,7 +11,9 @@ use App\Models\Failurecode;
 use App\Models\Jce;
 use App\Models\JceTechnicianentry;
 use App\Models\Parts;
+use App\Models\Partsandconsumable;
 use App\Models\Techactivity;
+use App\Models\Technicianactivity;
 use App\Models\Workorder;
 use App\Models\Workorderstatus;
 use Illuminate\Http\Request;
@@ -35,7 +39,7 @@ class WorkorderController extends Controller
     {
         //
         $woslist = Workorder::all();
-        return view('fas.work-order',['woslist' => $woslist]);
+        return view('fas.work-order', ['woslist' => $woslist]);
     }
 
     /**
@@ -71,6 +75,57 @@ class WorkorderController extends Controller
             ->join('technician', 'jce_techicianentry.tech_id', '=', 'technician.id')
             ->get();
         return response()->json(['viewtech' => $viewtech, 'jceno' => $jceno, 'viewcustomer' => $viewcustomer, 'viewequipment' => $viewequipment]);
+    }
+
+    public function storepac(Partsandconsumablerequest $request)
+    {
+        $part_id = json_decode($request->part_id);
+        $quantity = json_decode($request->quantity);
+        $total = json_decode($request->total);
+        foreach ($part_id as $key => $value) {
+            if (in_array($part_id[$key], $part_id)) {
+                $pac = new Partsandconsumable();
+                $pac->part_id = $part_id[$key];
+                $pac->quantity = $quantity[$key];
+                $pac->total = $total[$key];
+                $pac->pac_no = $request->pac_no;
+                $pac->save();
+            }
+        }
+        return response()->json();
+    }
+
+    public function storeta(Technicianactivityrequest $request)
+    {
+        $activity_date = json_decode($request->activity_date);
+        $description = json_decode($request->description);
+        $start_time = json_decode($request->start_time);
+        $end_time = json_decode($request->end_time);
+        $man_hour = json_decode($request->man_hour);
+        $location_from = json_decode($request->location_from);
+        $location_to = json_decode($request->location_to);
+        $odo_start = json_decode($request->odo_start);
+        $odo_end = json_decode($request->odo_end);
+        $km_used = json_decode($request->km_used);
+
+        foreach ($activity_date as $key => $value) {
+            if (in_array($activity_date[$key], $activity_date)) {
+                $ta = new Technicianactivity();
+                $ta->activity_date = $activity_date[$key];
+                $ta->description = $description[$key];
+                $ta->start_time = $start_time[$key];
+                $ta->end_time = $end_time[$key];
+                $ta->man_hour = $man_hour[$key];
+                $ta->location_from = $location_from[$key];
+                $ta->location_to = $location_to[$key];
+                $ta->odo_start = $odo_start[$key];
+                $ta->odo_end = $odo_end[$key];
+                $ta->km_used = $km_used[$key];
+                $ta->techact_no = $request->techact_no;
+                $ta->save();
+            }
+        }
+        return response()->json();
     }
 
     public function workorderpartscode($id)
