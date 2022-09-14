@@ -183,9 +183,11 @@ class WorkorderController extends Controller
      * @param  \App\Models\Workorder  $workorder
      * @return \Illuminate\Http\Response
      */
-    public function show(Workorder $workorder)
+    public function show(Workorder $workorder,$id)
     {
         //
+        $viewworkorder = Workorder::find($id);
+        return response()->json(['viewworkorder' => $viewworkorder]);
     }
 
     /**

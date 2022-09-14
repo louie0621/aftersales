@@ -27,7 +27,7 @@
                                         <div class="row g-3">
                                             <div class="col-12">
                                                 <label class="form-label">Work Order Date</label>
-                                                <input type="date" class="form-control form-select-sm" id="workorderdate">
+                                                <input type="date" class="form-control form-select-sm" id="workorderdate" autofocus>
                                             </div>
                                             <div class="col-12">
                                                 <label class="form-label">Work Order Number</label>
@@ -172,7 +172,7 @@
                                             </div>
                                             <div class="col-12">
                                                 <label class="form-label">Customer Name</label>
-                                                <input type="text" class="form-control form-select-sm" id="customername">
+                                                <input type="text" class="form-control form-select-sm" id="customer_name">
                                             </div>
 
                                             <div class="col col-lg-12 mx-auto">
@@ -187,14 +187,14 @@
                                                                 </a>
                                                             </li>
                                                             <li class="nav-item" role="presentation">
-                                                                <a class="nav-link" data-bs-toggle="tab" href="#primarysecond" role="tab" aria-selected="false">
+                                                                <a class="nav-link" id="primarysecondbtn" data-bs-toggle="tab" href="#primarysecond" role="tab" aria-selected="false">
                                                                     <div class="d-flex align-items-center">
                                                                         <div class="tab-title">Parts and Consumables</div>
                                                                     </div>
                                                                 </a>
                                                             </li>
                                                             <li class="nav-item" role="presentation">
-                                                                <a class="nav-link" data-bs-toggle="tab" href="#primarythird" role="tab" aria-selected="false">
+                                                                <a class="nav-link" data-bs-toggle="tab" id="primarythirdbtn" href="#primarythird" role="tab" aria-selected="false">
                                                                     <div class="d-flex align-items-center">
                                                                         <div class="tab-title">Technician Activity</div>
                                                                     </div>
@@ -329,12 +329,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary" type="button" id="submitworkorder">Save</button>
+                                </div>
                             </div>
                             <!--end row-->
-                            <div class="col-12">
-                                <button class="btn btn-primary" type="button" id="submitworkorder">Save</button>
-                                <button class="btn btn-success" type="button" id="sample">sample</button>
-                            </div>
                         </div>
                     </form>
                 </div>
@@ -351,158 +350,324 @@
 <script>
     $(document).ready(function() {
 
-        $("#sample").click(function() {
-            //Add Parts and consumables
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                }
-            });
-
-        })
-
         $("#submitworkorder").click(function() {
             var workorderno = $("#workorderno").val().slice(8, 15);
 
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                }
-            });
-            $.ajax({
-                url: "{{ url('/FAS/submit-work-order') }}",
-                method: 'POST',
-                data: {
-                    workorder_date: $("#workorderdate").val(),
-                    jce_no: $("#jceno option:selected").text(),
-                    workorder_no: $("#workorderno").val(),
-                    workorder_status: $("#workorderstatus option:selected").text(),
-                    job_summary: $("#jobsummary").val(),
-                    repairstart: $("#repairstart").val(),
-                    repairend: $("#repairend").val(),
-                    service_report: $("#serviceno").val(),
-                    smr: $("#smr").val(),
-                    machine_status: $("#machinestatus").val(),
-                    servicemodel: $("#servicemodel").val(),
-                    arrived_datetime: $("#arrived").val(),
-                    plateno: $("#plateno").val(),
-                    remarks: $("#remarks").val(),
-                    special_instruction: $("#specialins").val(),
-                    customer_name: $("#customername").val(),
-                    defect_code: $("#defectcode option:selected").val(),
-                    failure_code: $("#failurecode option:selected").val(),
-                    customer_request: $("#customerrequest").val(),
-                    cause: $("#cause").val(),
-                    service_repair: $("#servicerepair").val(),
-                    recommendation: $("#recommendation").val(),
-                    pac_no: workorderno,
-                    pac_total: $("#totalpac").val(),
-                    techact_no: workorderno,
-                    _token: '{!! csrf_token() !!}'
-                },
-                dataType: 'JSON',
-                success: function(data) {
-                    console.log(data);
-                },
-                error: function(error) {
-                    console.log(error);
-                }
-            });
+            if ($("#workorderdate").val().length > 0) {
+                $("#workorderdate").removeClass("is-invalid");
+            } else {
+                $("#workorderdate").addClass("is-invalid");
+                $("#workorderdate").focus();
+            }
+            if ($("#jceno").val().length > 0) {
+                $("#jceno").removeClass("is-invalid");
+            } else {
+                $("#jceno").addClass("is-invalid");
+                $("#jceno").focus();
+            }
+            if ($("#workorderno").val().length > 0) {
+                $("#workorderno").removeClass("is-invalid");
+            } else {
+                $("#workorderno").addClass("is-invalid");
+                $("#workorderno").focus();
+            }
+            if ($("#workorderstatus").val().length > 0) {
+                $("#workorderstatus").removeClass("is-invalid");
+            } else {
+                $("#workorderstatus").addClass("is-invalid");
+                $("#workorderstatus").focus();
+            }
+            if ($("#jobsummary").val().length > 0) {
+                $("#jobsummary").removeClass("is-invalid");
+            } else {
+                $("#jobsummary").addClass("is-invalid");
+                $("#jobsummary").focus();
+            }
+            if ($("#repairstart").val().length > 0) {
+                $("#repairstart").removeClass("is-invalid");
+            } else {
+                $("#repairstart").addClass("is-invalid");
+                $("#repairstart").focus();
+            }
+            if ($("#repairend").val().length > 0) {
+                $("#repairend").removeClass("is-invalid");
+            } else {
+                $("#repairend").addClass("is-invalid");
+                $("#repairend").focus();
+            }
+            if ($("#serviceno").val().length > 0) {
+                $("#serviceno").removeClass("is-invalid");
+            } else {
+                $("#serviceno").addClass("is-invalid");
+                $("#serviceno").focus();
+            }
+            if ($("#smr").val().length > 0) {
+                $("#smr").removeClass("is-invalid");
+            } else {
+                $("#smr").addClass("is-invalid");
+                $("#smr").focus();
+            }
+            if ($("#machinestatus").val().length > 0) {
+                $("#machinestatus").removeClass("is-invalid");
+            } else {
+                $("#machinestatus").addClass("is-invalid");
+                $("#machinestatus").focus();
+            }
+            if ($("#servicemodel").val().length > 0) {
+                $("#servicemodel").removeClass("is-invalid");
+            } else {
+                $("#servicemodel").addClass("is-invalid");
+                $("#servicemodel").focus();
+            }
+            if ($("#arrived").val().length > 0) {
+                $("#arrived").removeClass("is-invalid");
+            } else {
+                $("#arrived").addClass("is-invalid");
+                $("#arrived").focus();
+            }
+            if ($("#plateno").val().length > 0) {
+                $("#plateno").removeClass("is-invalid");
+            } else {
+                $("#plateno").addClass("is-invalid");
+                $("#plateno").focus();
+            }
+            if ($("#remarks").val().length > 0) {
+                $("#remarks").removeClass("is-invalid");
+            } else {
+                $("#remarks").addClass("is-invalid");
+                $("#remarks").focus();
+            }
+            if ($("#specialins").val().length > 0) {
+                $("#specialins").removeClass("is-invalid");
+            } else {
+                $("#specialins").addClass("is-invalid");
+                $("#specialins").focus();
+            }
+            if ($("#customer_name").val().length > 0) {
+                $("#customer_name").removeClass("is-invalid");
+            } else {
+                $("#customer_name").addClass("is-invalid");
+                $("#customer_name").focus();
+            }
+            if ($("#defectcode").val().length > 0) {
+                $("#defectcode").removeClass("is-invalid");
+            } else {
+                $("#defectcode").addClass("is-invalid");
+                $("#defectcode").focus();
+            }
+            if ($("#failurecode").val().length > 0) {
+                $("#failurecode").removeClass("is-invalid");
+            } else {
+                $("#failurecode").addClass("is-invalid");
+                $("#failurecode").focus();
+            }
+            if ($("#customerrequest").val().length > 0) {
+                $("#customerrequest").removeClass("is-invalid");
+            } else {
+                $("#customerrequest").addClass("is-invalid");
+                $("#customerrequest").focus();
+            }
+            if ($("#cause").val().length > 0) {
+                $("#cause").removeClass("is-invalid");
+            } else {
+                $("#cause").addClass("is-invalid");
+                $("#cause").focus();
+            }
+            if ($("#servicerepair").val().length > 0) {
+                $("#servicerepair").removeClass("is-invalid");
+            } else {
+                $("#servicerepair").addClass("is-invalid");
+                $("#servicerepair").focus();
+            }
+            if ($("#recommendation").val().length > 0) {
+                $("#recommendation").removeClass("is-invalid");
+            } else {
+                $("#recommendation").addClass("is-invalid");
+                $("#recommendation").focus();
+            }
+            if ($("#totalpac").val().length > 0) {
+                $("#partscode").removeClass("is-invalid");
+                $("#partsqty").removeClass("is-invalid");
+            } else {
+                $("#partscode").addClass("is-invalid");
+                $("#partscode").focus();
+                $("#partsqty").addClass("is-invalid");
+                $("#partsqty").focus();
+            }
+            if ($(".tractivityact").find("td:nth-child(1)").length > 0) {
+                $("#activitydate").removeClass("is-invalid");
+                $("#tadecription").removeClass("is-invalid");
+                $("#starttime").removeClass("is-invalid");
+                $("#endtime").removeClass("is-invalid");
+                $("#locfrom").removeClass("is-invalid");
+                $("#locto").removeClass("is-invalid");
+                $("#odostart").removeClass("is-invalid");
+                $("#odoend").removeClass("is-invalid");
+            } else {
+                
+                $("#activitydate").addClass("is-invalid");
+                $("#tadecription").addClass("is-invalid");
+                $("#starttime").addClass("is-invalid");
+                $("#endtime").addClass("is-invalid");
+                $("#locfrom").addClass("is-invalid");
+                $("#locto").addClass("is-invalid");
+                $("#odostart").addClass("is-invalid");
+                $("#odoend").addClass("is-invalid");
 
-            var tdpartsnumber = [];
-            var tdpartsquantity = [];
-            var tdpartstotal = [];
-            $(".tdpartsnumbers").each(function() {
-                tdpartsnumber.push($(this).text());
-            });
-            $(".tdpartsquantitys").each(function() {
-                tdpartsquantity.push($(this).text());
-            });
-            $(".tdpartstotals").each(function() {
-                tdpartstotal.push($(this).text());
-            });
+                $("#activitydate").focus();
+                $("#tadecription").focus();
+                $("#starttime").focus();
+                $("#endtime").focus();
+                $("#locfrom").focus();
+                $("#locto").focus();
+                $("#odostart").focus();
+                $("#odoend").focus();
 
-            //Add parts and consumables entry
-            $.ajax({
-                method: "POST",
-                url: "{{ url('/FAS/storepac') }}",
-                data: {
-                    pac_no: workorderno,
-                    part_id: JSON.stringify(tdpartsnumber),
-                    quantity: JSON.stringify(tdpartsquantity),
-                    total: JSON.stringify(tdpartstotal),
-                    _token: '{!! csrf_token() !!}'
-                },
-                dataType: "json",
-                success: function(response) {}
-            });
+            }
 
-            //Add Technician Activity
-            
-            var tdtadate = [];
-            var tdtadescription = [];
-            var tdtastart = [];
-            var tdtaend = [];
-            var tdtamanhour = [];
-            var tdtalocfrom = [];
-            var tdtalocto = [];
-            var tdtaodostart = [];
-            var tdtaodoend = [];
-            var tdtakmused = [];
+            if ($("#workorderdate").val().length > 0 && $("#jceno").val().length > 0 && $("#workorderno").val().length > 0 && $("#workorderstatus").val().length > 0 && $("#jobsummary").val().length > 0 && $("#repairstart").val().length > 0 && $("#repairend").val().length > 0 && $("#serviceno").val().length > 0 && $("#smr").val().length > 0 && $("#machinestatus").val().length > 0 && $("#servicemodel").val().length > 0 && $("#arrived").val().length > 0 && $("#plateno").val().length > 0 && $("#remarks").val().length > 0 && $("#specialins").val().length > 0 && $("#customer_name").val().length > 0 && $("#defectcode").val().length > 0 && $("#failurecode").val().length > 0 && $("#customerrequest").val().length > 0 && $("#cause").val().length > 0 && $("#servicerepair").val().length > 0 && $("#recommendation").val().length > 0 && $("#totalpac").val().length > 0 && $(".tractivityact").find("td:nth-child(1)").length > 0) {
 
-            $(".tdtadate").each(function() {
-                tdtadate.push($(this).text());
-            });
-            $(".tdtadescription").each(function() {
-                tdtadescription.push($(this).text());
-            });
-            $(".tdtastart").each(function() {
-                tdtastart.push($(this).text());
-            });
-            $(".tdtaend").each(function() {
-                tdtaend.push($(this).text());
-            });
-            $(".tdtamanhour").each(function() {
-                tdtamanhour.push($(this).text());
-            });
-            $(".tdtalocfrom").each(function() {
-                tdtalocfrom.push($(this).text());
-            });
-            $(".tdtalocto").each(function() {
-                tdtalocto.push($(this).text());
-            });
-            $(".tdtaodostart").each(function() {
-                tdtaodostart.push($(this).text());
-            });
-            $(".tdtaodoend").each(function() {
-                tdtaodoend.push($(this).text());
-            });
-            $(".tdtakmused").each(function() {
-                tdtakmused.push($(this).text());
-            });
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: "{{ url('/FAS/submit-work-order') }}",
+                    method: 'POST',
+                    data: {
+                        workorder_date: $("#workorderdate").val(),
+                        jce_no: $("#jceno option:selected").text(),
+                        workorder_no: $("#workorderno").val(),
+                        workorder_status: $("#workorderstatus option:selected").text(),
+                        job_summary: $("#jobsummary").val(),
+                        repairstart: $("#repairstart").val(),
+                        repairend: $("#repairend").val(),
+                        service_report: $("#serviceno").val(),
+                        smr: $("#smr").val(),
+                        machine_status: $("#machinestatus").val(),
+                        servicemodel: $("#servicemodel").val(),
+                        arrived_datetime: $("#arrived").val(),
+                        plateno: $("#plateno").val(),
+                        remarks: $("#remarks").val(),
+                        special_instruction: $("#specialins").val(),
+                        customer_name: $("#customer_name").val(),
+                        defect_code: $("#defectcode option:selected").val(),
+                        failure_code: $("#failurecode option:selected").val(),
+                        customer_request: $("#customerrequest").val(),
+                        cause: $("#cause").val(),
+                        service_repair: $("#servicerepair").val(),
+                        recommendation: $("#recommendation").val(),
+                        pac_no: workorderno,
+                        pac_total: $("#totalpac").val(),
+                        techact_no: workorderno,
+                        _token: '{!! csrf_token() !!}'
+                    },
+                    dataType: 'JSON',
+                    success: function(data) {
+                        
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
 
-            $.ajax({
-                method: "POST",
-                url: "{{ url('/FAS/storeta') }}",
-                data: {
-                    techact_no: workorderno,
-                    activity_date: JSON.stringify(tdtadate),
-                    description: JSON.stringify(tdtadescription),
-                    start_time: JSON.stringify(tdtastart),
-                    end_time: JSON.stringify(tdtaend),
-                    man_hour: JSON.stringify(tdtamanhour),
-                    location_from: JSON.stringify(tdtalocfrom),
-                    location_to: JSON.stringify(tdtalocto),
-                    odo_start: JSON.stringify(tdtaodostart),
-                    odo_end: JSON.stringify(tdtaodoend),
-                    km_used: JSON.stringify(tdtakmused),
-                    _token: '{!! csrf_token() !!}'
-                },
-                dataType: "json",
-                success: function(response) {}
-            });
+                var tdpartsnumber = [];
+                var tdpartsquantity = [];
+                var tdpartstotal = [];
+                $(".tdpartsnumbers").each(function() {
+                    tdpartsnumber.push($(this).text());
+                });
+                $(".tdpartsquantitys").each(function() {
+                    tdpartsquantity.push($(this).text());
+                });
+                $(".tdpartstotals").each(function() {
+                    tdpartstotal.push($(this).text());
+                });
 
+                //Add parts and consumables entry
+                $.ajax({
+                    method: "POST",
+                    url: "{{ url('/FAS/storepac') }}",
+                    data: {
+                        pac_no: workorderno,
+                        part_id: JSON.stringify(tdpartsnumber),
+                        quantity: JSON.stringify(tdpartsquantity),
+                        total: JSON.stringify(tdpartstotal),
+                        _token: '{!! csrf_token() !!}'
+                    },
+                    dataType: "json",
+                    success: function(response) {}
+                });
 
+                //Add Technician Activity
+
+                var tdtadate = [];
+                var tdtadescription = [];
+                var tdtastart = [];
+                var tdtaend = [];
+                var tdtamanhour = [];
+                var tdtalocfrom = [];
+                var tdtalocto = [];
+                var tdtaodostart = [];
+                var tdtaodoend = [];
+                var tdtakmused = [];
+
+                $(".tdtadate").each(function() {
+                    tdtadate.push($(this).text());
+                });
+                $(".tdtadescription").each(function() {
+                    tdtadescription.push($(this).text());
+                });
+                $(".tdtastart").each(function() {
+                    tdtastart.push($(this).text());
+                });
+                $(".tdtaend").each(function() {
+                    tdtaend.push($(this).text());
+                });
+                $(".tdtamanhour").each(function() {
+                    tdtamanhour.push($(this).text());
+                });
+                $(".tdtalocfrom").each(function() {
+                    tdtalocfrom.push($(this).text());
+                });
+                $(".tdtalocto").each(function() {
+                    tdtalocto.push($(this).text());
+                });
+                $(".tdtaodostart").each(function() {
+                    tdtaodostart.push($(this).text());
+                });
+                $(".tdtaodoend").each(function() {
+                    tdtaodoend.push($(this).text());
+                });
+                $(".tdtakmused").each(function() {
+                    tdtakmused.push($(this).text());
+                });
+
+                $.ajax({
+                    method: "POST",
+                    url: "{{ url('/FAS/storeta') }}",
+                    data: {
+                        techact_no: workorderno,
+                        activity_date: JSON.stringify(tdtadate),
+                        description: JSON.stringify(tdtadescription),
+                        start_time: JSON.stringify(tdtastart),
+                        end_time: JSON.stringify(tdtaend),
+                        man_hour: JSON.stringify(tdtamanhour),
+                        location_from: JSON.stringify(tdtalocfrom),
+                        location_to: JSON.stringify(tdtalocto),
+                        odo_start: JSON.stringify(tdtaodostart),
+                        odo_end: JSON.stringify(tdtaodoend),
+                        km_used: JSON.stringify(tdtakmused),
+                        _token: '{!! csrf_token() !!}'
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        $("#workorderdate").focus();
+                        window.location.reload();
+                    }
+                });
+            }
         });
 
         //Add Technician Activity
@@ -582,7 +747,7 @@
 
             if ($("#activitydate").val().length > 0 && $("#tadecription").val().length > 0 && $("#starttime").val().length > 0 && $("#endtime").val().length > 0 && $("#manhour").val().length > 0 && $("#locfrom").val().length > 0 && $("#locto").val().length > 0 && $("#odostart").val().length > 0 && $("#odoend").val().length > 0 && $("#kmused").val().length > 0) {
 
-                var row = "<tr><td class='clss tdtadate'>" + activitydate +
+                var row = "<tr class='tractivityact'><td class='clss tdtadate'>" + activitydate +
                     "</td><td class='clss tdtadescription'>" + tadecription +
                     "</td><td class='clss tdtastart'>" + tConv24(starttime) +
                     "</td><td class='clss tdtaend'>" + tConv24(endtime) +
