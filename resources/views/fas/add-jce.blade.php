@@ -906,8 +906,8 @@
                     dataType: "json",
                     success: function(response) {
                         $("#partdes").val(response.showpartsdescription.description);
-                        $("#partavail").val(response.showpartsdescription.stocks);
-                        $("#partprice").val(response.showpartsdescription.price);
+                        $("#partavail").val(response.showpartsdescription.uom);
+                        $("#partprice").val(response.showpartsdescription.srp);
                         var price = $("#partprice").val();
                         var qty = $("#partqty").val();
                         var total = parseFloat(price) * parseFloat(qty);

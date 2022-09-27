@@ -27,9 +27,10 @@ class Partsrequest extends FormRequest
             //
             'part_number' => ['required', 'string', 'max:255', 'unique:config_parts'],
             'description' => ['required', 'string', 'max:255'],
-            'stocks' => ['required', 'string', 'max:255'],
-            'price' => ['required', 'string', 'max:255']
-
+            'item_category_code' => ['required', 'string', 'max:255'],
+            'uom' => ['required', 'string', 'max:255'],
+            'srp' => ['required', 'string', 'max:255'],
+            'status' => ['required', 'string', 'max:255']
         ];
     }
     protected function prepareForValidation()
@@ -37,8 +38,10 @@ class Partsrequest extends FormRequest
         $this->merge([
             'part_number' => strip_tags($this->part_number),
             'description' => strip_tags($this->description),
-            'stocks' => strip_tags($this->stocks),
-            'price' => strip_tags($this->price)
+            'item_category_code' => strip_tags($this->item_category_code),
+            'uom' => strip_tags($this->uom),
+            'srp' => strip_tags($this->srp),
+            'status' => strip_tags($this->status)
         ]);
     }
 }
