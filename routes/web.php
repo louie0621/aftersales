@@ -84,6 +84,7 @@ Route::controller(App\Http\Controllers\JceController::class)->group(function () 
     Route::get('/FAS/show-unitstatus/{unitstatus}', 'unitstatus');
     Route::get('/FAS/selectlaborcost/{id}', 'selectlaborcost');
     Route::get('/FAS/selectpartno/{id}', 'selectpartno');
+    Route::get('/FAS/printjce', 'printjce');
 });
 
 Route::controller(App\Http\Controllers\WorkorderController::class)->group(function () {

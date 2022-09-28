@@ -89,7 +89,11 @@
                                                             </div>
                                                             <div class="col-12">
                                                                 <label class="form-label">Technician Name</label>
-                                                                <input type="text" class="form-control form-select-sm" id="techname" disabled>
+                                                                <div class="card radius-10">
+                                                                    <div class="card-body" id="techlist">
+
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                             <div class="col-12">
                                                                 <label class="form-label">Model</label>
@@ -168,47 +172,47 @@
                                                         <div class="row g-3">
                                                             <div class="col-12 col-lg-6">
                                                                 <label class="form-label">Repair Start Date/time</label>
-                                                                <input type="text" class="form-control form-select-sm" id="repairstart">
+                                                                <input type="text" class="form-control form-select-sm" id="repairstart" disabled>
                                                             </div>
                                                             <div class="col-12 col-lg-6">
                                                                 <label class="form-label">Repair End Date/time</label>
-                                                                <input type="text" class="form-control form-select-sm" id="repairend">
+                                                                <input type="text" class="form-control form-select-sm" id="repairend" disabled>
                                                             </div>
                                                             <div class="col-12 col-lg-4">
                                                                 <label class="form-label">Service Report NO.</label>
-                                                                <input type="text" class="form-control form-select-sm" id="serviceno">
+                                                                <input type="text" class="form-control form-select-sm" id="serviceno" disabled>
                                                             </div>
                                                             <div class="col-12 col-lg-4">
                                                                 <label class="form-label">SMR</label>
-                                                                <input type="text" class="form-control form-select-sm" id="smr">
+                                                                <input type="text" class="form-control form-select-sm" id="smr" disabled>
                                                             </div>
                                                             <div class="col-12 col-lg-4">
                                                                 <label class="form-label">Machine Status</label>
-                                                                <input type="text" class="form-control form-select-sm" id="machinestatus">
+                                                                <input type="text" class="form-control form-select-sm" id="machinestatus" disabled>
                                                             </div>
                                                             <div class="col-12 col-lg-4">
                                                                 <label class="form-label">Service Model</label>
-                                                                <input type="text" class="form-control form-select-sm" id="servicemodel">
+                                                                <input type="text" class="form-control form-select-sm" id="servicemodel" disabled>
                                                             </div>
                                                             <div class="col-12 col-lg-4">
                                                                 <label class="form-label">Arrived Date/Time</label>
-                                                                <input type="datetime-local" class="form-control form-select-sm" id="arrived">
+                                                                <input type="datetime-local" class="form-control form-select-sm" id="arrived" disabled>
                                                             </div>
                                                             <div class="col-12 col-lg-4">
                                                                 <label class="form-label">Plate No.</label>
-                                                                <input type="text" class="form-control form-select-sm" id="plateno">
+                                                                <input type="text" class="form-control form-select-sm" id="plateno" disabled>
                                                             </div>
                                                             <div class="col-12">
                                                                 <label class="form-label">Remarks</label>
-                                                                <input type="text" class="form-control form-select-sm" id="remarks">
+                                                                <input type="text" class="form-control form-select-sm" id="remarks" disabled>
                                                             </div>
                                                             <div class="col-12">
                                                                 <label class="form-label">Special Instruction</label>
-                                                                <textarea class="form-control form-select-sm" rows="2" cols="3" id="specialins"></textarea>
+                                                                <textarea class="form-control form-select-sm" rows="2" cols="3" id="specialins" disabled></textarea>
                                                             </div>
                                                             <div class="col-12">
                                                                 <label class="form-label">Customer Name</label>
-                                                                <input type="text" class="form-control form-select-sm" id="customer_name">
+                                                                <input type="text" class="form-control form-select-sm" id="customer_name" disabled>
                                                             </div>
 
                                                             <div class="col col-lg-12 mx-auto">
@@ -276,7 +280,6 @@
                                                                                                 <th>Quantity</th>
                                                                                                 <th>Price</th>
                                                                                                 <th>Total</th>
-                                                                                                <th>Action</th>
                                                                                             </tr>
                                                                                         </thead>
                                                                                         <tbody id="partbody">
@@ -299,7 +302,6 @@
                                                                                                 <th>Odo Start</th>
                                                                                                 <th>Odo End</th>
                                                                                                 <th>KM Used</th>
-                                                                                                <th>Action</th>
                                                                                             </tr>
                                                                                         </thead>
                                                                                         <tbody id="techactivitybody">
@@ -353,8 +355,73 @@
                     //console.log(response.viewequipment);
                     $('#workorderdate').val(response.viewworkorder.workorder_date);
                     $('#workorderno').val(response.viewworkorder.workorder_no);
-                    $('#jceno').val(response.viewworkorder.workorder_no);
-                   
+                    $('#workorderstatus').val(response.viewworkorder.workorder_status);
+                    $('#jceno').val(response.viewjce.jce_number);
+                    $('#model').val(response.viewequipment.vehiclemodel);
+                    $('#serialnumber').val(response.viewequipment.serialnumber);
+                    $('#enginenumber').val(response.viewequipment.engineno);
+                    $('#incidentdate').val(response.viewjce.incidentdatetime);
+                    $('#customername').val(response.viewcustomer.customername);
+                    $('#contactperson').val(response.viewcustomer.contact);
+                    $('#telno').val(response.viewjce.contact_no);
+                    $('#jobsite').val(response.viewjce.job_site);
+                    $('#dispatchdate').val(response.viewjce.dispatch_date);
+                    $('#srt').val(response.viewjce.srt_amt);
+                    $('#component').val(response.viewjce.component);
+                    $('#typeofissue').val(response.viewjce.typeofissue);
+                    $('#jobsummary').val(response.viewworkorder.job_summary);
+                    $('#repairstart').val(response.viewworkorder.repairstart);
+                    $('#repairend').val(response.viewworkorder.repairend);
+                    $('#serviceno').val(response.viewworkorder.service_report);
+                    $('#smr').val(response.viewworkorder.smr);
+                    $('#machinestatus').val(response.viewworkorder.machine_status);
+                    $('#servicemodel').val(response.viewworkorder.servicemodel);
+                    $('#arrived').val(response.viewworkorder.arrived_datetime);
+                    $('#plateno').val(response.viewworkorder.plateno);
+                    $('#remarks').val(response.viewworkorder.remarks);
+                    $('#remarks').val(response.viewworkorder.special_instruction);
+                    $('#customer_name').val(response.viewworkorder.customer_name);
+                    $('#defectcode').val(response.viewworkorder.defect_code);
+                    $('#failurecode').val(response.viewworkorder.failure_code);
+                    $('#customerrequest').val(response.viewworkorder.customer_request);
+                    $('#cause').val(response.viewworkorder.cause);
+                    $('#servicerepair').val(response.viewworkorder.service_repair);
+                    $('#recommendation').val(response.viewworkorder.recommendation);
+                    $('#specialins').val(response.viewworkorder.special_instruction);
+
+                    $.each(response.viewtech, function(key, item) {
+                        var row = "<div class= 'chip' style='padding:0 5px; margin-right:.5rem; margin-bottom: .5rem;'>"+item.name+"</div>";
+
+                        $("#techlist").append(row);
+                    });
+
+                    $.each(response.viewpac, function(key, item) {
+                        var row = "<tr class='viewtbl' ><td class='col-md-2'>" + item.part_number +
+                            "</td><td class='col-md-7'>" + item.description +
+                            "</td><td class='text-center'>" + item.quantity +
+                            "</td><td class='text-center'>" + item.srp +
+                            "</td><td class='text-center'>" + item.total +
+                            "</tr>";
+
+                        $("#partbody").append(row);
+                    });
+
+                    $.each(response.viewtechact, function(key, item) {
+                        var row = "<tr class='viewtbl' ><td class='col-md-2'>" + item.activity_date +
+                            "</td><td class='col-md-7'>" + item.description +
+                            "</td><td class='text-center'>" + item.start_time +
+                            "</td><td class='text-center'>" + item.end_time +
+                            "</td><td class='text-center'>" + item.man_hour +
+                            "</td><td class='text-center'>" + item.location_from +
+                            "</td><td class='text-center'>" + item.location_to +
+                            "</td><td class='text-center'>" + item.odo_start +
+                            "</td><td class='text-center'>" + item.odo_end +
+                            "</td><td class='text-center'>" + item.km_used +
+                            "</tr>";
+
+                        $("#techactivitybody").append(row);
+                    });
+
                 },
                 error: function(data, textStatus, errorThrown) {
                     console.log(data);

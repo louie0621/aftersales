@@ -62,19 +62,12 @@
                                 </div>
                                 <div class="col-12">
                                     <label class="form-label">SRP</label>
-                                    <input type="text" class="form-control @error('srp') is-invalid @enderror" name="srp" value="{{ old('srp') }}" autofocus>
+                                    <input type="text" class="form-control @error('srp') is-invalid @enderror numberonly" name="srp" value="{{ old('srp') }}" autofocus>
                                     @error('srp')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
-                                </div>
-                                <div class="col-12">
-                                    <label class="form-label">Availability</label>
-                                    <select class="form-select form-select-sm" name="status" aria-label=".form-select-sm example">
-                                        <option value="0">Not Available</option>
-                                        <option value="1">Available</option>
-                                    </select>
                                 </div>
                                 <div class="col-12">
                                     <div class="d-grid">

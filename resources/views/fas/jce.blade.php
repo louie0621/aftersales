@@ -56,7 +56,8 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Job Cost Estimating Details</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <a class="btn btn-sm btn-primary px-5" href="{{ url('FAS/printjce') }}" target="_blank" ><i class="bi bi-printer"></i> Print JCE</a>
+                            <button type="button" style="margin: 0rem;" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <!--end breadcrumb-->

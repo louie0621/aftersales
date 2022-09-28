@@ -537,7 +537,7 @@
                     method: 'POST',
                     data: {
                         workorder_date: $("#workorderdate").val(),
-                        jce_no: $("#jceno option:selected").text(),
+                        jce_no: $("#jceno option:selected").val(),
                         workorder_no: $("#workorderno").val(),
                         workorder_status: $("#workorderstatus option:selected").text(),
                         job_summary: $("#jobsummary").val(),
@@ -928,7 +928,7 @@
                     dataType: "json",
                     success: function(response) {
                         $("#partsdes").val(response.parts.description);
-                        $("#partsprice").val(response.parts.price);
+                        $("#partsprice").val(response.parts.srp);
 
                     }
                 })

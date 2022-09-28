@@ -29,8 +29,7 @@ class Partsrequest extends FormRequest
             'description' => ['required', 'string', 'max:255'],
             'item_category_code' => ['required', 'string', 'max:255'],
             'uom' => ['required', 'string', 'max:255'],
-            'srp' => ['required', 'string', 'max:255'],
-            'status' => ['required', 'string', 'max:255']
+            'srp' => ['required', 'string', 'max:255']
         ];
     }
     protected function prepareForValidation()
@@ -40,8 +39,7 @@ class Partsrequest extends FormRequest
             'description' => strip_tags($this->description),
             'item_category_code' => strip_tags($this->item_category_code),
             'uom' => strip_tags($this->uom),
-            'srp' => strip_tags($this->srp),
-            'status' => strip_tags($this->status)
+            'srp' => strip_tags($this->srp)
         ]);
     }
 }

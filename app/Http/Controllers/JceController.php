@@ -305,6 +305,13 @@ class JceController extends Controller
         return response()->json(['customer' => $customer, 'viewparts' => $viewparts, 'viewlaborcost' => $viewlaborcost, 'viewjcenumber' => $viewjcenumber, 'viewtech' => $viewtech, 'viewjce' => $viewjce, 'viewcustomer' => $viewcustomer, 'viewequipment' => $viewequipment, 'viewtech' => $viewtech]);
     }
 
+    public function printjce(Jce $jce)
+    {
+        //
+        return view('fas.printjce');
+
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

@@ -183,11 +183,29 @@ class WorkorderController extends Controller
      * @param  \App\Models\Workorder  $workorder
      * @return \Illuminate\Http\Response
      */
-    public function show(Workorder $workorder,$id)
+    public function show(Workorder $workorder, $id)
     {
         //
         $viewworkorder = Workorder::find($id);
-        return response()->json(['viewworkorder' => $viewworkorder]);
+        $viewjce = Jce::find($viewworkorder->jce_no);
+        $viewcustomer = Customer::find($viewjce->customer_id);
+        $viewequipment = Equipment::find($viewjce->equipment_id);
+
+        $viewpac = DB::table('workorder_partsandconsumable')
+            ->where('pac_no', $viewworkorder->pac_no)
+            ->join('config_parts', 'workorder_partsandconsumable.part_id', '=', 'config_parts.id')
+            ->get();
+
+        $viewtechact = DB::table('workorder_technicianactivity')
+            ->where('techact_no', $viewworkorder->techact_no)
+            ->get();
+
+        $viewtech = DB::table('jce_techicianentry')
+            ->where('techentry_no', $viewjce->techentry_no)
+            ->join('technician', 'jce_techicianentry.tech_id', '=', 'technician.id')
+            ->get();
+
+        return response()->json(['viewtech' => $viewtech ,'viewtechact' => $viewtechact, 'viewpac' => $viewpac, 'viewworkorder' => $viewworkorder, 'viewjce' => $viewjce, 'viewcustomer' => $viewcustomer, 'viewequipment' => $viewequipment]);
     }
 
     /**
