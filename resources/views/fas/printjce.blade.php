@@ -16,7 +16,19 @@
     <title>Document</title>
     <style>
         .leftlabel {
-            font-size: 10px;
+            font-size: 14px;
+        }
+
+        @media print {
+            .col-xs-12 {
+                width: 110%;
+                padding-top: 5px;
+            }
+
+            .col-xs-13 {
+                width: 50%;
+                padding-top: 5px;
+            }
         }
     </style>
 </head>
@@ -24,44 +36,311 @@
 <body style="font-family: Roboto, sans-serif;">
     <div class="container">
         <div class="row">
-            <div class="col">
-                Job Cost Estimate (JCE)
+            <div class="col col-3 col-xs-12">
+                <strong>Job Cost Estimate (JCE)</strong>
+            </div>
+            <div class="col col-xs-12">
+                <img src="{{ asset('assets/images/printheader.png')}}" alt="">
             </div>
         </div>
-        <div class="border col col-12">
-            <div class="row ">
-                <div class="col leftlabel">
-                    JCE Number
+        <div class="row">
+            <div class="border col col-5 col-xs-12">
+                <div class="row col-xs-12">
+                    <div class="col-4 leftlabel col-xs-12">
+                        JCE Number
+                    </div>
+                    <div class="col leftlabel col-xs-13">
+                        SCE-BAC-1427
+                    </div>
                 </div>
-                <div class="col-md-auto leftlabel">
-                    SCE-BAC-1427
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        Incident Date
+                    </div>
+                    <div class="col leftlabel col-xs-13">
+                        SCE-BAC-1427 sdfsdfs
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel">
+                        Incident Time
+                    </div>
+                    <div class="col leftlabel col-xs-13">
+                        SCE-BAC-1427 sdfsdfdfgdfg
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        Customer Name
+                    </div>
+                    <div class="col leftlabel col-xs-12">
+                        SCE-BAC-1427 sdfs fsd fdfd fgdfg dfg
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        Contact Person
+                    </div>
+                    <div class="col leftlabel col-xs-12">
+                        SCE-BAC-1427 sdfs fsd fdfd fgdfg dfg
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        Tel No
+                    </div>
+                    <div class="col leftlabel col-xs-12">
+                        SCE-BAC-1427 sdfs fsd fdfd fgdfg dfg
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        Make
+                    </div>
+                    <div class="col leftlabel col-xs-12">
+                        SCE-BAC-1427 sdfs fsd fdfd fgdfg dfg
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        Model
+                    </div>
+                    <div class="col leftlabel col-xs-12">
+                        SCE-BAC-1427 sdfs fsd fdfd fgdfg dfg
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        Serial Number
+                    </div>
+                    <div class="col leftlabel col-xs-12">
+                        SCE-BAC-1427 sdfs fsd fdfd fgdfg dfg
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        Engine Number
+                    </div>
+                    <div class="col leftlabel col-xs-12">
+                        SCE-BAC-1427 sdfs fsd fdfd fgdfg dfg
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        Engine Hours
+                    </div>
+                    <div class="col leftlabel col-xs-12">
+                        SCE-BAC-1427 sdfs fsd fdfd fgdfg dfg
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        Dealer
+                    </div>
+                    <div class="col leftlabel col-xs-12">
+                        SCE-BAC-1427 sdfs fsd fdfd fgdfg dfg
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        Job Site
+                    </div>
+                    <div class="col leftlabel col-xs-12">
+                        SCE-BAC-1427 sdfs fsd fdfd fgdfg dfg
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        Travel Days
+                    </div>
+                    <div class="col leftlabel col-xs-12">
+                        SCE-BAC-1427 sdfs fsd fdfd fgdfg dfg
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        Promised Date
+                    </div>
+                    <div class="col leftlabel col-xs-12">
+                        SCE-BAC-1427 sdfs fsd fdfd fgdfg dfg
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        Promised Time
+                    </div>
+                    <div class="col leftlabel col-xs-12">
+                        SCE-BAC-1427 sdfs fsd fdfd fgdfg dfg
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        Mode of Payment
+                    </div>
+                    <div class="col leftlabel col-xs-12">
+                        SCE-BAC-1427 sdfs fsd fdfd fgdfg dfg
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        PO Number
+                    </div>
+                    <div class="col leftlabel col-xs-12">
+                        SCE-BAC-1427 sdfs fsd fdfd fgdfg dfg
+                    </div>
                 </div>
             </div>
-            <div class="row ">
-                <div class="col leftlabel">
-                    Incident Date
+
+            <div class="border col col-5 col-xs-12" style="margin: 10px;">
+                <div class="row col-xs-12">
+                    <div class="col-4 leftlabel col-xs-12">
+                        Work Area
+                    </div>
+                    <div class="col leftlabel col-xs-13">
+                        SCE-BAC-1427
+                    </div>
                 </div>
-                <div class="col-md-auto leftlabel">
-                    SCE-BAC-1427
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        Labor Amount
+                    </div>
+                    <div class="col leftlabel col-xs-13">
+                        SCE-BAC-1427 sdfsdfs
+                    </div>
                 </div>
-            </div>
-            <div class="row ">
-                <div class="col leftlabel">
-                    Incident Time
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel">
+                        SRT
+                    </div>
+                    <div class="col leftlabel col-xs-13">
+                        SCE-BAC-1427 sdfsdfdfgdfg
+                    </div>
                 </div>
-                <div class="col-md-auto leftlabel">
-                    SCE-BAC-1427
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        Parts Amount
+                    </div>
+                    <div class="col leftlabel col-xs-12">
+                        SCE-BAC-1427 sdfs fsd fdfd fgdfg dfg
+                    </div>
                 </div>
-            </div>
-            <div class="row ">
-                <div class="col leftlabel">
-                    Customer Name
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        Unit Status
+                    </div>
+                    <div class="col leftlabel col-xs-12">
+                        SCE-BAC-1427 sdfs fsd fdfd fgdfg dfg
+                    </div>
                 </div>
-                <div class="col-md-auto leftlabel">
-                    SCE-BAC-1427
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        Dispatch Date
+                    </div>
+                    <div class="col leftlabel col-xs-12">
+                        SCE-BAC-1427 sdfs fsd fdfd fgdfg dfg
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        Job Type
+                    </div>
+                    <div class="col leftlabel col-xs-12">
+                        SCE-BAC-1427 sdfs fsd fdfd fgdfg dfg
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        <Strong> Labor: </Strong>
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        JCE Type
+                    </div>
+                    <div class="col leftlabel col-xs-12">
+                        SCE-BAC-1427 sdfs fsd fdfd fgdfg dfg
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        Charge To
+                    </div>
+                    <div class="col leftlabel col-xs-12">
+                        SCE-BAC-1427 sdfs fsd fdfd fgdfg dfg
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        <strong>Parts:</strong>
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        JCE Type
+                    </div>
+                    <div class="col leftlabel col-xs-12">
+                        SCE-BAC-1427 sdfs fsd fdfd fgdfg dfg
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        Charge To
+                    </div>
+                    <div class="col leftlabel col-xs-12">
+                        SCE-BAC-1427 sdfs fsd fdfd fgdfg dfg
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        Item Labor Cost
+                    </div>
+                    <div class="col leftlabel col-xs-12">
+                        SCE-BAC-1427 sdfs fsd fdfd fgdfg dfg
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        Complaint
+                    </div>
+                    <div class="col leftlabel col-xs-12">
+                        SCE-BAC-1427 sdfs fsd fdfd fgdfg dfg
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        Component
+                    </div>
+                    <div class="col leftlabel col-xs-12">
+                        SCE-BAC-1427 sdfs fsd fdfd fgdfg dfg
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        Type of Issue
+                    </div>
+                    <div class="col leftlabel col-xs-12">
+                        SCE-BAC-1427 sdfs fsd fdfd fgdfg dfg
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        Resolved
+                    </div>
+                    <div class="col leftlabel col-xs-12">
+                        SCE-BAC-1427 sdfs fsd fdfd fgdfg dfg
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div class="col col-4 leftlabel col-xs-12">
+                        Allocated Technician
+                    </div>
+                    <div class="col leftlabel col-xs-12">
+                        SCE-BAC-1427 sdfs fsd fdfd fgdfg dfg
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 </body>
 
