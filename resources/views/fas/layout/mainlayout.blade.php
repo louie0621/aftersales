@@ -448,7 +448,17 @@
     <script src="{{ asset('assets/js/app.js')}}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
-    
+    <script>
+
+        //Work unit number only
+        $(".numberonly").keypress(function(e) {
+            //if the letter is not digit then display error and don't type anything
+            if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+                return false;
+            }
+        });
+        
+    </script>
     @yield('script')
 </body>
 

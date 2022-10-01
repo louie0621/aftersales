@@ -43,18 +43,33 @@
                                     @enderror
                                 </div>
                                 <div class="col-12">
+<<<<<<< HEAD
                                     <label class="form-label">UOM</label>
                                     <input type="text" class="form-control @error('stocks') is-invalid @enderror" name="stocks" value="{{ old('stocks') }}" autofocus>
                                     @error('stocks')
+=======
+                                    <label class="form-label">Item category code</label>
+                                    <input type="text" class="form-control @error('item_category_code') is-invalid @enderror" name="item_category_code" value="{{ old('item_category_code') }}" autofocus>
+                                    @error('item_category_code')
+>>>>>>> 03cdc1e25e20339facc62ce3f131141d994b93bf
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
                                 </div>
                                 <div class="col-12">
-                                    <label class="form-label">Price</label>
-                                    <input type="text" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" autofocus>
-                                    @error('price')
+                                    <label class="form-label">UOM</label>
+                                    <input type="text" class="form-control @error('uom') is-invalid @enderror" name="uom" value="{{ old('uom') }}" autofocus>
+                                    @error('uom')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">SRP</label>
+                                    <input type="text" class="form-control @error('srp') is-invalid @enderror numberonly" name="srp" value="{{ old('srp') }}" autofocus>
+                                    @error('srp')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -79,8 +94,15 @@
                                             <th>ID</th>
                                             <th>Parts no.</th>
                                             <th>Description</th>
+<<<<<<< HEAD
                                             <th>UOM</th>
                                             <th>Price</th>
+=======
+                                            <th>Item Category Code</th>
+                                            <th>UOM</th>
+                                            <th>SRP</th>
+                                            <th>Availability</th>
+>>>>>>> 03cdc1e25e20339facc62ce3f131141d994b93bf
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -90,11 +112,18 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $data->part_number }}</td>
                                             <td>{{ $data->description }}</td>
-                                            <td>{{ $data->stocks }}</td>
-                                            <td>{{ $data->price }}</td>
+                                            <td>{{ $data->item_category_code }}</td>
+                                            <td>{{ $data->uom}}</td>
+                                            <td>{{ $data->srp}}</td>
+                                            <td>@if( $data->status > 0 )
+                                                <span class="badge rounded-pill alert-success">Available</span>
+                                                @else
+                                                <span class="badge rounded-pill alert-danger">Not Available</span>
+                                                @endif
+                                            </td>
                                             <td>
                                                 <div class="d-flex align-items-center gap-3 fs-6">
-                                                    <a href="javascript:;" id="edit" data-editid="{{ $data->id }}" data-editpart="{{ $data->part_number }}" data-editdes="{{ $data->description }}" data-editstocks="{{ $data->stocks }}" data-editprice="{{ $data->price }}" class="text-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Edit info" aria-label="Edit"><i class="bi bi-pencil-fill"></i></a>
+                                                    <a href="javascript:;" id="edit" data-editid="{{ $data->id }}" data-editpart="{{ $data->part_number }}" data-editdes="{{ $data->description }}" data-edititem="{{ $data->item_category_code }}" data-edituom="{{ $data->uom }}" data-editsrp="{{ $data->srp }}" class="text-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Edit info" aria-label="Edit"><i class="bi bi-pencil-fill"></i></a>
                                                     <a href="javascript:;" id="delete" data-deleteid="{{ $data->id }}" class="text-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete"><i class="bi bi-trash-fill"></i></a>
                                                 </div>
                                             </td>
@@ -128,15 +157,32 @@
                                     </div>
                                     <br>
                                     <div class="col-12">
+<<<<<<< HEAD
                                         <label class="form-label">UOM</label>
                                         <input type="text" class="form-control" id="estock">
+=======
+                                        <label class="form-label">Item Category Code</label>
+                                        <input type="text" class="form-control" id="eitemcategorycode">
+>>>>>>> 03cdc1e25e20339facc62ce3f131141d994b93bf
                                     </div>
                                     <br>
                                     <div class="col-12">
-                                        <label class="form-label">Price</label>
-                                        <input type="text" class="form-control" id="eprice">
+                                        <label class="form-label">UOM</label>
+                                        <input type="text" class="form-control" id="euom">
                                     </div>
                                     <br>
+                                    <div class="col-12">
+                                        <label class="form-label">SRP</label>
+                                        <input type="text" class="form-control" id="esrp">
+                                    </div>
+                                    <br>
+                                    <div class="col-12">
+                                        <label class="form-label">Availability</label>
+                                        <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="editavail">
+                                            <option value="0">Not Available</option>
+                                            <option value="1">Available</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary closemodal">Close</button>
@@ -169,13 +215,16 @@
             var getidFromRow = $(e.currentTarget).data("editid");
             var getpartFromRow = $(e.currentTarget).data("editpart");
             var getdesFromRow = $(e.currentTarget).data("editdes");
-            var getstockFromRow = $(e.currentTarget).data("editstocks");
-            var getpriceFromRow = $(e.currentTarget).data("editprice");
+            var getitemFromRow = $(e.currentTarget).data("edititem");
+            var getuomFromRow = $(e.currentTarget).data("edituom");
+            var getsrpFromRow = $(e.currentTarget).data("editsrp");
+
             $('#eid').val(getidFromRow);
             $('#epart').val(getpartFromRow);
             $('#edes').val(getdesFromRow);
-            $('#estock').val(getstockFromRow);
-            $('#eprice').val(getpriceFromRow);
+            $('#eitemcategorycode').val(getitemFromRow);
+            $('#euom').val(getuomFromRow);
+            $('#esrp').val(getsrpFromRow);
             $("#editModal").modal('show');
         })
 
@@ -193,15 +242,16 @@
                         'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
                     }
                 });
-
                 $.ajax({
                     url: url,
                     method: 'put',
                     data: {
                         part_number: $('#epart').val(),
                         description: $('#edes').val(),
-                        stocks: $('#estock').val(),
-                        price: $('#eprice').val(),
+                        item_category_code: $('#eitemcategorycode').val(),
+                        uom: $('#euom').val(),
+                        srp: $('#esrp').val(),
+                        status: $("#editavail").children("option:selected").val(),
                         _token: '{!! csrf_token() !!}'
                     },
                     success: function(result) {

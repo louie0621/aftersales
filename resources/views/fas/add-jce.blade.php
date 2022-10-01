@@ -905,9 +905,15 @@
                     url: url,
                     dataType: "json",
                     success: function(response) {
+
                         $("#partdes").val(response.showpartsdescription.description);
-                        $("#partavail").val(response.showpartsdescription.stocks);
-                        $("#partprice").val(response.showpartsdescription.price);
+                        if (response.showpartsdescription.status > 0) {
+                            $("#partavail").val("Available");
+                        } else {
+                            $("#partavail").val("Not Available");
+                        }
+                        
+                        $("#partprice").val(response.showpartsdescription.srp);
                         var price = $("#partprice").val();
                         var qty = $("#partqty").val();
                         var total = parseFloat(price) * parseFloat(qty);
@@ -1019,14 +1025,6 @@
                 $("#amtdue").val(total.toLocaleString());
             } else {
                 $("#amtdue").val('');
-            }
-        });
-
-        //Work unit number only
-        $(".numberonly").keypress(function(e) {
-            //if the letter is not digit then display error and don't type anything
-            if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
-                return false;
             }
         });
 

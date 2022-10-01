@@ -17,8 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('part_number')->nullable();
             $table->string('description')->nullable();
-            $table->string('stocks')->nullable();
-            $table->string('price')->nullable();
+            $table->string('item_category_code')->nullable();
+            $table->string('uom')->nullable();
+            $table->string('srp')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

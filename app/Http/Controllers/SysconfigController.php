@@ -270,8 +270,10 @@ class SysconfigController extends Controller
         Parts::create([
             'part_number' => $data['part_number'],
             'description' => $data['description'],
-            'stocks' => $data['stocks'],
-            'price' => $data['price']
+            'item_category_code' => $data['item_category_code'],
+            'uom' => $data['uom'],
+            'srp' => $data['srp'],
+            'status' => 0
         ]);
         
         Alert::toast('You\'ve Successfully Added', 'success');
@@ -279,14 +281,16 @@ class SysconfigController extends Controller
         return redirect('FAS/parts');
     }
 
-    public function updateparts(Partsrequest $request,$id)
+    public function updateparts(Request $request,$id)
     {
         //
         $edit = Parts::find($id);
         $edit->part_number = $request->part_number;
         $edit->description = $request->description;
-        $edit->stocks = $request->stocks;
-        $edit->price = $request->price;
+        $edit->item_category_code = $request->item_category_code;
+        $edit->uom = $request->uom;
+        $edit->srp = $request->srp;
+        $edit->status = $request->status;
         $edit->save();
         return response()->json();
     }

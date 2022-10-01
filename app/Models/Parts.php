@@ -14,7 +14,9 @@ class Parts extends Model
     protected $fillable = [
         'part_number',
         'description',
-        'stocks',
-        'price'
+        'item_category_code',
+        'uom',
+        'srp',
+        'status'
     ];
 }

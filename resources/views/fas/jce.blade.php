@@ -56,8 +56,13 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Job Cost Estimating Details</h5>
+<<<<<<< HEAD
                             <a class="btn btn-primary" href="{{ url('/FAS/printjce')}}"><i class="bi bi-printer-fill"></i> Print JCE</a>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+=======
+                            <a class="btn btn-sm btn-primary px-5" href="{{ url('FAS/printjce') }}" target="_blank" ><i class="bi bi-printer"></i> Print JCE</a>
+                            <button type="button" style="margin: 0rem;" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+>>>>>>> 03cdc1e25e20339facc62ce3f131141d994b93bf
                         </div>
                         <div class="modal-body">
                             <!--end breadcrumb-->
