@@ -43,7 +43,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-12">
-                                    <label class="form-label">Stocks</label>
+                                    <label class="form-label">UOM</label>
                                     <input type="text" class="form-control @error('stocks') is-invalid @enderror" name="stocks" value="{{ old('stocks') }}" autofocus>
                                     @error('stocks')
                                     <span class="invalid-feedback" role="alert">
@@ -79,7 +79,7 @@
                                             <th>ID</th>
                                             <th>Parts no.</th>
                                             <th>Description</th>
-                                            <th>Stocks</th>
+                                            <th>UOM</th>
                                             <th>Price</th>
                                             <th>Action</th>
                                         </tr>
@@ -128,7 +128,7 @@
                                     </div>
                                     <br>
                                     <div class="col-12">
-                                        <label class="form-label">Stocks</label>
+                                        <label class="form-label">UOM</label>
                                         <input type="text" class="form-control" id="estock">
                                     </div>
                                     <br>
