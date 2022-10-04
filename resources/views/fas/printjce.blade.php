@@ -103,18 +103,19 @@
         <hr>
         <div class="row">
             <div class=" col col-12 ">
+                @foreach ($jceview as $view)
                 <div class="row col-xs-12">
                     <div class="col col-2 leftlabel col-xs-12">
                         <strong>JCE Number</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                        SCE-BAC-1427
+                        {{ $view->jce_number }}
                     </div>
                     <div class="col col-2 leftlabel col-xs-13">
                         <strong>Work Area</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                        In-field
+                    {{ $view->work_area }}
                     </div>
                     <div class="col leftlabel col-xs-13">
                         <strong>Labor:</strong>
@@ -128,19 +129,19 @@
                         <strong>Incident Date</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                        2/3/2022
+                    {{ $view->incidentdatetime }}
                     </div>
                     <div class="col col-2 leftlabel col-xs-13">
                         <strong>Labor Amount</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                        2000
+                    {{ $view->labor_amt }}
                     </div>
                     <div class="col leftlabel col-xs-13">
                         <strong>JCE Type</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                        Non-revenue
+                    {{ $view->wjce_type }}
                     </div>
                 </div>
                 <div class="row col-xs-12">
@@ -148,19 +149,19 @@
                         <strong>Incident Time</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                        9:03 AM
+                    {{ $view->incidentdatetime }}
                     </div>
                     <div class="col col-2 leftlabel col-xs-13">
                         <strong>SRT</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                        2000
+                    {{ $view->srt_amt }}
                     </div>
                     <div class="col leftlabel col-xs-13">
                         <strong>Charge To</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                        Non-revenue
+                    {{ $view->charge_to }}
                     </div>
                 </div>
                 <div class="row col-xs-12">
@@ -180,7 +181,7 @@
                         <strong>Parts:</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-
+                    {{ $view->parts_amt }}
                     </div>
                 </div>
                 <div class="row col-xs-12">
@@ -473,18 +474,19 @@
                         Approved by: _______________________________
                     </div>
                 </div>
+                @endforeach
             </div>
 
         </div>
 
     </div>
 </body>
-<script>
+<!-- <script>
     newDoc()
+
     function newDoc() {
         window.print()
     }
-    
-</script>
+</script> -->
 
 </html>

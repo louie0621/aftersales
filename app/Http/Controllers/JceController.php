@@ -308,8 +308,8 @@ class JceController extends Controller
     public function printjce(Jce $jce,$id)
     {
         //
-        return view('fas.printjce');
-
+        $jceview = Jce::all();
+        return view('fas.printjce', ['jceview' => $jceview]);
     }
 
     /**
