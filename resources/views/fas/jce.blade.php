@@ -348,7 +348,9 @@
     $(document).ready(function() {
 
         $(document).on("click", "#printjce", function(e) {
-            window.open("{{ url('FAS/printjce') }}", "_blank");
+            var url = "{{ url('FAS/printjce') }}" + "/" + $("#idnumber").val();
+            window.open(url, "_blank");
+            
         })
 
         //view modal 

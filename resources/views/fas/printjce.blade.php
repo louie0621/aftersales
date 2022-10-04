@@ -50,18 +50,22 @@
             position: fixed;
             bottom: 3cm;
         }
+
         .footer1 {
             position: fixed;
             bottom: 3cm;
             right: 4cm;
         }
+
         .footer3 {
             position: fixed;
             bottom: 2cm;
         }
+
         .col {
             margin-top: .5rem;
         }
+
         @page {
             size: A4;
             margin: 0;
@@ -455,17 +459,17 @@
                     </div>
                 </div>
                 <div class="row col-xs-12 footer">
-                    <div class="col leftlabel col-xs-12" >
+                    <div class="col leftlabel col-xs-12">
                         Prepared by: _______________________________
                     </div>
                 </div>
                 <div class="row col-xs-12 footer3">
-                    <div class="col leftlabel col-xs-12" >
+                    <div class="col leftlabel col-xs-12">
                         <strong>Date:</strong> 10/3/2022
                     </div>
                 </div>
                 <div class="row col-xs-12 footer1">
-                    <div class="col leftlabel col-xs-12" >
+                    <div class="col leftlabel col-xs-12">
                         Approved by: _______________________________
                     </div>
                 </div>
@@ -476,8 +480,11 @@
     </div>
 </body>
 <script>
-    $(document).ready(function() {
-        windows.print()
-    })
+    newDoc()
+    function newDoc() {
+        window.print()
+    }
+    
 </script>
+
 </html>
