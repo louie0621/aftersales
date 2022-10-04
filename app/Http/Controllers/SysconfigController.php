@@ -272,8 +272,7 @@ class SysconfigController extends Controller
             'description' => $data['description'],
             'item_category_code' => $data['item_category_code'],
             'uom' => $data['uom'],
-            'srp' => $data['srp'],
-            'status' => 0
+            'srp' => $data['srp']
         ]);
         
         Alert::toast('You\'ve Successfully Added', 'success');

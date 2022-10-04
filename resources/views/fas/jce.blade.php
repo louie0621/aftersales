@@ -56,7 +56,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Job Cost Estimating Details</h5>
-                            <a class="btn btn-sm btn-primary px-5" href="{{ url('FAS/printjce') }}" target="_blank" ><i class="bi bi-printer"></i> Print JCE</a>
+                            <a class="btn btn-sm btn-primary px-5" id="printjce"><i class="bi bi-printer"></i> Print JCE</a>
                             <button type="button" style="margin: 0rem;" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -70,6 +70,7 @@
                                                     <div class="card shadow-none bg-light border">
                                                         <div class="card-body">
                                                             <div class="row g-3">
+                                                                <input type="text" id="idnumber" hidden>
                                                                 <div class="col-12 col-lg-6">
                                                                     <label class="form-label">JCE Number</label>
                                                                     <input type="text" class="form-control form-select-sm" id="viewjcenumber" disabled>
@@ -346,6 +347,10 @@
 <script>
     $(document).ready(function() {
 
+        $(document).on("click", "#printjce", function(e) {
+            window.open("{{ url('FAS/printjce') }}", "_blank");
+        })
+
         //view modal 
         $(document).on("click", ".view", function(e) {
             var url = "{{ url('FAS/viewjcedetails') }}" + "/" + $(e.currentTarget).data("viewid");
@@ -356,6 +361,7 @@
                 dataType: "json",
                 success: function(response) {
                     //console.log(response.viewequipment);
+                    $('#idnumber').val(response.viewjce.id);
                     $('#viewjcenumber').val(response.viewjce.jce_number);
                     $('#viewincidentdatetime').val(response.viewjce.incidentdatetime);
                     $('#viewcustomername').val(response.viewcustomer.customername);

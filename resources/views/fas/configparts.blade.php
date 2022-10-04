@@ -43,15 +43,9 @@
                                     @enderror
                                 </div>
                                 <div class="col-12">
-<<<<<<< HEAD
-                                    <label class="form-label">UOM</label>
-                                    <input type="text" class="form-control @error('stocks') is-invalid @enderror" name="stocks" value="{{ old('stocks') }}" autofocus>
-                                    @error('stocks')
-=======
-                                    <label class="form-label">Item category code</label>
+                                    <label class="form-label">Item Category Code</label>
                                     <input type="text" class="form-control @error('item_category_code') is-invalid @enderror" name="item_category_code" value="{{ old('item_category_code') }}" autofocus>
                                     @error('item_category_code')
->>>>>>> 03cdc1e25e20339facc62ce3f131141d994b93bf
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -94,15 +88,10 @@
                                             <th>ID</th>
                                             <th>Parts no.</th>
                                             <th>Description</th>
-<<<<<<< HEAD
-                                            <th>UOM</th>
-                                            <th>Price</th>
-=======
                                             <th>Item Category Code</th>
                                             <th>UOM</th>
                                             <th>SRP</th>
                                             <th>Availability</th>
->>>>>>> 03cdc1e25e20339facc62ce3f131141d994b93bf
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -157,13 +146,8 @@
                                     </div>
                                     <br>
                                     <div class="col-12">
-<<<<<<< HEAD
-                                        <label class="form-label">UOM</label>
-                                        <input type="text" class="form-control" id="estock">
-=======
                                         <label class="form-label">Item Category Code</label>
                                         <input type="text" class="form-control" id="eitemcategorycode">
->>>>>>> 03cdc1e25e20339facc62ce3f131141d994b93bf
                                     </div>
                                     <br>
                                     <div class="col-12">
