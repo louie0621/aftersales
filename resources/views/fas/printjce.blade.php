@@ -115,7 +115,7 @@
                         <strong>Work Area</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                    {{ $view->work_area }}
+                        {{ $view->work_area }}
                     </div>
                     <div class="col leftlabel col-xs-13">
                         <strong>Labor:</strong>
@@ -128,20 +128,25 @@
                     <div class="col col-2 leftlabel col-xs-12">
                         <strong>Incident Date</strong>
                     </div>
+
+                    <?php
+                    $temp = explode(' ', $view->incidentdatetime);
+                    ?>
+
                     <div class="col leftlabel col-xs-13">
-                    {{ $view->incidentdatetime }}
+                        {{ $temp[0] }}
                     </div>
                     <div class="col col-2 leftlabel col-xs-13">
                         <strong>Labor Amount</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                    {{ $view->labor_amt }}
+                        {{ $view->labor_amt }}
                     </div>
                     <div class="col leftlabel col-xs-13">
                         <strong>JCE Type</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                    {{ $view->wjce_type }}
+                        {{ $view->jce_type }}
                     </div>
                 </div>
                 <div class="row col-xs-12">
@@ -149,19 +154,19 @@
                         <strong>Incident Time</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                    {{ $view->incidentdatetime }}
+                    {{ $temp[1] }}
                     </div>
                     <div class="col col-2 leftlabel col-xs-13">
                         <strong>SRT</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                    {{ $view->srt_amt }}
+                        {{ $view->srt_amt }}
                     </div>
                     <div class="col leftlabel col-xs-13">
                         <strong>Charge To</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                    {{ $view->charge_to }}
+                        {{ $view->charge_to }}
                     </div>
                 </div>
                 <div class="row col-xs-12">
@@ -169,19 +174,19 @@
                         <strong>Customer Name</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                        Agri
+                        {{ $viewcustomer->customername }}
                     </div>
                     <div class="col col-2 leftlabel col-xs-13">
                         <strong>Parts Amount</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                        2000
+                        {{ $view->parts_amt }}
                     </div>
                     <div class="col leftlabel col-xs-13">
                         <strong>Parts:</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                    {{ $view->parts_amt }}
+
                     </div>
                 </div>
                 <div class="row col-xs-12">
@@ -189,19 +194,19 @@
                         <strong>Contact Person</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                        Louie Cagas
+                        {{ $viewcustomer->contact }}
                     </div>
                     <div class="col col-2 leftlabel col-xs-13">
                         <strong>Unit Status</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                        Working
+                        {{ $viewequipment->unit_status }}
                     </div>
                     <div class="col leftlabel col-xs-13">
                         <strong>JCE Type</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                        Non-revenue
+                        {{ $view->jce_type }}
                     </div>
                 </div>
                 <div class="row col-xs-12">
@@ -209,7 +214,7 @@
                         <strong>Tel No</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                        09264823947
+                        {{ $view->contact_no }}
                     </div>
                     <div class="col col-2 leftlabel col-xs-13">
                         <strong></strong>
@@ -221,7 +226,7 @@
                         <strong>Charge To</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                        Customer
+                        {{ $view->charge_to }}
                     </div>
                 </div>
                 <div class="row col-xs-12">
@@ -229,19 +234,19 @@
                         <strong>Make</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                        Farm Tracktor
+                        {{ $viewequipment->type }}
                     </div>
                     <div class="col col-2 leftlabel col-xs-13">
                         <strong>Dispatch Date</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                        2/2/2022
+                        {{ $view->dispatch_date }}
                     </div>
                     <div class="col leftlabel col-xs-13">
                         <strong>Item Labor Cost</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                        Non-revenue
+                        Non-revenue a
                     </div>
                 </div>
                 <div class="row col-xs-12">
@@ -249,13 +254,13 @@
                         <strong>Model</strong>
                     </div>
                     <div class="col col-2 leftlabel col-xs-13">
-                        TT35
+                        {{ $viewequipment->vehiclemodel }}
                     </div>
                     <div class="col col-2 leftlabel col-xs-13">
                         <strong>Job Type</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                        Labor and parts under revenue
+                        {{ $view->job_type }}
                     </div>
                 </div>
                 <div class="row col-xs-12">
@@ -263,13 +268,13 @@
                         <strong>Serial Number</strong>
                     </div>
                     <div class="col col-2 leftlabel col-xs-13">
-                        nes234k2hj
+                        {{ $viewequipment->serialnumber }}
                     </div>
                     <div class="col col-2 leftlabel col-xs-13">
                         <strong>Complaint</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                        Labor and parts under revenue
+                        {{ $view->complaint_request }}
                     </div>
                 </div>
                 <div class="row col-xs-12">
@@ -277,7 +282,7 @@
                         <strong>Engine Number </strong>
                     </div>
                     <div class="col col-2 leftlabel col-xs-13">
-                        23938498ccvxv
+                        {{ $viewequipment->engineno }}
                     </div>
                 </div>
                 <div class="row col-xs-12">
@@ -285,13 +290,13 @@
                         <strong>Engine Hours</strong>
                     </div>
                     <div class="col col-2 leftlabel col-xs-13">
-                        TT35
+                        {{ $view->engine_hours }}
                     </div>
                     <div class="col col-2 leftlabel col-xs-13">
                         <strong>Component</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                        Labor and parts under revenue
+                        {{ $view->component }}
                     </div>
                 </div>
                 <div class="row col-xs-12">
@@ -299,13 +304,13 @@
                         <strong>Delear</strong>
                     </div>
                     <div class="col col-2 leftlabel col-xs-13">
-                        JVF
+                        {{ $view->dealer }}
                     </div>
                     <div class="col col-2 leftlabel col-xs-13">
                         <strong>Type of Issue</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                        Labor and parts under revenue
+                        {{ $view->typeofissue }}
                     </div>
                 </div>
                 <div class="row col-xs-12">
@@ -313,13 +318,13 @@
                         <strong>Job Site</strong>
                     </div>
                     <div class="col col-2 leftlabel col-xs-13">
-                        TT35
+                        {{ $view->job_site }}
                     </div>
                     <div class="col col-2 leftlabel col-xs-13">
                         <strong>Resolved</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                        Labor and parts under revenue
+                        {{ $view->resolved }}
                     </div>
                 </div>
                 <div class="row col-xs-12">
@@ -327,21 +332,28 @@
                         <strong>Travel Days</strong>
                     </div>
                     <div class="col col-2 leftlabel col-xs-13">
-                        TT35
+                        {{ $view->travel_days }}
                     </div>
                     <div class="col col-2 leftlabel col-xs-13">
                         <strong>Allocated Technician</strong>
                     </div>
                     <div class="col leftlabel col-xs-13">
-                        Labor and parts under revenue
+                        @foreach ($viewtech as $viewtech)
+                        <li>
+                            {{ $viewtech->name }}
+                        </li>
+                        @endforeach
                     </div>
                 </div>
                 <div class="row col-xs-12">
                     <div class="col col-2 leftlabel col-xs-12">
                         <strong>Promised Date</strong>
                     </div>
+                    <?php
+                    $temp1 = explode(' ', $view->promised_datetime);
+                    ?>
                     <div class="col col-2 leftlabel col-xs-13">
-                        TT35
+                    {{ $temp[0] }}
                     </div>
                 </div>
                 <div class="row col-xs-12">
@@ -349,7 +361,7 @@
                         <strong>Promised Time</strong>
                     </div>
                     <div class="col col-2 leftlabel col-xs-13">
-                        TT35
+                        {{ $view->promised_datetime }}
                     </div>
                 </div>
                 <div class="row col-xs-12">
@@ -357,7 +369,7 @@
                         <strong>Mode of Payment</strong>
                     </div>
                     <div class="col col-2 leftlabel col-xs-13">
-                        TT35
+                        {{ $view->modeofpayment }}
                     </div>
                 </div>
                 <div class="row col-xs-12">
@@ -365,7 +377,7 @@
                         <strong>PO Number</strong>
                     </div>
                     <div class="col col-2 leftlabel col-xs-13">
-                        TT35
+                        {{ $view->po_number }}
                     </div>
                 </div>
                 <hr>
@@ -383,11 +395,13 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($jcesrtcode as $viewsrt)
                                 <tr>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
+                                    <td>{{ $viewsrt->srt_code }}</td>
+                                    <td>{{ $viewsrt->description }}</td>
+                                    <td>{{ $viewsrt->working_unit }}</td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -408,17 +422,19 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($jcelaborcost as $viewlaborcost)
                                 <tr>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td>@mdo</td>
+                                    <td>{{ $viewlaborcost->description }}</td>
+                                    <td>{{ $viewlaborcost->rate }}</td>
+                                    <td>{{ $viewlaborcost->quantity }}</td>
+                                    <td>{{ $viewlaborcost->amount }}</td>
                                 </tr>
+                                @endforeach
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <td colspan="3" class="text-right">Total Labor Price:</td>
-                                    <th>20000</th>
+                                    <th>{{ $view->laborcost_total }}</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -445,15 +461,27 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
+                                    @foreach ($jceparts as $viewparts)
+                                <tr>
+                                    <td>{{ $viewparts->part_number }}</td>
+                                    <td>{{ $viewparts->description }}</td>
+                                    <td>@if ($viewparts->status > 0)
+                                        Available
+                                        @else
+                                        Not Available
+                                        @endif</td>
+                                    <td>{{ $viewparts->quantity }}</td>
+                                    <td>{{ $viewparts->srp }}</td>
+                                    <td>{{ $viewparts->disc_percent }}</td>
+                                    <td>{{ $viewparts->disc_amt }} </td>
+                                    <td>{{ $viewparts->total_amt }}</td>
+                                    @endforeach
                                 </tr>
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <td colspan="7" class="text-right">Total Parts Price:</td>
-                                    <th>20000</th>
+                                    <th>{{ $view->parts_total }}</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -466,7 +494,7 @@
                 </div>
                 <div class="row col-xs-12 footer3">
                     <div class="col leftlabel col-xs-12">
-                        <strong>Date:</strong> 10/3/2022
+                        <strong>Date:</strong> {{ date('Y-m-d') }}
                     </div>
                 </div>
                 <div class="row col-xs-12 footer1">

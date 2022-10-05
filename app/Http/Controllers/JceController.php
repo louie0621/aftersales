@@ -305,11 +305,38 @@ class JceController extends Controller
         return response()->json(['customer' => $customer, 'viewparts' => $viewparts, 'viewlaborcost' => $viewlaborcost, 'viewjcenumber' => $viewjcenumber, 'viewtech' => $viewtech, 'viewjce' => $viewjce, 'viewcustomer' => $viewcustomer, 'viewequipment' => $viewequipment, 'viewtech' => $viewtech]);
     }
 
-    public function printjce(Jce $jce,$id)
+    public function printjce(Jce $jce, $id)
     {
         //
-        $jceview = Jce::all();
-        return view('fas.printjce', ['jceview' => $jceview]);
+        $viewjce = Jce::find($id);
+        $viewcustomer = Customer::find($viewjce->customer_id);
+        $viewequipment = Equipment::find($viewjce->equipment_id);
+
+        $jceview = DB::table('jce')
+            ->where('id', $id)
+            ->get();
+
+        $jcesrtcode = DB::table('jce_srtcodeentry')
+            ->where('srtcode_no', $viewjce->srtcode_no)
+            ->get();
+
+        $jcelaborcost = DB::table('jce_laborcostentry')
+            ->where('laborcost_no', $viewjce->laborcost_no)
+            ->join('config_laborcost', 'jce_laborcostentry.laborcost_id', '=', 'config_laborcost.id')
+            ->get();
+
+        $jceparts = DB::table('jce_partsentry')
+            ->where('parts_no', $viewjce->parts_no)
+            ->join('config_parts', 'jce_partsentry.parts_id', '=', 'config_parts.id')
+            ->get();
+
+        $viewtech = DB::table('jce_techicianentry')
+            ->where('techentry_no', $viewjce->techentry_no)
+            ->join('technician', 'jce_techicianentry.tech_id', '=', 'technician.id')
+            ->get();
+        
+
+        return view('fas.printjce', ['viewtech'=> $viewtech,'viewequipment' => $viewequipment, 'viewcustomer' => $viewcustomer, 'jceparts' => $jceparts, 'jceview' => $jceview, 'jcesrtcode' => $jcesrtcode, 'jcelaborcost' => $jcelaborcost]);
     }
 
     /**
