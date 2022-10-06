@@ -252,11 +252,8 @@
                                 </div>
                                 <small class="mb-0">Filholland Aftersales System</small>
                             </div>
-                            <a href="{{ url('/FAS/home')}}" class="list-group-item"><i class="bi bi-bar-chart-line"></i>Analytics</a>
-                            <a href="index2.html" class="list-group-item"><i class="bi bi-wallet"></i>Sales</a>
-                            <a href="index4.html" class="list-group-item"><i class="bi bi-archive"></i>Project Management</a>
-                            <a href="index5.html" class="list-group-item"><i class="bi bi-cast"></i>CMS Dashboard</a>
-                        </div>
+                            <a href="{{ url('/FAS/home')}}" class="list-group-item"><i class="bi bi-bar-chart-line"></i>Dashboards</a>
+                          </div>
                     </div>
                     <div class="tab-pane fade" id="pills-JCE">
                         <div class="list-group list-group-flush">

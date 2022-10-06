@@ -405,7 +405,7 @@
             e.preventDefault();
             var url = "{{ url('/FAS/addjce') }}";
             var today = new Date();
-            var datetime = today.toLocaleString();
+            var datetime = today.toISOString();
             var jcenocode = $("#jceno").val().slice(8, 15);
             var selected = $('#techname').select2("val");
 

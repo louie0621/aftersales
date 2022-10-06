@@ -57,6 +57,7 @@
                         <div class="modal-header">
                             <h5 class="modal-title">Job Cost Estimating Details</h5>
                             <a class="btn btn-sm btn-primary px-5" id="printjce"><i class="bi bi-printer"></i> Print JCE</a>
+                            <a class="btn btn-sm btn-secondary px-5" id="printquotation"><i class="bi bi-printer"></i> Print Quotation</a>
                             <button type="button" style="margin: 0rem;" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -347,10 +348,15 @@
 <script>
     $(document).ready(function() {
 
+        $(document).on("click", "#printquotation", function(e) {
+            var url = "{{ url('FAS/printquotation') }}" + "/" + $("#idnumber").val();
+            window.open(url, "_blank");
+            
+        })
+
         $(document).on("click", "#printjce", function(e) {
             var url = "{{ url('FAS/printjce') }}" + "/" + $("#idnumber").val();
             window.open(url, "_blank");
-            
         })
 
         //view modal 

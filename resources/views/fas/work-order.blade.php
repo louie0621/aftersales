@@ -57,7 +57,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Work Order Details</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <a class="btn btn-sm btn-primary px-5" id="printworkorder"><i class="bi bi-printer"></i> Print Work Order</a>
+                    <a class="btn btn-sm btn-secondary px-5" id="printservicereport"><i class="bi bi-printer"></i> Print Service Report</a>
+                    <button type="button" style="margin: 0rem;" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <!--end breadcrumb-->
@@ -71,6 +73,7 @@
                                                 <div class="card shadow-none bg-light border">
                                                     <div class="card-body">
                                                         <div class="row g-3">
+                                                        <input type="text" class="" id="idnumber" hidden>
                                                             <div class="col-12">
                                                                 <label class="form-label">Work Order Date</label>
                                                                 <input type="text" class="form-control form-select-sm" id="workorderdate" disabled>
@@ -342,6 +345,16 @@
 
 <script>
     $(document).ready(function() {
+        $(document).on("click", "#printservicereport", function(e) {
+            var url = "{{ url('FAS/printservicereport') }}" + "/" + $("#idnumber").val();
+            window.open(url, "_blank");
+            
+        })
+
+        $(document).on("click", "#printworkorder", function(e) {
+            var url = "{{ url('FAS/printworkorder') }}" + "/" + $("#idnumber").val();
+            window.open(url, "_blank");
+        })
 
         //view modal 
         $(document).on("click", ".view", function(e) {
@@ -353,6 +366,7 @@
                 dataType: "json",
                 success: function(response) {
                     //console.log(response.viewequipment);
+                    $('#idnumber').val(response.viewworkorder.id);
                     $('#workorderdate').val(response.viewworkorder.workorder_date);
                     $('#workorderno').val(response.viewworkorder.workorder_no);
                     $('#workorderstatus').val(response.viewworkorder.workorder_status);
@@ -390,7 +404,7 @@
                     $('#specialins').val(response.viewworkorder.special_instruction);
 
                     $.each(response.viewtech, function(key, item) {
-                        var row = "<div class= 'chip' style='padding:0 5px; margin-right:.5rem; margin-bottom: .5rem;'>"+item.name+"</div>";
+                        var row = "<div class= 'chip' style='padding:0 5px; margin-right:.5rem; margin-bottom: .5rem;'>" + item.name + "</div>";
 
                         $("#techlist").append(row);
                     });

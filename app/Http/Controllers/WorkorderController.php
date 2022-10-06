@@ -205,7 +205,7 @@ class WorkorderController extends Controller
             ->join('technician', 'jce_techicianentry.tech_id', '=', 'technician.id')
             ->get();
 
-        return response()->json(['viewtech' => $viewtech ,'viewtechact' => $viewtechact, 'viewpac' => $viewpac, 'viewworkorder' => $viewworkorder, 'viewjce' => $viewjce, 'viewcustomer' => $viewcustomer, 'viewequipment' => $viewequipment]);
+        return response()->json(['viewtech' => $viewtech, 'viewtechact' => $viewtechact, 'viewpac' => $viewpac, 'viewworkorder' => $viewworkorder, 'viewjce' => $viewjce, 'viewcustomer' => $viewcustomer, 'viewequipment' => $viewequipment]);
     }
 
     /**
@@ -214,9 +214,51 @@ class WorkorderController extends Controller
      * @param  \App\Models\Workorder  $workorder
      * @return \Illuminate\Http\Response
      */
-    public function edit(Workorder $workorder)
+    public function printworkorder(Workorder $workorder, $id)
     {
         //
+        //
+        $viewworkorder = Workorder::find($id);
+        $viewjce = Jce::find($viewworkorder->jce_no);
+        $viewcustomer = Customer::find($viewjce->customer_id);
+        $viewequipment = Equipment::find($viewjce->equipment_id);
+        $viewtechact = Technicianactivity::find($viewworkorder->techact_no);
+
+        $viewtech = DB::table('jce_techicianentry')
+            ->where('techentry_no', $viewjce->techentry_no)
+            ->join('technician', 'jce_techicianentry.tech_id', '=', 'technician.id')
+            ->get();
+
+        return view('fas.printworkorder', ['viewtech' => $viewtech, 'viewtechact' => $viewtechact, 'viewequipment' => $viewequipment, 'viewcustomer' => $viewcustomer, 'viewjce' => $viewjce, 'viewworkorder' => $viewworkorder]);
+    }
+
+    public function printservicereport(Workorder $workorder, $id)
+    {
+        //
+        //
+        $viewworkorder = Workorder::find($id);
+        $viewjce = Jce::find($viewworkorder->jce_no);
+        $viewcustomer = Customer::find($viewjce->customer_id);
+        $viewequipment = Equipment::find($viewjce->equipment_id);
+        $viewtechact = Technicianactivity::find($viewworkorder->techact_no);
+        $viewdefectcode = Defectcode::find($viewworkorder->defect_code);
+        $viewfailurecode= Failurecode::find($viewworkorder->failure_code);
+
+        $jceview = DB::table('jce')
+            ->where('id', $id)
+            ->get();
+
+        $jceparts = DB::table('jce_partsentry')
+            ->where('parts_no', $viewjce->parts_no)
+            ->join('config_parts', 'jce_partsentry.parts_id', '=', 'config_parts.id')
+            ->get();
+
+        $viewta = DB::table('workorder_technicianactivity')
+            ->where('techact_no', $viewworkorder->techact_no)
+            ->get();
+
+        
+        return view('fas.printservicereport', ['viewfailurecode'=>$viewfailurecode,'viewdefectcode'=> $viewdefectcode,'viewta'=>$viewta,'viewtechact' => $viewtechact, 'jceparts' => $jceparts, 'jceview' => $jceview, 'viewequipment' => $viewequipment, 'viewcustomer' => $viewcustomer, 'viewjce' => $viewjce, 'viewworkorder' => $viewworkorder]);
     }
 
     /**

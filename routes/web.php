@@ -85,6 +85,7 @@ Route::controller(App\Http\Controllers\JceController::class)->group(function () 
     Route::get('/FAS/selectlaborcost/{id}', 'selectlaborcost');
     Route::get('/FAS/selectpartno/{id}', 'selectpartno');
     Route::get('/FAS/printjce/{id}', 'printjce');
+    Route::get('/FAS/printquotation/{id}', 'printquotation');
 });
 
 Route::controller(App\Http\Controllers\WorkorderController::class)->group(function () {
@@ -98,6 +99,8 @@ Route::controller(App\Http\Controllers\WorkorderController::class)->group(functi
     Route::get('/FAS/workorderpartscode/{id}', 'workorderpartscode');
     Route::post('/FAS/storepac', 'storepac');
     Route::post('/FAS/storeta', 'storeta');
+    Route::get('/FAS/printworkorder/{id}', 'printworkorder');
+    Route::get('/FAS/printservicereport/{id}', 'printservicereport');
     
 });
 
