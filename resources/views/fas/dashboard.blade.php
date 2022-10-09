@@ -10,9 +10,8 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
-                            <p class="mb-0 text-secondary">Total Orders</p>
-                            <h4 class="my-1">4805</h4>
-                            <p class="mb-0 font-13 text-success"><i class="bi bi-caret-up-fill"></i> 5% from last week</p>
+                            <p class="mb-0 text-secondary">Total JCE</p>
+                            <h4 class="my-1">{{$jcecount}}</h4>
                         </div>
                         <div class="widget-icon-large bg-gradient-purple text-white ms-auto"><i class="bi bi-basket2-fill"></i>
                         </div>
@@ -25,9 +24,8 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
-                            <p class="mb-0 text-secondary">Total Revenue</p>
-                            <h4 class="my-1">$24K</h4>
-                            <p class="mb-0 font-13 text-success"><i class="bi bi-caret-up-fill"></i> 4.6 from last week</p>
+                            <p class="mb-0 text-secondary">Total Workorder</p>
+                            <h4 class="my-1">{{$workordercount}}</h4>
                         </div>
                         <div class="widget-icon-large bg-gradient-success text-white ms-auto"><i class="bi bi-currency-exchange"></i>
                         </div>
@@ -40,9 +38,8 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
-                            <p class="mb-0 text-secondary">Total Customers</p>
-                            <h4 class="my-1">5.8K</h4>
-                            <p class="mb-0 font-13 text-danger"><i class="bi bi-caret-down-fill"></i> 2.7 from last week</p>
+                            <p class="mb-0 text-secondary">Total Users</p>
+                            <h4 class="my-1">{{$usercount}}</h4>
                         </div>
                         <div class="widget-icon-large bg-gradient-danger text-white ms-auto"><i class="bi bi-people-fill"></i>
                         </div>
@@ -55,9 +52,8 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
-                            <p class="mb-0 text-secondary">Bounce Rate</p>
-                            <h4 class="my-1">38.15%</h4>
-                            <p class="mb-0 font-13 text-success"><i class="bi bi-caret-up-fill"></i> 12.2% from last week</p>
+                            <p class="mb-0 text-secondary">Total Equipment</p>
+                            <h4 class="my-1">{{$equipmentcount}}</h4>
                         </div>
                         <div class="widget-icon-large bg-gradient-info text-white ms-auto"><i class="bi bi-bar-chart-line-fill"></i>
                         </div>
@@ -67,9 +63,7 @@
         </div>
     </div>
     <!--end row-->
-
-
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-12 col-lg-8 col-xl-8 d-flex">
             <div class="card radius-10 w-100">
                 <div class="card-body">
@@ -129,10 +123,10 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div> -->
     <!--end row-->
 
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-12 col-lg-6 col-xl-6 d-flex">
             <div class="card radius-10 w-100">
                 <div class="card-header bg-transparent">
@@ -192,7 +186,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!--end row-->
 </main>
 <!--end page main-->
